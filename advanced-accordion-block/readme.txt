@@ -1,9 +1,9 @@
 === Advanced Accordion Gutenberg Block ===
-Contributors: spiderdevs, mdjwel, binsaifullah, freemius
+Contributors: spiderdevs, mdjwel, binsaifullah
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
 Tested up to: 6.6.1
-Stable tag: 4.7.2
+Stable tag: 4.7.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -114,6 +114,17 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
+
+= 4.7.4  (23 November 2024) =
+Fixed: Attempt recovery issue fixed
+Fixed: Undefined issue resolved
+
+= 4.7.3  (23 November 2024) =
+New: Added deprecated function
+Fixed: Pattern compatibility issue fixed
+Fixed: Resolved some option issues
+Tweaked: Improved some settings
+Updated: Freemius SDK to 2.9.0
 
 = 4.7.2  (09 September 2024) =
 Fixed: Hard to click on separate accordion content section

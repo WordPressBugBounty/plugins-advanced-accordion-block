@@ -5,30 +5,7 @@
 	"title": "Separate Accordion",
 	"category": "accordion-block",
 	"description": "Build Accordion and FAQs Easily.",
-	"supports": {
-		"html": false,
-		"spacing": {
-			"margin": ["top", "bottom"],
-			"padding": true
-		},
-		"__experimentalBorder": {
-			"color": true,
-			"radius": true,
-			"style": true,
-			"width": true,
-			"__experimentalDefaultControls": {
-				"color": true,
-				"radius": true,
-				"style": true,
-				"width": true
-			}
-		}
-	},
-	"example": {
-		"attributes": {
-			"heading": "Accordion Heading"
-		}
-	},
+	
 	"attributes": {
 		"style" : {
 			"type" : "object",
@@ -202,22 +179,6 @@
 			"default": false
 		}
 	},
-
-	"styles": [
-		{
-			"name": "default",
-			"label": "Default",
-			"isDefault": true
-		},
-		{
-			"name": "qa",
-			"label": "Q A",
-			"attributes": {
-				"aria-label": "hello world"
-			}
-		}
-	],
-	"textdomain": "advanced-accordion-block",
 	"editorScript": [
 		"file:./index.js",
 		"aagb-anchor",

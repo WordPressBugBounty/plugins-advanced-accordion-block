@@ -3,6 +3,7 @@
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 const Save = ({ attributes }) => {
 	const {
+		uniqueId,
 		makeActive,
 		border,
 		margins,
@@ -41,9 +42,7 @@ const Save = ({ attributes }) => {
 	const activeClass = makeActive ? `aagb__accordion_body--show` : '';
 	const expandClass = buttonShow ? 'expand' : '';
 
-
 	// set unique ID
-
 	// initial accordion stage
 	let currentIconClass;
 	if (makeActive === false) {
@@ -148,9 +147,9 @@ const Save = ({ attributes }) => {
 
 					</div>
 
-					{!showIcon && (
-						<span id="complete-sign">&#10003;</span>
-						)}
+					{!showIcon && step && (
+						<span id="complete-sign">&#10003;</span>						 
+					)}
 
 					{showIcon && (
 						<div
@@ -163,8 +162,9 @@ const Save = ({ attributes }) => {
 							}}
 						>
 							<div className="aagb__icon_dashicons_box">
-								<span id="complete-sign">&#10003;</span>
-
+								{step && (
+									<span id="complete-sign">&#10003;</span>						 
+								)}
 								<span
 									className={`aagb__icon dashicons dashicons-${currentIconClass}`}
 								></span>
@@ -232,40 +232,40 @@ const Save = ({ attributes }) => {
 			{anchorLinkShow === true && aab_premium && !step && (
 				<script>
 					{`
-							jQuery(document).ready(function($) {
-								if ($('.aagb__accordion_heading').length) {
-									$(document).ready(function() {
-										var Anchor1 = new AnchorJS();
-										Anchor1.add('.aagb__accordion_heading');
-									});
-								}
-							});
+						jQuery(document).ready(function($) {
+							if ($('.aagb__accordion_heading').length) {
+								$(document).ready(function() {
+									var Anchor1 = new AnchorJS();
+									Anchor1.add('.aagb__accordion_heading');
+								});
+							}
+						});
 								
 					`}
 				</script>
 			)}
 			<script>
 				{`
-							jQuery(document).ready(function($) {
-								var text_max = parseInt("${contentCount}"); // Parse contentCount as an integer
+					jQuery(document).ready(function($) {
+						var text_max = parseInt("${contentCount}"); // Parse contentCount as an integer
 
-								$(".expand .aagb__accordion_component p").hide();
-								$(".expand .aagb__accordion_component p").slice(0, text_max).show();
-								
-								$(".expand .aagb_button_toggle").click(function(e) {
-									e.preventDefault();
-									$(".expand .aagb__accordion_component p:hidden").slice(0, text_max).fadeIn("slow");
-									if ($(".expand .aagb__accordion_component p:hidden").length === 0) {
-										$(".aagb_button_toggle").fadeOut("slow");
-										$(".aagb_overlay").fadeOut("slow");
-									}
-								});								
-							});						
+						$(".expand .aagb__accordion_component p").hide();
+						$(".expand .aagb__accordion_component p").slice(0, text_max).show();
+						
+						$(".expand .aagb_button_toggle").click(function(e) {
+							e.preventDefault();
+							$(".expand .aagb__accordion_component p:hidden").slice(0, text_max).fadeIn("slow");
+							if ($(".expand .aagb__accordion_component p:hidden").length === 0) {
+								$(".aagb_button_toggle").fadeOut("slow");
+								$(".aagb_overlay").fadeOut("slow");
+							}
+						});	
+						
+					});						
 									
-					`}
+				`}
 			</script>
-
-
+			
 		</React.Fragment>
 	);
 };

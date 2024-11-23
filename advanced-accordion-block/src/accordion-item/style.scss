@@ -551,6 +551,10 @@
 	}
 }
 
+.aagb__accordion_body.aagb__accordion_body--visible{
+	display: block !important;
+}
+
 //Test
 //.aagb__accordion_container:focus{
 //	border: 1px solid #871818FF !important;

@@ -22,6 +22,8 @@ import {
 import { __ } from '@wordpress/i18n';
 import { Fragment, useEffect } from '@wordpress/element';
 
+let uniqueCounter = 0; 
+
 const Edit = ({ attributes, setAttributes, clientId }) => {
 	const {
 		uniqueId,
@@ -46,9 +48,13 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 	const [activetorClass, setActivetorClass] = useState('click');
 
 	// set unique ID
-	setAttributes({
-		uniqueId: clientId,
-	});
+	useEffect(() => {
+        if (!uniqueId) {
+            const newUniqueId = `${clientId.slice(0, 8)}_${uniqueCounter++}`;
+            setAttributes({ uniqueId: newUniqueId });
+        }
+    }, []);
+
 	const handleActivetorChange = (value) => {
 		setActivetorClass(value);
 		setAttributes({ activetorClass: value });

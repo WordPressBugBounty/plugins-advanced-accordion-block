@@ -1,1 +1,61 @@
-.wp-block-aab-group-accordion{border:1px dashed hsla(0,0%,80%,.8);padding:15px 15px 30px!important}.wp-block-aab-group-accordion .wp-block-aab-accordion-item .block-list-appender{left:auto!important;margin-left:0!important;right:0}.wp-block-aab-group-accordion .block-list-appender{left:50%!important;margin-left:-12px!important;right:auto}.wp-block-aab-group-accordion [aria-label="Add Single Accordion"]{border-radius:50%!important;bottom:-35px!important;position:absolute}.wp-block-post-content .ezd-form-group input{width:100%}.aab-pro-element.is-opened{background:#dcdcdc;color:rgba(0,0,0,.31);cursor:pointer;position:relative}.aab-pro-element.is-opened:after{align-items:center;background:rgba(0,0,0,.42);border-radius:3px;bottom:4px;clear:both;color:#fff;content:"PRO";display:flex;font-weight:700;justify-content:center;left:4px;position:absolute;right:3px;text-align:center;top:48px;width:-webkit-fill-available;z-index:99999}.block-editor-block-styles__variants button[aria-label=aab-style-pro-checked]{display:none!important}
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/group-accordion/editor.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/*
+* Style Works for Editor Only
+*/
+.wp-block-aab-group-accordion {
+  border: 1px dashed rgba(204, 204, 204, 0.8);
+  padding: 15px 15px 30px 15px !important;
+}
+.wp-block-aab-group-accordion .wp-block-aab-accordion-item .block-list-appender {
+  left: auto !important;
+  right: 0;
+  margin-left: 0 !important;
+}
+.wp-block-aab-group-accordion .block-list-appender {
+  left: 50% !important;
+  right: auto;
+  margin-left: -12px !important;
+}
+.wp-block-aab-group-accordion [aria-label="Add Single Accordion"] {
+  border-radius: 50% !important;
+  position: absolute;
+  bottom: -35px !important;
+}
+
+.wp-block-post-content .ezd-form-group input {
+  width: 100%;
+}
+
+.aab-pro-element.is-opened {
+  background: gainsboro;
+  cursor: pointer;
+  position: relative;
+  color: rgba(0, 0, 0, 0.3098039216);
+}
+.aab-pro-element.is-opened:after {
+  content: "PRO";
+  clear: both;
+  background: rgba(0, 0, 0, 0.42);
+  position: absolute;
+  top: 48px;
+  right: 3px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  z-index: 99999;
+  left: 4px;
+  bottom: 4px;
+  width: -webkit-fill-available;
+  border-radius: 3px;
+}
+
+.block-editor-block-styles__variants button[aria-label=aab-style-pro-checked] {
+  display: none !important;
+}
+
+/*# sourceMappingURL=index.css.map*/

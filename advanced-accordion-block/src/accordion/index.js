@@ -12,6 +12,7 @@ import Save from './save';
 // icon
 import icon from './icon';
 
+import saveDep from './deprecated';
 /**
  * Block Registration
  */
@@ -23,4 +24,184 @@ registerBlockType(metadata, {
 	},
 	edit: Edit,
 	save: Save,
+	deprecated: [
+		{	
+			"attributes" : {
+			
+				"style" : {
+					"type" : "object",
+					"default": {
+						"border": {
+							"color": "#CFCABE",
+							"radius": "3px",
+							"style": "dash",
+							"width" : "1px"
+						}
+					}
+				},
+				"uniqueId": {
+					"type": "string"
+				},
+				"border": {
+					"type": "object",
+					"default": {
+						"width": "1px",
+						"color": "#cccccc",
+						"style": "solid"
+					}
+				},
+				"paddings": {
+					"type": "object",
+					"default": {
+						"top": "10px",
+						"left": "42px",
+						"right": "15px",
+						"bottom": "10px"
+					}
+				},
+				"margins": {
+					"type": "object",
+					"default": {
+						"top": "0px",
+						"bottom": "15px"
+					}
+				},
+				"borderRadius": {
+					"type": "number",
+					"default": 0
+				},
+				"qIconText": {
+					"type": "string",
+					"default": "Q"
+				},
+				"qIconColor": {
+					"type": "string",
+					"default": "#fff"
+				},
+				"qIconBg": {
+					"type": "string",
+					"default": "#505050"
+				},
+				"aIconText": {
+					"type": "string",
+					"default": "A"
+				},
+				"aIconColor": {
+					"type": "string",
+					"default": "#fff"
+				},
+				"aIconBg": {
+					"type": "string",
+					"default": "#f5a623"
+				},
+				"heading": {
+					"type": "string",
+					"default": "Accordion Heading"
+				},
+				"subheading": {
+					"type": "string",
+					"default": "Accordion Sub Heading"
+				},
+				"headingTag": {
+					"type": "string",
+					"default": "h4"
+				},
+				"headingColor": {
+					"type": "string"
+				},
+				"headerBg": {
+					"type": "string"
+				},
+				"showIcon": {
+					"type": "boolean",
+					"default": true
+				},
+				"anchorLinkShow": {
+					"type": "boolean",
+					"default": true
+				},
+				"iconClass": {
+					"type": "string",
+					"default": "plus-alt2"
+				},
+				"iconPosition": {
+					"type": "string",
+					"default": "aab_right_icon"
+				},
+				"iconFontSize": {
+					"type": "string",
+					"default": "25"
+				},
+				"iconColor": {
+					"type": "string"
+				},
+				"iconBackground": {
+					"type": "string"
+				},
+				"bodyBg": {
+					"type": "string"
+				},
+				"makeActive": {
+					"type": "boolean",
+					"default": false
+				},
+				"id": {
+					"type": "string"
+				},
+				"linkedAccordion": {
+					"type": "boolean",
+					"default": false
+				},
+				"link": {
+					"type": "string",
+					"default": "#"
+				},
+				"tab": {
+					"type": "boolean",
+					"default": false
+				},
+				"disableAccordion": {
+					"type": "boolean",
+					"default": false
+				},
+				"feedbackShow": {
+					"type": "boolean",
+					"default": false
+				},
+				"feedbacLabel": {
+					"type": "string",
+					"default": "Was this answer helpful?"
+				},
+				"yesBtn": {
+					"type": "string",
+					"default": "Yes"
+				},
+				"noBtn": {
+					"type": "string",
+					"default": "No"
+				},
+				"counterShow": {
+					"type": "boolean",
+					"default": false
+				},
+				"incNumber": {
+					"type": "number",
+					"default": 1
+				},
+				"anchorPosition": {
+					"type": "string",
+					"default": "aab_right_link"
+				},
+				"uniqueKey": {
+					"type": "string"
+				},
+				"faqSchema": {
+					"type": "boolean",
+					"default": false
+				}
+	
+			},
+			save: saveDep,
+		},
+	]
 });

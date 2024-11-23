@@ -32,13 +32,13 @@ import './editor.scss';
 
 const iconPositions = [
 	{
-		label: 'Left',
-		value: 'aab_left_icon',
-	},
-	{
 		label: 'Right',
 		value: 'aab_right_icon',
 	},
+	{
+		label: 'Left',
+		value: 'aab_left_icon',
+	}
 ];
 const anchorPositions = [
 	{
@@ -52,6 +52,8 @@ const anchorPositions = [
 ];
 
 const { select } = wp.data;
+
+let uniqueCounter = 0; 
 
 const Edit = ({ attributes, setAttributes, clientId, isSelected }) => {
 	const {
@@ -103,10 +105,12 @@ const Edit = ({ attributes, setAttributes, clientId, isSelected }) => {
 	}
 
 	// set unique ID
-	setAttributes({
-		uniqueId: clientId.slice(0, 8),
-		uniqueKey: numericClientId,
-	});
+	useEffect(() => {
+        if (!uniqueId) {
+            const newUniqueId = `${clientId.slice(0, 8)}_${uniqueCounter++}`;
+            setAttributes({ uniqueId: newUniqueId });
+        }
+    }, []);
 
 	// Check if aab_premium is true
 	const aab_premium = aagb_local_object.licensing;
@@ -542,7 +546,7 @@ const Edit = ({ attributes, setAttributes, clientId, isSelected }) => {
 								onChange={(uniqueKey) =>
 									setAttributes({ uniqueKey })
 								}
-								disabled
+								help='This ID is required to ensure unique voting options'
 							/>
 						</Fragment>
 					)}
@@ -708,6 +712,7 @@ const Edit = ({ attributes, setAttributes, clientId, isSelected }) => {
 									<button
 										className="feedback-btn"
 										data-value="yes"
+										data-id={uniqueKey}
 									>
 										{yesBtn}
 										{counterShow && (
@@ -720,6 +725,7 @@ const Edit = ({ attributes, setAttributes, clientId, isSelected }) => {
 									<button
 										className="feedback-btn"
 										data-value="no"
+										data-id={uniqueKey}
 									>
 										{noBtn}
 										{counterShow && (

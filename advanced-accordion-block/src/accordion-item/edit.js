@@ -29,13 +29,13 @@ import './editor.scss';
 
 const iconPositions = [
 	{
-		label: 'Left',
-		value: 'aagb_left_icon',
-	},
-	{
 		label: 'Right',
 		value: 'aagb_right_icon',
 	},
+	{
+		label: 'Left',
+		value: 'aagb_left_icon',
+	}
 ];
 const anchorPositions = [
 	{
@@ -47,9 +47,6 @@ const anchorPositions = [
 		value: 'aagb_right_link',
 	},
 ];
-
-
-
 
 const Edit = ({ attributes, setAttributes, context }) => {
 	const {
@@ -97,12 +94,10 @@ const Edit = ({ attributes, setAttributes, context }) => {
 			},
 		]
 	);
-
-
+	
 	// Check if aab_premium is true
 	const aab_premium 			= aagb_local_object.licensing;
-
-
+	
 	const is_disable 			= aab_premium ? '' : 'disabled';
 	const anchor_link_checked 	= aab_premium ? anchorLinkShow : 'false';
 	const read_more_checked 	= aab_premium ? buttonShow : 'false';
@@ -146,9 +141,7 @@ const Edit = ({ attributes, setAttributes, context }) => {
 	useEffect(() => {
 		setAttributes({ readMoreText: readMoreTxt });
 	}, [readMoreTxt]);
-
-
-
+	
 	if ( ! aab_premium ) {
 		const observer = new MutationObserver((mutations) => {
 			mutations.forEach((mutation) => {
@@ -278,7 +271,6 @@ const Edit = ({ attributes, setAttributes, context }) => {
 					)}</p>
 					<BorderControl
 						colors={colors}
-
 						onChange={(value) => setAttributes({ border: value })}
 						value={border}
 						withSlider={true}
@@ -294,8 +286,7 @@ const Edit = ({ attributes, setAttributes, context }) => {
 						max={50}
 					/>
 				</PanelBody>
-
-
+				
 				<PanelBody
 					initialOpen={false}
 					title={__('Accordion Head', 'advanced-accordion-block')}
@@ -320,8 +311,7 @@ const Edit = ({ attributes, setAttributes, context }) => {
 					/>
 
 				</PanelBody>
-
-
+				
 				<PanelBody
 					title={__('Accordion Icon', 'advanced-accordion-block')}
 					initialOpen={false}
@@ -333,8 +323,7 @@ const Edit = ({ attributes, setAttributes, context }) => {
 					/>
 					{showIcon && (
 						<Fragment>
-
-
+							
 							<p className="aagb__label">
 								{__('Icon Color', 'advanced-accordion-block')}
 							</p>
@@ -361,8 +350,7 @@ const Edit = ({ attributes, setAttributes, context }) => {
 						</Fragment>
 					)}
 				</PanelBody>
-
-
+				
 				<PanelBody
 					title={__('Accordion Body', 'advanced-accordion-block')}
 					initialOpen={false}
@@ -376,11 +364,9 @@ const Edit = ({ attributes, setAttributes, context }) => {
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
 					/>
 				</PanelBody>
-
-
+				
 			</InspectorControls>
-
-
+			
 			<InspectorControls>
 				<PanelBody
 					initialOpen={false}
@@ -586,9 +572,7 @@ const Edit = ({ attributes, setAttributes, context }) => {
 						allowedBlocks={true}
 						template={innerBlocksTemplate}
 					/>
-
-
-
+					
 					{button_show && aab_premium && (
 						<button className="aagb_button_toggle">
 							<RichText
@@ -602,38 +586,32 @@ const Edit = ({ attributes, setAttributes, context }) => {
 							/>
 						</button>
 					)}
-
-
-
+					
 					{step && (
 						<div className="continue">
 							<span className="step-text">{stepText}</span>
 							{/*<span className="step-down-icon">&#8595;</span>*/}
 
 							<span className="step-down-icon">
-    <svg
-		width="32"
-		height="32"
-		viewBox="0 0 32 32"
-		xmlns="http://www.w3.org/2000/svg"
-		xmlnsXlink="http://www.w3.org/1999/xlink"
-		fill="#ffffff"
-	>
-        <g>
-            <path
-				d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.724,15.92l-6.11,7.714 c-0.008,0.012-0.012,0.028-0.022,0.040c-0.34,0.434-0.894,0.434-1.234,0L 10.236,15.92c-0.34-0.434-0.34-1.138,0-1.572L 10.24,14.352 C 10.398,14.138, 10.62,14, 10.87,14l 12.22,0 c 0.246,0, 0.466,0.13, 0.624,0.338c 0.004,0.004, 0.008,0.004, 0.010,0.008 C 24.066,14.782, 24.066,15.486, 23.724,15.92z"
-			></path>
-        </g>
-    </svg>
-</span>
-
-
-
-
+								<svg
+									width="32"
+									height="32"
+									viewBox="0 0 32 32"
+									xmlns="http://www.w3.org/2000/svg"
+									xmlnsXlink="http://www.w3.org/1999/xlink"
+									fill="#ffffff"
+								>
+									<g>
+										<path
+											d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.724,15.92l-6.11,7.714 c-0.008,0.012-0.012,0.028-0.022,0.040c-0.34,0.434-0.894,0.434-1.234,0L 10.236,15.92c-0.34-0.434-0.34-1.138,0-1.572L 10.24,14.352 C 10.398,14.138, 10.62,14, 10.87,14l 12.22,0 c 0.246,0, 0.466,0.13, 0.624,0.338c 0.004,0.004, 0.008,0.004, 0.010,0.008 C 24.066,14.782, 24.066,15.486, 23.724,15.92z"
+										></path>
+									</g>
+								</svg>
+							</span>
+							
 						</div>
 					)}
-
-
+					
 				</div>
 			</div>
 		</Fragment>

@@ -97,7 +97,7 @@ const Save = ({ attributes }) => {
 						<button
 							className="feedback-btn"
 							data-value="no"
-							data-id={`${uniqueKey}`}
+							data-id={uniqueKey}
 						>
 							{noBtn}
 							{counterShow && <span className="count">0</span>}
@@ -110,25 +110,16 @@ const Save = ({ attributes }) => {
 
 	return (
 
-		<div {...(faqSchema ? { itemScope: true, itemType: "https://schema.org/FAQPage" } : {} )}>
-		<div
-			{...useBlockProps.save({
-				className: `aab__accordion_container separate-accordion ${
-					disableAccordion ? 'aab__accordion_disabled' : ''
-				} ${
-					makeActive ? `active__accordion_container_${uniqueId}` : ''
-				} ${noProClass}`,
-			})}
-			// style={{
-			// 	border: `${border.width} ${border.style} ${border.color}`,
-			// 	marginTop: `${margins.top}`,
-			// 	marginBottom: `${margins.bottom}`,
-			// 	borderRadius: `${borderRadius}px`,
-			// }}
-			id={id !== '' ? id : ''}
-			{...(faqSchema ? { itemScope: true, itemprop: "mainEntity",  itemType: "https://schema.org/Question" } : {} )}
+		<div {...useBlockProps.save({
+			className: `aab__accordion_container separate-accordion ${disableAccordion ? 'aab__accordion_disabled' : '' } ${ makeActive ? `active__accordion_container_${uniqueId}` : '' } ${noProClass}`,
+		})
+		} 
+		id={id !== '' ? id : ''} 
+		{...(faqSchema ? { itemScope: true, itemprop: "mainEntity",  itemType: "https://schema.org/Question" } : {} )}
+	>
+		<div  
+			{...(faqSchema ? { itemScope: true, itemType: "https://schema.org/FAQPage" } : {} )}				
 		>
-
 				<Fragment>
 					<div
 						className={`aab__accordion_head ${iconPosition} ${makeActive ? "active" : ""} `}
