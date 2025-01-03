@@ -1,11 +1,12 @@
 /*
 * Style Works for both Editor and Frontend
 */
-.aab__accordion_container.separate-accordion.keyboard-active {
+/*.aab__accordion_container.separate-accordion.keyboard-active {
 	outline: none;
 	border: 1px solid #007BFF;
 	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
+}*/
+
 .wp-block-aab-accordion-block {
 	overflow: hidden;
 	&.aab__accordion_disabled {
@@ -65,7 +66,7 @@
 				flex: 1;
 			}
 			&.aab_left_icon {
-				margin-left: 20px;
+				margin-left: 16px;
 				flex: 1;
 			}
 			&.aab_right_link {
@@ -104,6 +105,10 @@
 					opacity: 1;
 				}
 			}
+		}
+
+		.aab__accordion_title {
+			padding-top: 0px;
 		}
 	}
 
@@ -184,41 +189,18 @@
 	outline: none;
 }
 
-
 .wp-block-aab-accordion-block.is-style-qa {
-
-	:where(.wp-site-blocks *:focus) {
-		outline-width: 1px;
-		outline-style: none;
-	}
-
+	
 	background: #fff;
 	border: 2px solid #e6e6e6;
 	border-radius: 3px;
 	position: relative;
-	padding: 10px 15px;
-
-	&.aab__accordion_disabled {
-
-	}
-	a.aab__accordion_link {
-
-	}
-
+	padding: 10px 15px;	
 	.aab__accordion_head {
 		display: flex;
 		justify-content: space-between;
 		padding: 0;
 		align-items: center;
-
-
-		// header icon position
-		&.aab_right_icon {
-
-		}
-		&.aab_left_icon {
-
-		}
 
 		// heading
 		.aab__accordion_heading {
@@ -258,7 +240,6 @@
 		}
 	}
 	.aab__accordion_head.active{
-
 		.aab__accordion_heading {
 			.icon-container{
 				.icon-a{
@@ -268,22 +249,13 @@
 				}
 			}
 		}
-
-
-	}
-	.collapse-icon span {
-
-	}
-
+	}	
 	.aab__accordion_body {
 		padding: 0 0 0 90px;
 		border-top: 0;
 
 		:first-child{
 			margin-top: 0;
-		}
-		&.aab__accordion_body--show {
-
 		}
 
 		.block-editor-inner-blocks{
@@ -306,6 +278,12 @@
 
 .aab__accordion_container.is-style-qa .aab__accordion_head.aab_left_icon  + .aab__accordion_body   {
 	padding-left: 128px;
+}
+.wp-block-aab-accordion-block.is-style-qa {
+	:where(.wp-site-blocks *:focus) {
+		outline-width: 1px;
+		outline-style: none
+	}
 }
 
 :where(.wp-site-blocks *:focus) {

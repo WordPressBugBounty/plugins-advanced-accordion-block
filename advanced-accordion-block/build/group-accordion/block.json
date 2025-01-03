@@ -19,10 +19,29 @@
     "aagb/accordion-hasQaStyle": "hasQaStyle",
     "aagb/accordion-faqSchema": "faqSchema",
     "aagb/accordion-stepText": "stepText",
+    "aagb/accordion-stepCmpltText": "stepCmpltText",
     "aagb/accordion-checkList": "checkList",
     "aagb/accordion-anchorLinksShow": "anchorLinksShow",
     "aagb/accordion-buttonShow": "buttonShow",
-    "aagb/accordion-readMoreText": "readText"
+    "aagb/accordion-readMoreText": "readText",
+    "aagb/accordion-border": "border",
+    "aagb/accordion-margins": "margins",
+    "aagb/accordion-paddings": "paddings",
+    "aagb/accordion-borderRadius": "borderRadius",
+    "aagb/accordion-headingColor": "headingColor",
+    "aagb/accordion-showIcon": "showIcon",
+    "aagb/accordion-iconColor": "iconColor",
+    "aagb/accordion-iconBackground": "iconBackground",
+    "aagb/accordion-headerBg": "headerBg",
+    "aagb/accordion-bodyBg": "bodyBg",
+    "aagb/accordion-styledQA": "styledQA",
+    "aagb/accordion-qIconText": "qIconText",
+    "aagb/accordion-qIconColor": "qIconColor",
+    "aagb/accordion-qIconBg": "qIconBg",
+    "aagb/accordion-aIconText": "aIconText",
+    "aagb/accordion-aIconColor": "aIconColor",
+    "aagb/accordion-aIconBg": "aIconBg",
+    "aagb/accordion-contentCount": "contentCount"
   },
   "attributes": {
     "anchorLinksShow": {
@@ -80,6 +99,10 @@
       "type": "string",
       "default": "Continue"
     },
+    "stepCmpltText": {
+      "type": "string",
+      "default": "Congratulations, you are done!"
+    },
     "checkList": {
       "type": "boolean",
       "default": false
@@ -95,6 +118,80 @@
     "readText": {
       "type": "string",
       "default": "Read More"
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "width": "1px",
+        "color": "#cccccc",
+        "style": "solid"
+      }
+    },
+    "paddings": {
+      "type": "object",
+      "default": {
+        "top": "10px",
+        "left": "15px",
+        "right": "15px",
+        "bottom": "10px"
+      }
+    },
+    "margins": {
+      "type": "object",
+      "default": {
+        "top": "0px",
+        "bottom": "15px"
+      }
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    },
+    "headingColor": {
+      "type": "string"
+    },
+    "headerBg": {
+      "type": "string"
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "iconBackground": {
+      "type": "string"
+    },
+    "bodyBg": {
+      "type": "string"
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "styledQA": {
+      "type": "boolean"
+    },
+    "qIconText": {
+      "type": "string",
+      "default": "Q"
+    },
+    "qIconColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "qIconBg": {
+      "type": "string",
+      "default": "#505050"
+    },
+    "aIconText": {
+      "type": "string",
+      "default": "A"
+    },
+    "aIconColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "aIconBg": {
+      "type": "string",
+      "default": "#f5a623"
     }
   },
   "styles": [

@@ -3,6 +3,7 @@
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 const saveDep = ({ attributes }) => {
 	const {
+		uniqueId,
 		makeActive,
 		border,
 		margins,

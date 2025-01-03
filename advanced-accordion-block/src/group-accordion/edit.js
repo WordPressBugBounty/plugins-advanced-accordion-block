@@ -3,14 +3,19 @@
 import './editor.scss';
 import React, { useState } from 'react';
 import {
-	PanelBody,
-	ToggleControl,
 	TextControl,
+	BaseControl,
+	useBaseControlProps,
 	RadioControl,
-	RangeControl,
-	__experimentalBorderControl as BorderControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	ColorPalette,
+	PanelBody,
+	RangeControl,
+	SelectControl,
+	ToggleControl,
+	__experimentalBoxControl as BoxControl,
+	__experimentalBorderControl as BorderControl,
 } from '@wordpress/components';
 import colors from '../colors';
 import {
@@ -38,11 +43,29 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		faqSchema,
 		step,
 		stepText,
+		stepCmpltText,
 		checkList,
 		anchorLinksShow,
 		buttonShow,
 		contentCount,
 		readText,
+		border,
+		margins,
+		paddings,
+		borderRadius,
+		headingColor,
+		showIcon,
+		iconColor,
+		iconBackground,
+		headerBg,
+		bodyBg,
+		styledQA,
+		qIconText,
+		qIconColor,
+		qIconBg,
+		aIconColor,
+		aIconBg,
+		aIconText,
 	} = attributes;
 	
 	const [activetorClass, setActivetorClass] = useState('click');
@@ -70,7 +93,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 	const read_more_checked 		= aab_premium ? buttonShow : 'false';
 
 	const blockProps = useBlockProps();
-	const qaStyle = blockProps.className.includes('is-style-qa')
+	const qaStyle = blockProps.className.includes('is-style-qa');
 
 	useEffect(() => {
 		setAttributes({ hasQaStyle: qaStyle })
@@ -78,11 +101,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
 	let optionsName;
 
-	if(step) {
+	if ( step ) {
 		optionsName = "step";
-	}else if( checkList ) {
+	} else if ( checkList ) {
 		optionsName = "checkList";
-	}else{
+	} else {
 		optionsName = "none";
 	}
 			
@@ -93,6 +116,58 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				{`.aagb_accordion_${uniqueId} .aagb__accordion_body { border-top: ${activeAccordionBorder.width} ${activeAccordionBorder.style} ${activeAccordionBorder.color} !important; }`}
 			</style>
 			<InspectorControls group="styles">
+				{ hasQaStyle && aab_premium && (
+					<>
+						<PanelBody
+							title={__('Q/A Icons Styles', 'advanced-accordion-block')}
+							initialOpen={false}
+						>
+							<p className="aab__label">
+								{__('Q Icon Color', 'advanced-accordion-block')}
+							</p>
+							<ColorPalette
+								colors={colors}
+								value={qIconColor}
+								onChange={(qIconColor) =>
+									setAttributes({ qIconColor })
+								}
+							/>
+
+							<p className="aab__label">
+								{__('Q Icon Background Color', 'advanced-accordion-block')}
+							</p>
+							<ColorPalette
+								colors={colors}
+								value={qIconBg}
+								onChange={(qIconBg) =>
+									setAttributes({ qIconBg })
+								}
+							/>
+							<p className="aab__label">
+								{__('A Icon Color', 'advanced-accordion-block')}
+							</p>
+							<ColorPalette
+								colors={colors}
+								value={aIconColor}
+								onChange={(aIconColor) =>
+									setAttributes({ aIconColor })
+								}
+							/>
+
+							<p className="aab__label">
+								{__('A Icon Background Color', 'advanced-accordion-block')}
+							</p>
+							<ColorPalette
+								colors={colors}
+								value={aIconBg}
+								onChange={(aIconBg) =>
+									setAttributes({ aIconBg })
+								}
+							/>
+
+						</PanelBody>
+					</>
+				)}
 				<PanelBody
 					initialOpen={false}
 					title={__(
@@ -108,13 +183,163 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						colors={colors}
 
 						onChange={(value) =>
-							setAttributes({ activeAccordionBorder: value })
+							setAttributes({activeAccordionBorder: value})
 						}
 						value={activeAccordionBorder}
 						withSlider={true}
 					/>
+
+					<div className="aa-custom-spacer"></div>
+				</PanelBody>
+
+				<PanelBody
+					initialOpen={false}
+					title={__('Accordion Styles', 'advanced-accordion-block')}
+				>
+					<BoxControl
+						values={margins}
+						label={__(
+							'Accordion Margin',
+							'advanced-accordion-block'
+						)}
+						sides={['top', 'bottom']}
+						units={[]}
+						allowReset={false}
+						onChange={(newValue) =>
+							setAttributes({
+								...margins,
+								margins: {
+									top: newValue.top,
+									bottom: newValue.bottom,
+								},
+							})
+						}
+					/>
+					<div className="aa-custom-spacer"></div>
+					<BoxControl
+						values={paddings}
+						label={__(
+							'Content Padding',
+							'advanced-accordion-block'
+						)}
+						sides={['horizontal', 'vertical']}
+						units={[]}
+						splitOnAxis={true}
+						allowReset={false}
+						onChange={(newValue) =>
+							setAttributes({
+								...paddings,
+								paddings: {
+									top: newValue.top,
+									left: newValue.left,
+									right: newValue.right,
+									bottom: newValue.bottom,
+								},
+							})
+						}
+					/>
+					<div className="aa-custom-spacer"></div>
+					<p>{__(
+						'Set Accordion Border',
+						'advanced-accordion-block'
+					)}</p>
+					<BorderControl
+						colors={colors}
+						onChange={(value) => setAttributes({ border: value })}
+						value={border}
+						withSlider={true}
+					/>
+					<div className="aa-custom-spacer"></div>
+					<RangeControl
+						label={__('Border Radius', 'advanced-accordion-block')}
+						value={borderRadius}
+						onChange={(borderRadius) =>
+							setAttributes({ borderRadius })
+						}
+						min={0}
+						max={50}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					initialOpen={false}
+					title={__('Accordion Head', 'advanced-accordion-block')}
+				>
+					<p className="aagb__label">
+						{__('Header Color', 'advanced-accordion-block')}
+					</p>
+					<ColorPalette
+						colors={colors}
+						value={headingColor}
+						onChange={(headingColor) =>
+							setAttributes({ headingColor })
+						}
+					/>
+					<p className="aagb__label">
+						{__('Header Background', 'advanced-accordion-block')}
+					</p>
+					<ColorPalette
+						colors={colors}
+						value={headerBg}
+						onChange={(headerBg) => setAttributes({ headerBg })}
+					/>
+
+				</PanelBody>
+
+				<PanelBody
+					title={__('Accordion Icon', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<ToggleControl
+						label={__('Show Icon', 'advanced-accordion-block')}
+						checked={showIcon}
+						onChange={() => setAttributes({ showIcon: !showIcon })}
+					/>
+					{showIcon && (
+						<Fragment>
+
+							<p className="aagb__label">
+								{__('Icon Color', 'advanced-accordion-block')}
+							</p>
+							<ColorPalette
+								colors={colors}
+								value={iconColor}
+								onChange={(iconColor) =>
+									setAttributes({ iconColor })
+								}
+							/>
+							<p className="aagb__label">
+								{__(
+									'Icon Background',
+									'advanced-accordion-block'
+								)}
+							</p>
+							<ColorPalette
+								colors={colors}
+								value={iconBackground}
+								onChange={(iconBackground) =>
+									setAttributes({ iconBackground })
+								}
+							/>
+						</Fragment>
+					)}
+				</PanelBody>
+
+				<PanelBody
+					title={__('Accordion Body', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<p className="aagb__label">
+						{__('Background Color', 'advanced-accordion-block')}
+					</p>
+					<ColorPalette
+						colors={colors}
+						value={bodyBg}
+						onChange={(bodyBg) => setAttributes({ bodyBg })}
+					/>
 				</PanelBody>
 			</InspectorControls>
+
 
 
 			<InspectorControls>
@@ -167,7 +392,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
 				<PanelBody
 					title={__(
-						'Open All / Close All Button',
+						'Open/Close All',
 						'advanced-accordion-block'
 					)}
 					initialOpen={false}
@@ -175,7 +400,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				>
 					<ToggleControl
 						label={__(
-							'Open All / Close All',
+							'Open All & Close All',
 							'advanced-accordion-block'
 						)}
 						disabled={is_disable}
@@ -186,47 +411,45 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 					/>
 					{showAllbtn && aab_premium && (
 						<div>
-							<label
-								htmlFor="closeText"
-								className="label-d-block"
-							>
-								{__(
-									'Close All Text',
-									'advanced-accordion-block'
-								)}
-							</label>
+							<BaseControl __nextHasNoMarginBottom id="closeText" label="Close All Text">
+								<input
+									id="closeText"
+									type="text"
+									disabled={is_disable}
+									placeholder={__(
+										'Enter text',
+										'advanced-accordion-block'
+									)}
+									value={closeText}
+									onChange={(e) =>
+										setAttributes({ closeText: e.target.value })
+									}
+									style={{
+										display: 'block',
+										width: '100%'
+									}}
+								/>
+							</BaseControl>
 
-							<input
-								id="closeText"
-								type="text"
-								disabled={is_disable}
-								placeholder={__(
-									'Enter text',
-									'advanced-accordion-block'
-								)}
-								value={closeText}
-								onChange={(e) =>
-									setAttributes({ closeText: e.target.value })
-								}
-							/>
-							<label htmlFor="openText" className="label-d-block">
-								{__(
-									'Show All Text',
-									'advanced-accordion-block'
-								)}
-							</label>
-							<input
-								id="openText"
-								type="text"
-								disabled={is_disable}
-								value={openText}
-								onChange={(e) =>
-									setAttributes({ openText: e.target.value })
-								}
-							/>
+							<BaseControl __nextHasNoMarginBottom id="openText" label="Show All Text">
+								<input
+									id="openText"
+									type="text"
+									disabled={is_disable}
+									value={openText}
+									onChange={(e) =>
+										setAttributes({ openText: e.target.value })
+									}
+									style={{
+										display: 'block',
+										width: '100%'
+									}}
+								/>
+							</BaseControl>
 						</div>
 					)}
 				</PanelBody>
+				
 				<PanelBody
 					title={__('Activetor Event', 'advanced-accordion-block')}
 					initialOpen={false}
@@ -260,7 +483,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
 					<ToggleControl
 						label={__(
-							'Show Anchor Link',
+							'Anchor Link',
 							'advanced-accordion-block'
 						)}
 						// pass disable variable here
@@ -300,16 +523,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						initialOpen={false}
 						title={__('Steps or Checklist', 'advanced-accordion-block')}
 					>
-						{/*<ToggleControl*/}
-						{/*	label={__(*/}
-						{/*		'Make it enable',*/}
-						{/*		'advanced-accordion-block'*/}
-						{/*	)}*/}
-						{/*	checked={checkList}*/}
-						{/*	onChange={() =>*/}
-						{/*		setAttributes({ checkList: !checkList })*/}
-						{/*	}*/}
-						{/*/>*/}
 
 						<RadioControl
 							label="Options"
@@ -335,29 +548,26 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 							}}
 						/>
 
+						{ aab_premium && step && (
+								<TextControl // New TextControl
+										label={__('Step Text', 'advanced-accordion-block')}
+										value={stepText} // State variable to hold the text value
+										onChange={(value) => setAttributes({ stepText: value })}
+										help={__('Enter the text you want to display on the step.', 'advanced-accordion-block')}
+								/>
+
+						)}
+						{ aab_premium && step && (
+							<TextControl // New TextControl
+								label={__('Step Complete Text', 'advanced-accordion-block')}
+								value={stepCmpltText} // State variable to hold the text value
+								onChange={(value) => setAttributes({ stepCmpltText: value })}
+								help={__('Enter the text you want to display when the step is completed.', 'advanced-accordion-block')}
+							/>
+
+						)}
 					</PanelBody>
 				)}
-
-
-
-				{ aab_premium && step && (
-					<PanelBody
-						title={__('Change Step text', 'advanced-accordion-block')}
-						initialOpen={false}
-						className={has_disabled_class}
-					>
-
-						<TextControl // New TextControl
-							label={__('Step Text', 'advanced-accordion-block')}
-							value={stepText} // State variable to hold the text value
-							onChange={(value) => setAttributes({ stepText: value })}
-							help={__('Enter the text you want to display on the step.', 'advanced-accordion-block')}
-						/>
-
-					</PanelBody>
-				)}
-
-
 
 				<PanelBody
 					title={__('Read More Button', 'advanced-accordion-block')}
@@ -377,12 +587,12 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 					/>
 					{buttonShow && (
 						<>
-
 							<RangeControl
 								label={__(
 									'Content Count',
 									'advanced-accordion-block'
 								)}
+								help={__('Total Number of Characters you want to display on accordion body', 'advanced-accordion-block')}
 								disabled={is_disable}
 								value={contentCount}
 								onChange={(value) =>
@@ -404,8 +614,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				</PanelBody>
 
 
-
-
 			</InspectorControls>
 
 			<div
@@ -414,12 +622,12 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				})}
 			>
 				{searchShow && aab_premium && (
-					<div className="aagb_form_inner" id="aagb-search-form">
+					<div className="aagb_form_inner" id={"aagb-search-form-" + uniqueId}>
 						<div className="aagb_form_group">
 							<input
-								id="aagb-search-id"
-								type="text"
-								className="aagb_form_control noEnterSubmit"
+								data-searchTarget={uniqueId}
+								type="search"
+								className="aagb-search-control aagb_form_control noEnterSubmit"
 								disabled={is_disable}
 								placeholder={
 									placeholderText || 'Search for FAQ'
@@ -440,7 +648,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				)}
 				{showAllbtn && aab_premium && (
 					<div className="aagb_accordion_wrapper_btn">
-						<a href="#" className="content-accordion__close-all">
+						<a href="#" data-closeTarget={uniqueId} className="content-accordion__close-all">
 							<svg
 								class="svg-inline--fa fa-compress-alt fa-w-14"
 								role="presentation"
@@ -464,7 +672,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 								}}
 							/>
 						</a>
-						<a href="#" className="content-accordion__show-all">
+						<a href="#" data-openTarget={uniqueId}  className="content-accordion__show-all">
 							<svg
 								class="svg-inline--fa fa-expand-alt fa-w-14"
 								role="presentation"
@@ -495,6 +703,10 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 					allowedBlocks={['aab/accordion-item']}
 					template={[['aab/accordion-item']]}
 				/>
+
+				{step && (
+					<span className="step-result">{stepCmpltText}</span>
+				)}
 
 			</div>
 		</Fragment>

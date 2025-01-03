@@ -19,7 +19,7 @@ registerBlockType(metadata, {
 		src: 'minus',
 		foreground: '#77b5f7',
 	},
-	usesContext: [ "aagb/accordion-hasQaStyle", "aagb/accordion-faqSchema", "aagb/accordion-step", "aagb/accordion-stepText", "aagb/accordion-checkList", "aagb/accordion-anchorLinksShow", "aagb/accordion-buttonShow", "aagb/accordion-readMoreText" ],
+	usesContext: [ "aagb/accordion-hasQaStyle", "aagb/accordion-faqSchema", "aagb/accordion-step", "aagb/accordion-stepText", "aagb/accordion-checkList", "aagb/accordion-anchorLinksShow", "aagb/accordion-buttonShow", "aagb/accordion-readMoreText" ,"aagb/accordion-border" ,"aagb/accordion-margins" ,"aagb/accordion-paddings","aagb/accordion-borderRadius","aagb/accordion-headingColor","aagb/accordion-showIcon","aagb/accordion-iconColor","aagb/accordion-iconBackground","aagb/accordion-headerBg","aagb/accordion-bodyBg","aagb/accordion-styledQA","aagb/accordion-qIconText","aagb/accordion-qIconColor" ,"aagb/accordion-qIconBg","aagb/accordion-aIconText","aagb/accordion-aIconColor","aagb/accordion-aIconBg","aagb/accordion-contentCount"],
 	edit: Edit,
 	save: Save,
 	deprecated: [

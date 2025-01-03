@@ -97,7 +97,7 @@
 		},
 		"anchorLinkShow": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"iconClass": {
 			"type": "string",

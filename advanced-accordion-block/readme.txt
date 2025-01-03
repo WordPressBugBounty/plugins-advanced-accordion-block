@@ -3,7 +3,7 @@ Contributors: spiderdevs, mdjwel, binsaifullah
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
 Tested up to: 6.6.1
-Stable tag: 4.7.4
+Stable tag: 4.8.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 [youtube https://www.youtube.com/watch?v=GXeYq4xvz_Q]
 
 ## 🔗 USEFUL LINKS ##
-- [Get the Pro Version](https://spider-themes.net/advanced-accordion-block/flexible-pricing-for-all)
+- [Get the Pro Version](https://spider-themes.net/advanced-accordion-block/pricing)
 - [Demo (built with Advanced Accordion Gutenberg Block)](https://spider-themes.net/advanced-accordion-block/qa-question-and-answer-style)
 - [Documentation](https://helpdesk.spider-themes.net/docs/advance-accordions)
 - [Explore More](https://spider-themes.net/advanced-accordion-block)
@@ -114,6 +114,15 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
+
+= 4.8.0  (03 January 2025) =
+Fixed: Icon change option of group accordion
+Tweaked: Focus border color removed from Separate Accordion block
+Tweaked: Added padding support in accordion body (Previously, padding support was only available for the header. Now, it has been added to both the header and body)
+Tweaked: Moved the styling options to parent in the Group Accordion
+Tweaked: Adding some padding in the content are of every single accordion
+Tweaked: Deprecated function updated
+Updated: Freemius SDK to 2.10.1
 
 = 4.7.4  (23 November 2024) =
 Fixed: Attempt recovery issue fixed

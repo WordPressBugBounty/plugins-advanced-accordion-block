@@ -21,7 +21,7 @@
   "devDependencies": {
     "@wordpress/eslint-plugin": "^10.0.0",
     "@wordpress/prettier-config": "^1.1.1",
-    "@wordpress/scripts": "^30.4.0",
+    "@wordpress/scripts": "^30.7.0",
     "@wordpress/stylelint-config": "^20.0.0",
     "eslint-config-prettier": "^8.3.0"
   },

@@ -80,6 +80,10 @@ registerBlockType(metadata, {
 					"type": "string",
 					"default": "Continue"
 				},
+				"stepCmpltText": {
+					"type": "string",
+					"default": "Congratulations, you are done!"
+				},
 				"checkList": {
 					"type": "boolean",
 					"default": false
@@ -95,6 +99,50 @@ registerBlockType(metadata, {
 				"readText":{
 					"type": "string",
 					"default": "Read More"
+				},
+				"border": {
+					"type": "object",
+					"default": {
+						"width": "1px",
+						"color": "#cccccc",
+						"style": "solid"
+					}
+				},
+				"paddings": {
+					"type": "object",
+					"default": {
+						"top": "10px",
+						"left": "15px",
+						"right": "15px",
+						"bottom": "10px"
+					}
+				},
+				"margins": {
+					"type": "object",
+					"default": {
+						"top": "0px",
+						"bottom": "15px"
+					}
+				},
+				"borderRadius": {
+					"type": "number",
+					"default": 0
+				},"headingColor": {
+					"type": "string"
+				},
+				"headerBg": {
+					"type": "string"
+				},"iconColor": {
+					"type": "string"
+				},
+				"iconBackground": {
+					"type": "string"
+				},
+				"bodyBg": {
+					"type": "string"
+				},"showIcon": {
+					"type": "boolean",
+					"default": true
 				}
 			},
 			"styles": [

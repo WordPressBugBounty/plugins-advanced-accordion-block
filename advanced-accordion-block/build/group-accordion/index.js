@@ -201,11 +201,29 @@ const Edit = ({
     faqSchema,
     step,
     stepText,
+    stepCmpltText,
     checkList,
     anchorLinksShow,
     buttonShow,
     contentCount,
-    readText
+    readText,
+    border,
+    margins,
+    paddings,
+    borderRadius,
+    headingColor,
+    showIcon,
+    iconColor,
+    iconBackground,
+    headerBg,
+    bodyBg,
+    styledQA,
+    qIconText,
+    qIconColor,
+    qIconBg,
+    aIconColor,
+    aIconBg,
+    aIconText
   } = attributes;
   const [activetorClass, setActivetorClass] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('click');
 
@@ -250,7 +268,42 @@ const Edit = ({
   }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `.aagb_accordion_${uniqueId} .aagb__accordion_active { border: ${activeAccordionBorder.width} ${activeAccordionBorder.style} ${activeAccordionBorder.color} !important; }`, `.aagb_accordion_${uniqueId} .aagb__accordion_body { border-top: ${activeAccordionBorder.width} ${activeAccordionBorder.style} ${activeAccordionBorder.color} !important; }`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
     group: "styles"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  }, hasQaStyle && aab_premium && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Q/A Icons Styles', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aab__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Q Icon Color', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: qIconColor,
+    onChange: qIconColor => setAttributes({
+      qIconColor
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aab__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Q Icon Background Color', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: qIconBg,
+    onChange: qIconBg => setAttributes({
+      qIconBg
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aab__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('A Icon Color', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: aIconColor,
+    onChange: aIconColor => setAttributes({
+      aIconColor
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aab__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('A Icon Background Color', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: aIconBg,
+    onChange: aIconBg => setAttributes({
+      aIconBg
+    })
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Active Accordion Style', 'advanced-accordion-block')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
@@ -262,6 +315,116 @@ const Edit = ({
     }),
     value: activeAccordionBorder,
     withSlider: true
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "aa-custom-spacer"
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    initialOpen: false,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Accordion Styles', 'advanced-accordion-block')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBoxControl, {
+    values: margins,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Accordion Margin', 'advanced-accordion-block'),
+    sides: ['top', 'bottom'],
+    units: [],
+    allowReset: false,
+    onChange: newValue => setAttributes({
+      ...margins,
+      margins: {
+        top: newValue.top,
+        bottom: newValue.bottom
+      }
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "aa-custom-spacer"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBoxControl, {
+    values: paddings,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Content Padding', 'advanced-accordion-block'),
+    sides: ['horizontal', 'vertical'],
+    units: [],
+    splitOnAxis: true,
+    allowReset: false,
+    onChange: newValue => setAttributes({
+      ...paddings,
+      paddings: {
+        top: newValue.top,
+        left: newValue.left,
+        right: newValue.right,
+        bottom: newValue.bottom
+      }
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "aa-custom-spacer"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Set Accordion Border', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBorderControl, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    onChange: value => setAttributes({
+      border: value
+    }),
+    value: border,
+    withSlider: true
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "aa-custom-spacer"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Border Radius', 'advanced-accordion-block'),
+    value: borderRadius,
+    onChange: borderRadius => setAttributes({
+      borderRadius
+    }),
+    min: 0,
+    max: 50
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    initialOpen: false,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Accordion Head', 'advanced-accordion-block')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aagb__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Header Color', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: headingColor,
+    onChange: headingColor => setAttributes({
+      headingColor
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aagb__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Header Background', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: headerBg,
+    onChange: headerBg => setAttributes({
+      headerBg
+    })
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Accordion Icon', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Show Icon', 'advanced-accordion-block'),
+    checked: showIcon,
+    onChange: () => setAttributes({
+      showIcon: !showIcon
+    })
+  }), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aagb__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Icon Color', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: iconColor,
+    onChange: iconColor => setAttributes({
+      iconColor
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aagb__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Icon Background', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: iconBackground,
+    onChange: iconBackground => setAttributes({
+      iconBackground
+    })
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Accordion Body', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "aagb__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Background Color', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    colors: _colors__WEBPACK_IMPORTED_MODULE_4__["default"],
+    value: bodyBg,
+    onChange: bodyBg => setAttributes({
+      bodyBg
+    })
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Accordion Search', 'advanced-accordion-block'),
     initialOpen: false,
@@ -286,21 +449,22 @@ const Edit = ({
       placeholderText: e.target.value
     })
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Open All / Close All Button', 'advanced-accordion-block'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Open/Close All', 'advanced-accordion-block'),
     initialOpen: false,
     className: has_disabled_class
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Open All / Close All', 'advanced-accordion-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Open All & Close All', 'advanced-accordion-block'),
     disabled: is_disable,
     checked: show_close_btn_checked // Use the state variable here
     ,
     onChange: () => setAttributes({
       showAllbtn: !showAllbtn
     })
-  }), showAllbtn && aab_premium && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "closeText",
-    className: "label-d-block"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Close All Text', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }), showAllbtn && aab_premium && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+    __nextHasNoMarginBottom: true,
+    id: "closeText",
+    label: "Close All Text"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     id: "closeText",
     type: "text",
     disabled: is_disable,
@@ -308,19 +472,28 @@ const Edit = ({
     value: closeText,
     onChange: e => setAttributes({
       closeText: e.target.value
-    })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "openText",
-    className: "label-d-block"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Show All Text', 'advanced-accordion-block')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    }),
+    style: {
+      display: 'block',
+      width: '100%'
+    }
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+    __nextHasNoMarginBottom: true,
+    id: "openText",
+    label: "Show All Text"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     id: "openText",
     type: "text",
     disabled: is_disable,
     value: openText,
     onChange: e => setAttributes({
       openText: e.target.value
-    })
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    }),
+    style: {
+      display: 'block',
+      width: '100%'
+    }
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Activetor Event', 'advanced-accordion-block'),
     initialOpen: false,
     className: has_disabled_class
@@ -342,7 +515,7 @@ const Edit = ({
     initialOpen: false,
     className: has_disabled_class
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Show Anchor Link', 'advanced-accordion-block')
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Anchor Link', 'advanced-accordion-block')
     // pass disable variable here
     ,
     disabled: is_disable,
@@ -401,11 +574,7 @@ const Edit = ({
         });
       }
     }
-  })), aab_premium && step && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Change Step text', 'advanced-accordion-block'),
-    initialOpen: false,
-    className: has_disabled_class
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl // New TextControl
+  }), aab_premium && step && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl // New TextControl
   , {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Step Text', 'advanced-accordion-block'),
     value: stepText // State variable to hold the text value
@@ -414,6 +583,15 @@ const Edit = ({
       stepText: value
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Enter the text you want to display on the step.', 'advanced-accordion-block')
+  }), aab_premium && step && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl // New TextControl
+  , {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Step Complete Text', 'advanced-accordion-block'),
+    value: stepCmpltText // State variable to hold the text value
+    ,
+    onChange: value => setAttributes({
+      stepCmpltText: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Enter the text you want to display when the step is completed.', 'advanced-accordion-block')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Read More Button', 'advanced-accordion-block'),
     initialOpen: false,
@@ -427,6 +605,7 @@ const Edit = ({
     })
   }), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Content Count', 'advanced-accordion-block'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Total Number of Characters you want to display on accordion body', 'advanced-accordion-block'),
     disabled: is_disable,
     value: contentCount,
     onChange: value => setAttributes({
@@ -446,13 +625,13 @@ const Edit = ({
     className: `aagb_accordion_${uniqueId}`
   }), searchShow && aab_premium && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "aagb_form_inner",
-    id: "aagb-search-form"
+    id: "aagb-search-form-" + uniqueId
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "aagb_form_group"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    id: "aagb-search-id",
-    type: "text",
-    className: "aagb_form_control noEnterSubmit",
+    "data-searchTarget": uniqueId,
+    type: "search",
+    className: "aagb-search-control aagb_form_control noEnterSubmit",
     disabled: is_disable,
     placeholder: placeholderText || 'Search for FAQ',
     value: placeholderText,
@@ -466,6 +645,7 @@ const Edit = ({
     className: "aagb_accordion_wrapper_btn"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: "#",
+    "data-closeTarget": uniqueId,
     className: "content-accordion__close-all"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     class: "svg-inline--fa fa-compress-alt fa-w-14",
@@ -487,6 +667,7 @@ const Edit = ({
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: "#",
+    "data-openTarget": uniqueId,
     className: "content-accordion__show-all"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     class: "svg-inline--fa fa-expand-alt fa-w-14",
@@ -509,7 +690,9 @@ const Edit = ({
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks, {
     allowedBlocks: ['aab/accordion-item'],
     template: [['aab/accordion-item']]
-  })));
+  }), step && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "step-result"
+  }, stepCmpltText)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -556,6 +739,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -573,19 +759,20 @@ const Save = ({
     activetorClass,
     faqSchema,
     step,
+    stepCmpltText,
     contentCount
   } = attributes;
   const aab_premium = aagb_local_object.licensing;
   const activetorClassEvent = aab_premium ? activetorClass : 'click';
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, searchShow && aab_premium && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "aagb_form_inner",
-    id: "aagb-search-form"
+    id: "aagb-search-form-" + uniqueId
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "aagb_form_group"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("input", {
-    id: "aagb-search-id",
-    type: "text",
-    className: "aagb_form_control noEnterSubmit",
+    type: "search",
+    "data-searchTarget": uniqueId,
+    className: "aagb-search-control aagb_form_control noEnterSubmit",
     placeholder: placeholderText || 'Search for FAQ'
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
     id: "aagb-search-help-block",
@@ -594,6 +781,7 @@ const Save = ({
     className: "aagb_accordion_wrapper_btn"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     href: "#",
+    "data-closeTarget": 'aagb_accordion_' + uniqueId,
     className: "content-accordion__close-all"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("svg", {
     class: "svg-inline--fa fa-compress-alt fa-w-14",
@@ -615,6 +803,7 @@ const Save = ({
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     href: "#",
+    "data-openTarget": 'aagb_accordion_' + uniqueId,
     className: "content-accordion__show-all"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("svg", {
     class: "svg-inline--fa fa-expand-alt fa-w-14",
@@ -639,15 +828,9 @@ const Save = ({
   }), faqSchema ? {
     itemScope: true,
     itemType: "https://schema.org/FAQPage"
-  } : {}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    dangerouslySetInnerHTML: {
-      __html: `
-				<script>
-				let aagb_group_accordion_text_max = ${contentCount}					
-				 </script>
-				`
-    }
-  }));
+  } : {}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null), step && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
+    className: "step-result"
+  }, stepCmpltText)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 
@@ -736,21 +919,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ _extends)
 /* harmony export */ });
 function _extends() {
-  _extends = Object.assign ? Object.assign.bind() : function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
+  return _extends = Object.assign ? Object.assign.bind() : function (n) {
+    for (var e = 1; e < arguments.length; e++) {
+      var t = arguments[e];
+      for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
     }
-
-    return target;
-  };
-  return _extends.apply(this, arguments);
+    return n;
+  }, _extends.apply(null, arguments);
 }
+
 
 /***/ }),
 
@@ -760,7 +937,7 @@ function _extends() {
   \****************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"aab/group-accordion","version":"0.1.0","title":"Group Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"providesContext":{"aagb/accordion-step":"step","aagb/accordion-hasQaStyle":"hasQaStyle","aagb/accordion-faqSchema":"faqSchema","aagb/accordion-stepText":"stepText","aagb/accordion-checkList":"checkList","aagb/accordion-anchorLinksShow":"anchorLinksShow","aagb/accordion-buttonShow":"buttonShow","aagb/accordion-readMoreText":"readText"},"attributes":{"anchorLinksShow":{"type":"boolean","default":false},"hasQaStyle":{"type":"boolean","default":false},"uniqueId":{"type":"string"},"activeAccordionBorder":{"type":"object","default":{"width":"1px","color":"#000000","style":"solid"}},"searchShow":{"type":"boolean","default":false},"showAllbtn":{"type":"boolean","default":false},"closeText":{"type":"string","default":"Close all"},"openText":{"type":"string","default":"Show all"},"heading":{"type":"string","default":"Accordion Heading"},"activetorClass":{"type":"string","default":"click"},"faqSchema":{"type":"boolean","default":false},"step":{"type":"boolean","default":false},"stepText":{"type":"string","default":"Continue"},"checkList":{"type":"boolean","default":false},"buttonShow":{"type":"boolean","default":false},"contentCount":{"type":"number","default":100},"readText":{"type":"string","default":"Read More"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"qa","label":"Q A"},{"name":"aab-style-pro-checked","label":"aab-style-pro-checked"}],"textdomain":"advanced-accordion-block","editorScript":["file:./index.js","aagb-anchor","aagb-separate-accordion","aagb-accordion-group"],"editorStyle":"file:./index.css","style":["aagb-group-accordion"],"viewScript":["aagb-anchor","aagb-separate-accordion","aagb-accordion-group","aagb-group-accordion-frontend"]}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"aab/group-accordion","version":"0.1.0","title":"Group Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"providesContext":{"aagb/accordion-step":"step","aagb/accordion-hasQaStyle":"hasQaStyle","aagb/accordion-faqSchema":"faqSchema","aagb/accordion-stepText":"stepText","aagb/accordion-stepCmpltText":"stepCmpltText","aagb/accordion-checkList":"checkList","aagb/accordion-anchorLinksShow":"anchorLinksShow","aagb/accordion-buttonShow":"buttonShow","aagb/accordion-readMoreText":"readText","aagb/accordion-border":"border","aagb/accordion-margins":"margins","aagb/accordion-paddings":"paddings","aagb/accordion-borderRadius":"borderRadius","aagb/accordion-headingColor":"headingColor","aagb/accordion-showIcon":"showIcon","aagb/accordion-iconColor":"iconColor","aagb/accordion-iconBackground":"iconBackground","aagb/accordion-headerBg":"headerBg","aagb/accordion-bodyBg":"bodyBg","aagb/accordion-styledQA":"styledQA","aagb/accordion-qIconText":"qIconText","aagb/accordion-qIconColor":"qIconColor","aagb/accordion-qIconBg":"qIconBg","aagb/accordion-aIconText":"aIconText","aagb/accordion-aIconColor":"aIconColor","aagb/accordion-aIconBg":"aIconBg","aagb/accordion-contentCount":"contentCount"},"attributes":{"anchorLinksShow":{"type":"boolean","default":false},"hasQaStyle":{"type":"boolean","default":false},"uniqueId":{"type":"string"},"activeAccordionBorder":{"type":"object","default":{"width":"1px","color":"#000000","style":"solid"}},"searchShow":{"type":"boolean","default":false},"showAllbtn":{"type":"boolean","default":false},"closeText":{"type":"string","default":"Close all"},"openText":{"type":"string","default":"Show all"},"heading":{"type":"string","default":"Accordion Heading"},"activetorClass":{"type":"string","default":"click"},"faqSchema":{"type":"boolean","default":false},"step":{"type":"boolean","default":false},"stepText":{"type":"string","default":"Continue"},"stepCmpltText":{"type":"string","default":"Congratulations, you are done!"},"checkList":{"type":"boolean","default":false},"buttonShow":{"type":"boolean","default":false},"contentCount":{"type":"number","default":100},"readText":{"type":"string","default":"Read More"},"border":{"type":"object","default":{"width":"1px","color":"#cccccc","style":"solid"}},"paddings":{"type":"object","default":{"top":"10px","left":"15px","right":"15px","bottom":"10px"}},"margins":{"type":"object","default":{"top":"0px","bottom":"15px"}},"borderRadius":{"type":"number","default":0},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"showIcon":{"type":"boolean","default":true},"styledQA":{"type":"boolean"},"qIconText":{"type":"string","default":"Q"},"qIconColor":{"type":"string","default":"#fff"},"qIconBg":{"type":"string","default":"#505050"},"aIconText":{"type":"string","default":"A"},"aIconColor":{"type":"string","default":"#fff"},"aIconBg":{"type":"string","default":"#f5a623"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"qa","label":"Q A"},{"name":"aab-style-pro-checked","label":"aab-style-pro-checked"}],"textdomain":"advanced-accordion-block","editorScript":["file:./index.js","aagb-anchor","aagb-separate-accordion","aagb-accordion-group"],"editorStyle":"file:./index.css","style":["aagb-group-accordion"],"viewScript":["aagb-anchor","aagb-separate-accordion","aagb-accordion-group","aagb-group-accordion-frontend"]}');
 
 /***/ })
 
@@ -927,6 +1104,10 @@ __webpack_require__.r(__webpack_exports__);
         "type": "string",
         "default": "Continue"
       },
+      "stepCmpltText": {
+        "type": "string",
+        "default": "Congratulations, you are done!"
+      },
       "checkList": {
         "type": "boolean",
         "default": false
@@ -942,6 +1123,53 @@ __webpack_require__.r(__webpack_exports__);
       "readText": {
         "type": "string",
         "default": "Read More"
+      },
+      "border": {
+        "type": "object",
+        "default": {
+          "width": "1px",
+          "color": "#cccccc",
+          "style": "solid"
+        }
+      },
+      "paddings": {
+        "type": "object",
+        "default": {
+          "top": "10px",
+          "left": "15px",
+          "right": "15px",
+          "bottom": "10px"
+        }
+      },
+      "margins": {
+        "type": "object",
+        "default": {
+          "top": "0px",
+          "bottom": "15px"
+        }
+      },
+      "borderRadius": {
+        "type": "number",
+        "default": 0
+      },
+      "headingColor": {
+        "type": "string"
+      },
+      "headerBg": {
+        "type": "string"
+      },
+      "iconColor": {
+        "type": "string"
+      },
+      "iconBackground": {
+        "type": "string"
+      },
+      "bodyBg": {
+        "type": "string"
+      },
+      "showIcon": {
+        "type": "boolean",
+        "default": true
       }
     },
     "styles": [{
