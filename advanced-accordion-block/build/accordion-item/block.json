@@ -9,8 +9,7 @@
     "aab/group-accordion"
   ],
   "supports": {
-    "html": false,
-    "anchor": true
+    "html": false
   },
   "example": {
     "attributes": {
@@ -18,6 +17,13 @@
     }
   },
   "attributes": {
+    "QaStyle": {
+      "type": "boolean",
+      "default": false
+    },
+    "singleAcdId": {
+      "type": "string"
+    },
     "border": {
       "type": "object",
       "default": {
@@ -50,6 +56,13 @@
       "type": "string",
       "default": "Accordion Heading"
     },
+    "subheading": {
+      "type": "string",
+      "default": ""
+    },
+    "subheadingColor": {
+      "type": "string"
+    },
     "headingTag": {
       "type": "string",
       "default": "h4"
@@ -59,6 +72,18 @@
     },
     "headerBg": {
       "type": "string"
+    },
+    "headingIconImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "headingIconAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "showHeadingIcon": {
+      "type": "boolean",
+      "default": false
     },
     "showIcon": {
       "type": "boolean",
@@ -101,13 +126,10 @@
     },
     "contentCount": {
       "type": "number",
-      "default": 100
+      "default": 300
     },
     "readMoreText": {
       "type": "string"
-    },
-    "styledQA": {
-      "type": "boolean"
     },
     "qIconText": {
       "type": "string",

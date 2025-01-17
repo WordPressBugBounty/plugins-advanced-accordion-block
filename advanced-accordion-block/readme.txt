@@ -2,8 +2,8 @@
 Contributors: spiderdevs, mdjwel, binsaifullah
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
-Tested up to: 6.6.1
-Stable tag: 4.8.0
+Tested up to: 6.7.1
+Stable tag: 4.8.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 [youtube https://www.youtube.com/watch?v=GXeYq4xvz_Q]
 
 ## 🔗 USEFUL LINKS ##
-- [Get the Pro Version](https://spider-themes.net/advanced-accordion-block/pricing)
+- [Get the Pro Version](https://spider-themes.net/advanced-accordion-block/flexible-pricing-for-all)
 - [Demo (built with Advanced Accordion Gutenberg Block)](https://spider-themes.net/advanced-accordion-block/qa-question-and-answer-style)
 - [Documentation](https://helpdesk.spider-themes.net/docs/advance-accordions)
 - [Explore More](https://spider-themes.net/advanced-accordion-block)
@@ -71,6 +71,10 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 
 - **9. Checklist Layout:** Convert accordions into a checklist format, allowing users to tick off completed items, ensuring thorough task management.
 
+- **10. Featured Icon:** Set an icon/image on the accordion header.
+
+- **11. Subheading support:** You can add a subheading below the main heading of accordion.
+
 ### Creating an Accordion FAQ with Advanced Accordion
 [youtube https://www.youtube.com/watch?v=K40z8KxojxE]
 
@@ -115,6 +119,13 @@ It's really easy and super simple to install **Quick Edit** plugin.
 == Changelog ==
 
 
+= 4.8.1  (18 January 2025) =
+New: You can now set a unique ID in the Group/Separate accordion block
+Fixed: HTML anchor issue
+Fixed: Translatable accordion title (previously it was not translatable with the WPML plugin)
+Tweaked: Removed the 'Active accordion border' option from "Q/A" style
+Tweaked: Now you can set separate IDs in every accordion
+
 = 4.8.0  (03 January 2025) =
 Fixed: Icon change option of group accordion
 Tweaked: Focus border color removed from Separate Accordion block
@@ -150,10 +161,10 @@ New: Added FAQ schema option. Now, you're able to turn on FAQ schema for your ac
 New: Accordion headings keyboard-navigable
 New: Added Question & Answer style layout
 Fixed: Resolve Accordion focus issue
-Fixed: Resolve icon change & position option 
-Updated: Freemius SDK to 2.7.2
+Fixed: Resolve icon change & position option
 Tweaked: Style & Script loaded conditionally
 Tweaked: Move the styling fields to Styles tab
+Updated: Freemius SDK to 2.7.2
 
 = 4.6.0  (23 November 2023) =
 Updated: Freemius SDK to 2.6.1

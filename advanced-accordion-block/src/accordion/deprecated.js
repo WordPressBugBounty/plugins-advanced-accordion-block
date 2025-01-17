@@ -1,16 +1,16 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-lonely-if */
-import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
-const { Fragment } = wp.element;
-const { select } = wp.data;
+import {InnerBlocks, RichText, useBlockProps} from '@wordpress/block-editor';
 
-const saveDep = ({ attributes }) => {
+const {Fragment} = wp.element;
+const {select} = wp.data;
+
+const saveDep = ({attributes}) => {
 	const {
 		uniqueId,
 		makeActive,
 		border,
 		margins,
-		paddings,
 		borderRadius,
 		qIconColor,
 		qIconText,
@@ -32,9 +32,6 @@ const saveDep = ({ attributes }) => {
 		headerBg,
 		bodyBg,
 		id,
-		linkedAccordion,
-		link,
-		tab,
 		disableAccordion,
 		feedbackShow,
 		feedbacLabel,
@@ -42,7 +39,6 @@ const saveDep = ({ attributes }) => {
 		noBtn,
 		counterShow,
 		uniqueKey,
-		styledQA,
 		faqSchema,
 	} = attributes;
 
@@ -71,7 +67,7 @@ const saveDep = ({ attributes }) => {
 	// Check if aab_premium is true
 	const aab_premium = aagb_local_object.licensing;
 	const voting_checked = aab_premium ?? 'false';
-	const noProClass = aab_premium ? '' : 'no-pro-plan';	
+	const noProClass = aab_premium ? '' : 'no-pro-plan';
 
 	const FeedBackBtn = () => {
 		// Get the current page ID
@@ -111,15 +107,21 @@ const saveDep = ({ attributes }) => {
 	return (
 
 		<div {...useBlockProps.save({
-			className: `aab__accordion_container separate-accordion ${disableAccordion ? 'aab__accordion_disabled' : '' } ${ makeActive ? `active__accordion_container_${uniqueId}` : '' } ${noProClass}`,
+			className: `aab__accordion_container separate-accordion ${disableAccordion ? 'aab__accordion_disabled' : ''} ${makeActive ? `active__accordion_container_${uniqueId}` : ''} ${noProClass}`,
 		})
-		} 
-		id={id !== '' ? id : ''} 
-		{...(faqSchema ? { itemScope: true, itemprop: "mainEntity",  itemType: "https://schema.org/Question" } : {} )}
-	>
-		<div  
-			{...(faqSchema ? { itemScope: true, itemType: "https://schema.org/FAQPage" } : {} )}				
+			 }
+			 style={{
+				 border: `${border.width} ${border.style} ${border.color}`,
+				 marginTop: `${margins.top}`,
+				 marginBottom: `${margins.bottom}`,
+				 borderRadius: `${borderRadius}px`,
+			 }}
+			 id={id !== '' ? id : ''}
+			 {...(faqSchema ? {itemScope: true, itemprop: "mainEntity", itemType: "https://schema.org/Question"} : {})}
 		>
+			<div
+				{...(faqSchema ? {itemScope: true, itemType: "https://schema.org/FAQPage"} : {})}
+			>
 				<Fragment>
 					<div
 						className={`aab__accordion_head ${iconPosition} ${makeActive ? "active" : ""} `}
@@ -129,7 +131,6 @@ const saveDep = ({ attributes }) => {
 							backgroundColor: headerBg
 								? headerBg
 								: 'transparent',
-							// padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 						}}
 
 					>
@@ -141,17 +142,17 @@ const saveDep = ({ attributes }) => {
 							{aab_premium && (
 								<div className="icon-container">
 									<div className="icon-q"
-										style={{
-											color: qIconColor,
-											backgroundColor: qIconBg
-										}}
+										 style={{
+											 color: qIconColor,
+											 backgroundColor: qIconBg
+										 }}
 									>{qIconText}</div>
 									<div className="icon-a"
 
-										style={{
-											color: aIconColor,
-											backgroundColor: aIconBg,
-										}}>{aIconText}</div>
+										 style={{
+											 color: aIconColor,
+											 backgroundColor: aIconBg,
+										 }}>{aIconText}</div>
 								</div>
 							)}
 
@@ -190,20 +191,23 @@ const saveDep = ({ attributes }) => {
 						)}
 					</div>
 					<div
-						{...(faqSchema ? { itemScope: true, itemprop:"acceptedAnswer", itemType: "https://schema.org/Answer" } : {} )}
+						{...(faqSchema ? {
+							itemScope: true,
+							itemprop: "acceptedAnswer",
+							itemType: "https://schema.org/Answer"
+						} : {})}
 						className={`aab__accordion_body ${activeClass}`}
 						role="region"
 						style={{
 							backgroundColor: bodyBg ? bodyBg : 'transparent',
-							// borderTop: `${border.width} ${border.style} ${border.color}`,
-							// padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
+							borderTop: `${border.width} ${border.style} ${border.color}`,
 						}}
 					>
 						<div itemProp="text">
-							<InnerBlocks.Content />
+							<InnerBlocks.Content/>
 						</div>
 
-						<FeedBackBtn />
+						<FeedBackBtn/>
 					</div>
 					{anchorLinkShow === true && aab_premium && (
 						<script>
@@ -221,7 +225,7 @@ const saveDep = ({ attributes }) => {
 					)}
 				</Fragment>
 
-		</div>
+			</div>
 		</div>
 	);
 };

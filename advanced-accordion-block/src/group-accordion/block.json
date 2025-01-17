@@ -7,7 +7,7 @@
 	"description": "Build Accordion and FAQs Easily.",
 	"supports": {
 		"html": false,
-		"anchor": true
+		"anchor": false
 	},
 	"example": {
 		"attributes": {
@@ -16,7 +16,7 @@
 	},
 	"providesContext": {
 		"aagb/accordion-step" : "step",
-		"aagb/accordion-hasQaStyle" : "hasQaStyle",
+		"aagb/accordion-QaStyle" : "QaStyle",
 		"aagb/accordion-faqSchema" : "faqSchema",
 		"aagb/accordion-stepText" : "stepText",
 		"aagb/accordion-stepCmpltText" : "stepCmpltText",
@@ -34,13 +34,13 @@
 		"aagb/accordion-iconBackground" : "iconBackground",
 		"aagb/accordion-headerBg" : "headerBg",
 		"aagb/accordion-bodyBg" : "bodyBg",
-		"aagb/accordion-styledQA" : "styledQA",
 		"aagb/accordion-qIconText" : "qIconText",
 		"aagb/accordion-qIconColor" : "qIconColor",
 		"aagb/accordion-qIconBg" : "qIconBg",
 		"aagb/accordion-aIconText" : "aIconText",
 		"aagb/accordion-aIconColor" : "aIconColor",
 		"aagb/accordion-aIconBg" : "aIconBg",
+		"aagb/accordion-subheadingColor" : "subheadingColor",
 		"aagb/accordion-contentCount" : "contentCount"
 	},
 	"attributes": {
@@ -48,7 +48,7 @@
 			"type": "boolean",
 			"default": false
 		},
-		"hasQaStyle": {
+		"QaStyle": {
 			"type": "boolean",
 			"default": false
 		},
@@ -83,6 +83,14 @@
 			"type": "string",
 			"default": "Accordion Heading"
 		},
+
+		"subheading": {
+			"type": "string",
+			"default": ""
+		},
+		"subheadingColor": {
+			"type": "string"
+		},
 		"activetorClass": {
 			"type": "string",
 			"default": "click"
@@ -113,7 +121,7 @@
 		},
 		"contentCount": {
 			"type": "number",
-			"default": 100
+			"default": 300
 		},
 		"readText":{
 			"type": "string",
@@ -146,7 +154,8 @@
 		"borderRadius": {
 			"type": "number",
 			"default": 0
-		},"headingColor": {
+		},
+		"headingColor": {
 			"type": "string"
 		},
 		"headerBg": {
@@ -162,9 +171,6 @@
 		},"showIcon": {
 			"type": "boolean",
 			"default": true
-		},
-		"styledQA":{
-			"type": "boolean"
 		},
 		"qIconText": {
 			"type": "string",
@@ -189,6 +195,10 @@
 		"aIconBg": {
 			"type": "string",
 			"default": "#f5a623"
+		},
+		"customCSS": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"styles": [

@@ -1,5 +1,6 @@
 import { InnerBlocks, useBlockProps, RichText } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
+import React from "react";
 
 const saveDep = ({ attributes }) => {
 	const {
@@ -12,21 +13,22 @@ const saveDep = ({ attributes }) => {
 		activetorClass,
 		faqSchema,
 		step,
+		stepCmpltText,
 		contentCount,
 	} = attributes;
-	
+
 	const aab_premium 			= aagb_local_object.licensing;
 	const activetorClassEvent 	= aab_premium ? activetorClass : 'click';
 
 	return (
 		<Fragment>
 			{searchShow && aab_premium && (
-				<div className="aagb_form_inner" id="aagb-search-form">
+				<div className="aagb_form_inner" id={"aagb-search-form-" + uniqueId}>
 					<div className="aagb_form_group">
 						<input
-							id="aagb-search-id"
-							type="text"
-							className="aagb_form_control noEnterSubmit"
+							type="search"
+							data-searchTarget={uniqueId}
+							className="aagb-search-control aagb_form_control noEnterSubmit"
 							placeholder={placeholderText || 'Search for FAQ'}
 						/>
 					</div>
@@ -38,7 +40,7 @@ const saveDep = ({ attributes }) => {
 			)}
 			{showAllbtn && aab_premium && (
 				<div className="aagb_accordion_wrapper_btn">
-					<a href="#" className="content-accordion__close-all">
+					<a href="#" data-closeTarget={'aagb_accordion_' + uniqueId}  className="content-accordion__close-all">
 						<svg
 							class="svg-inline--fa fa-compress-alt fa-w-14"
 							role="presentation"
@@ -62,7 +64,7 @@ const saveDep = ({ attributes }) => {
 							}}
 						/>
 					</a>
-					<a href="#" className="content-accordion__show-all">
+					<a href="#" data-openTarget={ 'aagb_accordion_' + uniqueId}  className="content-accordion__show-all">
 						<svg
 							class="svg-inline--fa fa-expand-alt fa-w-14"
 							role="presentation"
@@ -96,25 +98,11 @@ const saveDep = ({ attributes }) => {
 
 			>
 				<InnerBlocks.Content />
-
+				{step && (
+					<span className="step-result">{stepCmpltText}</span>
+				)}
 
 			</div>
-
-			{/* <script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(faqSchema, null, '\t'),
-				}}
-			/> */}
-
-			<div dangerouslySetInnerHTML={{
-			__html: `
-				<script>
-				let aagb_group_accordion_text_max = ${contentCount}					
-				 </script>
-				`
-			}}
-			/>
 		</Fragment>
 	);
 };

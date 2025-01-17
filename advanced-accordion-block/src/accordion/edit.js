@@ -2,36 +2,43 @@
 /* eslint-disable no-shadow */
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 import React from "react";
-
-const {Fragment} = wp.element;
+import Editor from 'react-simple-code-editor';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism.css'; // For syntax highlighting style
 import {
     InnerBlocks,
     InspectorControls,
     RichText,
     useBlockProps,
+    MediaUpload,
+    MediaUploadCheck,
+    __experimentalBorderRadiusControl as BorderRadiusControl
+    ,
+    BlockControls
 } from '@wordpress/block-editor';
-import {useState, useEffect} from "@wordpress/element";
+import {useEffect, useState} from "@wordpress/element";
 import {
+    __experimentalBorderBoxControl as BorderBoxControl,
+    __experimentalBoxControl as BoxControl,
+    __experimentalBorderControl as BorderControl,
     ColorPalette,
     PanelBody,
     RangeControl,
     SelectControl,
-    ToggleControl,
-    __experimentalBoxControl as BoxControl,
-    __experimentalBorderControl as BorderControl,
     TextControl,
-    // custom
-    PanelRow,
+    ToggleControl,
+    Button
 } from '@wordpress/components';
-
-const {__} = wp.i18n;
-
 import colors from '../colors';
 import icons from './icons';
 import tags from '../tags';
 
 // include editor styles
 import './editor.scss';
+
+const {Fragment} = wp.element;
+
+const {__} = wp.i18n;
 
 const iconPositions = [
     {
@@ -65,6 +72,7 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
         feedbackShow,
         border,
         margins,
+        paddings,
         borderRadius,
         qIconText,
         qIconColor,
@@ -74,6 +82,7 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
         aIconBg,
         heading,
         subheading,
+        subheadingColor,
         headingTag,
         anchorLinkShow,
         anchorPosition,
@@ -86,20 +95,22 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
         iconBackground,
         headerBg,
         bodyBg,
-        id,
-        linkedAccordion,
-        link,
-        tab,
         disableAccordion,
         feedbacLabel,
         yesBtn,
         noBtn,
         counterShow,
-        uniqueKey,
         faqSchema,
+        headingIconImageUrl,
+        headingIconAlt,
+        showHeadingIcon,
+        iconBorder,
+        iconBorderRadius,
+        QaStyle,
+        customCSS
     } = attributes;
 
-    const numericClientId = clientId.replace(/\D/g, '').slice(0, 5);
+    let numericClientId = clientId.replace(/\D/g, '').slice(0, 5);
 
     // Ensure numericClientId contains exactly 5 characters
     while (numericClientId.length < 5) {
@@ -124,16 +135,12 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
     const has_disabled_class = aab_premium ? '' : 'aab-pro-element';
 
     const blockProps = useBlockProps();
-    const qaStyle = blockProps.className.includes('is-style-qa')
-
-
-    const [hasQaStyle, setHasQaStyle] = useState(null);
-
+    const hasQaStyle = blockProps.className.includes('is-style-qa');
 
     useEffect(() => {
-        setHasQaStyle(qaStyle);
+        setAttributes({QaStyle: hasQaStyle})
+    }, [hasQaStyle])
 
-    }, [qaStyle])
 
     const noProClass = aab_premium ? '' : 'no-pro-plan';
 
@@ -155,12 +162,58 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
         observer.observe(document.body, {childList: true, subtree: true});
     }
 
+
+    // Initialize border value if not already set
+    const [borders, setBorders] = useState(border);
+
+    const onChangeBorder = (newBorders) => {
+        setBorders(newBorders); // Update local state
+        setAttributes({border: newBorders}); // Save to attributes
+    };
+
+    const getBorderStyle = (border) => {
+        if (!border) {
+            return {};
+        }
+        // Check for shorthand condition: if all width, style, and color are present
+        if (border.width && border.style && border.color) {
+            return {border: `${border.width} ${border.style} ${border.color}`};
+        }
+
+        // Construct 4-axis styles if shorthand condition is not met
+        return {
+            borderTop: border.top
+                ? `${border.top.width} ${border.top.style} ${border.top.color}`
+                : "none",
+            borderRight: border.right
+                ? `${border.right.width} ${border.right.style} ${border.right.color}`
+                : "none",
+            borderBottom: border.bottom
+                ? `${border.bottom.width} ${border.bottom.style} ${border.bottom.color}`
+                : "none",
+            borderLeft: border.left
+                ? `${border.left.width} ${border.left.style} ${border.left.color}`
+                : "none",
+        };
+    };
+
+    const borderStyle = getBorderStyle(border);
+
+
+    const handleImageSelect = (media) => {
+        setAttributes({
+            headingIconImageUrl: media.url,
+            headingIconAlt: media.alt,
+        });
+    };
+
+
     return (
         <Fragment>
 
             <InspectorControls group="styles" class="testdd">
 
-                {hasQaStyle && aab_premium && (
+                {QaStyle && aab_premium && (
                     <>
 
                         <PanelBody
@@ -222,6 +275,8 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                         </PanelBody>
                     </>
                 )}
+
+
                 <PanelBody
                     initialOpen={false}
                     title={__('Accordion Styles', 'advanced-accordion-block')}
@@ -246,15 +301,37 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                         }
                     />
                     <div className="aa-custom-spacer"></div>
+                    <BoxControl
+                        values={paddings}
+                        label={__(
+                            'Content Padding',
+                            'advanced-accordion-block'
+                        )}
+                        units={[]}
+                        splitOnAxis
+                        allowReset={false}
+                        onChange={(newValue) =>
+                            setAttributes({
+                                ...paddings,
+                                paddings: {
+                                    top: newValue.top,
+                                    left: newValue.left,
+                                    right: newValue.right,
+                                    bottom: newValue.bottom,
+                                },
+                            })
+                        }
+                    />
+                    <div className="aa-custom-spacer"></div>
                     <p>{__(
                         'Set Accordion Border',
                         'advanced-accordion-block'
                     )}</p>
-                    <BorderControl
+                    <BorderBoxControl
                         colors={colors}
-                        onChange={(value) => setAttributes({border: value})}
-                        value={border}
-                        withSlider={true}
+                        label={__('Borders')}
+                        onChange={onChangeBorder}
+                        value={borders}
                     />
                     <div className="aa-custom-spacer"></div>
                     <RangeControl
@@ -267,7 +344,6 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                         max={50}
                     />
                 </PanelBody>
-
 
                 <PanelBody
                     initialOpen={false}
@@ -290,6 +366,17 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                         colors={colors}
                         value={headerBg}
                         onChange={(headerBg) => setAttributes({headerBg})}
+                    />
+
+                    <p className="aab__label">
+                        {__('Sub Heading Color', 'advanced-accordion-block')}
+                    </p>
+                    <ColorPalette
+                        colors={colors}
+                        value={subheadingColor}
+                        onChange={(subheadingColor) =>
+                            setAttributes({subheadingColor})
+                        }
                     />
 
                 </PanelBody>
@@ -335,6 +422,27 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                                     setAttributes({iconBackground})
                                 }
                             />
+
+                            <p className="aab__label">
+                                {__('Border', 'advanced-accordion-block')}
+                            </p>
+                            <BorderControl
+                                colors={colors}
+                                value={iconBorder}
+                                onChange={(value) => {
+                                    setAttributes({iconBorder: value})
+                                }}
+                                withSlider={true}
+                            />
+
+                            <div className="aa-custom-spacer"></div>
+
+                            <BorderRadiusControl
+                                values={iconBorderRadius}
+                                onChange={(value) => {
+                                    setAttributes({iconBorderRadius: value})
+                                }}
+                            />
                         </Fragment>
                     )}
 
@@ -354,10 +462,38 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                         onChange={(bodyBg) => setAttributes({bodyBg})}
                     />
                 </PanelBody>
+                <PanelBody
+                    title={__('Custom CSS', 'advanced-accordion-block')}
+                    initialOpen={false}
+                    className={has_disabled_class}
+                >
 
+                    <label className='custom-css-notice' htmlFor="custom-css">Add your own CSS code here to
+                        customize the accordion as per your expectations.</label>
+                    <Editor
+                        value={customCSS}
+                        disabled={is_disable}
+                        onValueChange={(value) => setAttributes({customCSS: value})}
+                        highlight={(code) => Prism.highlight(code, Prism.languages.css, 'css')}
+                        padding={10}
+                        style={{
+                            fontFamily: 'monospace',
+                            fontSize: '14px',
+                            border: '1px solid #ccc',
+                            borderRadius: '4px',
+                            minHeight: '100px',
+                            backgroundColor: '#f9f9f9',
+                            color: '#333',
+                            outline: 'none',
+                            boxSizing: 'border-box',
+                            marginTop: '7px'
+                        }}
+                    />
+                </PanelBody>
             </InspectorControls>
-
-
+            <div className="custom-css-block">
+                <style>{`#aab_accordion_${uniqueId} { ${customCSS} }`}</style>
+            </div>
             <InspectorControls>
                 <PanelBody
                     initialOpen={false}
@@ -368,8 +504,13 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                             'Set Accordion ID',
                             'advanced-accordion-block'
                         )}
-                        value={id}
-                        onChange={(id) => setAttributes({id})}
+                        value={`aab_accordion_${uniqueId}`}
+                        onChange={function (uniqueId) {
+                            if (uniqueId !== "aab_accordion") {
+                                const slicedWOrd = uniqueId.replace("aab_accordion_", "");
+                                setAttributes({uniqueId: slicedWOrd});
+                            }
+                        }}
                     />
                 </PanelBody>
                 <PanelBody
@@ -458,6 +599,43 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                         onChange={(headingTag) => setAttributes({headingTag})}
                         value={headingTag}
                     />
+                    {aab_premium && !QaStyle && (
+                        <ToggleControl
+                            label={__('Show Heading Icon', 'advanced-accordion-block')}
+                            checked={showHeadingIcon}
+                            onChange={() => setAttributes({showHeadingIcon: !showHeadingIcon})}
+                        />
+                    )}
+                    {showHeadingIcon && !QaStyle && (
+                        <MediaUploadCheck>
+                            <MediaUpload
+                                onSelect={handleImageSelect}
+                                allowedTypes={['image']}
+                                render={({open}) => (
+                                    <Button
+                                        onClick={open}
+                                        variant="secondary"
+                                        icon="format-image"
+                                    >
+                                        {headingIconImageUrl
+                                            ? __('Change Heading Icon', 'advanced-accordion-block')
+                                            : __('Add Heading Icon', 'advanced-accordion-block')}
+                                    </Button>
+                                )}
+                            />
+                        </MediaUploadCheck>
+                    )}
+
+                    {showHeadingIcon && headingIconImageUrl && !QaStyle && (
+                        <img
+                            src={headingIconImageUrl}
+                            alt={headingIconAlt || __('Heading Icon', 'advanced-accordion-block')}
+                            style={{
+                                maxWidth: '100%',
+                                marginTop: '10px',
+                            }}
+                        />
+                    )}
                 </PanelBody>
                 <PanelBody
                     title={__('Anchor Link', 'advanced-accordion-block')}
@@ -477,7 +655,7 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                     />
 
 
-                    {anchorLinkShow && !hasQaStyle && (
+                    {anchorLinkShow && !QaStyle && (
 
                         <Fragment>
                             <SelectControl
@@ -588,14 +766,6 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                                     setAttributes({counterShow: !counterShow})
                                 }
                             />
-                            <TextControl
-                                label={__('ID', 'advanced-accordion-block')}
-                                value={uniqueKey}
-                                onChange={(uniqueKey) =>
-                                    setAttributes({uniqueKey})
-                                }
-                                help='This ID is required to ensure unique voting options'
-                            />
                         </Fragment>
                     )}
                 </PanelBody>
@@ -618,6 +788,8 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
 
                 </PanelBody>
             </InspectorControls>
+
+
             <div
                 {...useBlockProps({
                     className: `aab__accordion_container ${
@@ -628,12 +800,12 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
 
                 })}
                 style={{
-                	border: `${border.width} ${border.style} ${border.color}`,
-                	marginTop: `${margins.top}`,
-                	marginBottom: `${margins.bottom}`,
-                	borderRadius: `${borderRadius}px`,
+                    marginTop: margins.top || '0px',
+                    marginBottom: margins.bottom || '0px',
+                    borderRadius: `${borderRadius}px`,
+                    ...borderStyle, // Spread shorthand or individual border values
                 }}
-                id={id !== '' ? id : ''}
+                id={`aab_accordion_${uniqueId}`}
                 role="button"
                 aria-expanded={makeActive}
                 tabIndex="0"
@@ -643,18 +815,31 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                         tabIndex="0"
                         className={`aab__accordion_head ${iconPosition} ${makeActive ? 'active' : ''} `}
                         style={{
-                            color: headingColor ? headingColor : '#333333',
                             backgroundColor: headerBg
                                 ? headerBg
                                 : 'transparent',
-                            // padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
+                            padding: `${paddings.top} ${paddings.right} ${paddings.bottom} ${paddings.left}`,
                         }}
                     >
+                        {/* Heading Icon Image Upload */}
+
+
                         <div
                             className={`aab__accordion_heading ${iconPosition} ${anchorPosition}`}
                             tabIndex="0"
                         >
-                            {hasQaStyle && aab_premium && (
+
+                            {showHeadingIcon && headingIconImageUrl && !QaStyle && (
+                                <div className="heading-icon">
+                                    <img
+                                        src={headingIconImageUrl}
+                                        alt={headingIconAlt || __('Heading Icon', 'advanced-accordion-block')}
+
+                                    />
+                                </div>
+                            )}
+
+                            {QaStyle && aab_premium && (
                                 <div className="icon-container">
                                     <div className="icon-q"
                                          style={{
@@ -670,33 +855,59 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                                          }}>{aIconText}</div>
                                 </div>
                             )}
+                            <div className="head_content_wrapper">
+                                <div className="title_wrapper">
+                                    <RichText
+                                        tabIdex="0"
+                                        tagName={headingTag}
+                                        value={heading}
+                                        className="aab__accordion_title"
+                                        onChange={(heading) =>
+                                            setAttributes({heading})
+                                        }
+                                        style={{
+                                            margin: 0,
+                                            color: headingColor
+                                                ? headingColor
+                                                : '#333333',
+                                        }}
+                                    />
+                                    {anchorLinkShow && aab_premium && (
+                                        <a className="anchorjs-link" href="#">
+                                            <i className="dashicons dashicons-admin-links"></i>
+                                        </a>
+                                    )}
+                                </div>
+                                <RichText
+                                    className="aab__accordion_subheading"
+                                    tagName="p"
+                                    placeholder={aab_premium ? "Write some subheading" : "Subheading Available on Pro"}
+                                    value={aab_premium ? subheading : ''}
+                                    onChange={(value) => {
+                                        setAttributes({subheading: value});
+                                    }}
+                                    onFocus={(e) => {
+                                        if (!aab_premium) {
+                                            e.target.blur(); // Prevent focus if aab_premium is false
+                                        }
+                                    }}
+                                    style={{
+                                        margin: 0,
+                                        color: subheadingColor
+                                            ? subheadingColor
+                                            : '#333333',
+                                    }}
+                                />
+                            </div>
 
-                            <RichText
-                                tabIdex="0"
-                                tagName={headingTag}
-                                value={heading}
-                                className="aab__accordion_title"
-                                onChange={(heading) =>
-                                    setAttributes({heading})
-                                }
-                                style={{
-                                    margin: 0,
-                                    color: headingColor
-                                        ? headingColor
-                                        : '#333333',
-                                }}
-                            />
-                            {anchorLinkShow && aab_premium && (
-                                <a className="anchorjs-link" href="#">
-                                    <i className="dashicons dashicons-admin-links"></i>
-                                </a>
-                            )}
                         </div>
                         {showIcon && (
                             <div
                                 className={`aab__accordion_icon`}
                                 style={{
                                     color: iconColor ? iconColor : '#333333',
+                                    border: iconBorder ? `${iconBorder.width} ${iconBorder.style} ${iconBorder.color}` : '',
+                                    borderRadius: iconBorderRadius ? iconBorderRadius : '',
                                     backgroundColor: iconBackground
                                         ? iconBackground
                                         : 'transparent',
@@ -713,29 +924,38 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                             </div>
                         )}
                     </div>
-                    {/* <div className="sub-heading-box">
-							<RichText
-								className="sub-heading"
-								tagName="p"
-								placeholder="Write some subheding"
-								value={subheading}
-								onChange={(value) => {
-									setAttributes({ subheading: value });
-								}}
-							/>
-						</div> */}
                     <div
                         tabIndex="0"
                         className={`aab__accordion_body ${makeActive ? `aab__accordion_body--show` : ``}  ${
                             makeActive ? `active__accordion_${uniqueId}` : ''
                         }`}
-
                         role="region"
                         style={{
                             backgroundColor: bodyBg ? bodyBg : 'transparent',
-                            borderTop: `${border.width} ${border.style} ${border.color}`,
-                            // padding: `${paddings.top} ${paddings.right} ${paddings.bottom} ${paddings.left}`,
                             display: makeActive ? 'block' : 'none',
+
+                            ...(!QaStyle
+                                    ? {
+                                        borderTop: `${border.width || '1px'} ${border.style || 'solid'} ${border.color || 'transparent'}`,
+
+                                        padding: `${paddings.top} ${paddings.right} ${paddings.bottom} ${paddings.left}`
+                                    }
+                                    : QaStyle && iconPosition === "aab_left_icon"
+                                        ? {
+                                            borderTop: `0`,
+                                            paddingTop: `0`,
+                                            paddingBottom: `${paddings.bottom}`,
+                                            paddingRight: `${paddings.right}`,
+                                            paddingLeft: `calc(${paddings.left} + 140px)`
+                                        }
+                                        : {
+                                            borderTop: `0`,
+                                            paddingTop: `0`,
+                                            paddingBottom: `${paddings.bottom}`,
+                                            paddingRight: `${paddings.right}`,
+                                            paddingLeft: `calc(${paddings.left} + 90px)`
+                                        }
+                            ),
                         }}
                     >
                         <InnerBlocks
@@ -758,7 +978,7 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                                     <button
                                         className="feedback-btn"
                                         data-value="yes"
-                                        data-id={uniqueKey}
+                                        data-id={uniqueId}
                                     >
                                         {yesBtn}
                                         {counterShow && (
@@ -771,7 +991,7 @@ const Edit = ({attributes, setAttributes, clientId, isSelected}) => {
                                     <button
                                         className="feedback-btn"
                                         data-value="no"
-                                        data-id={uniqueKey}
+                                        data-id={uniqueId}
                                     >
                                         {noBtn}
                                         {counterShow && (

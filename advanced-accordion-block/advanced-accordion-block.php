@@ -5,7 +5,7 @@
  * Description: <strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
  * Requires at least: 5.7
  * Requires PHP: 7.4
- * Version: 4.8.0
+ * Version: 4.8.1
  * Plugin URI: https://spider-themes.net/advanced-accordion-block
  * Author: spider-themes
  * Author URI: https://spider-themes.net/advanced-accordion-block
@@ -34,34 +34,35 @@ if ( function_exists( 'aab_fs' ) ) {
                 // Include Freemius SDK.
                 require_once dirname( __FILE__ ) . '/includes/fs/start.php';
                 $aab_fs = fs_dynamic_init( array(
-                    'id'              => '11041',
-                    'slug'            => 'advanced-accordion-block',
-                    'premium_slug'    => 'advanced-accordion-block-pro',
-                    'type'            => 'plugin',
-                    'public_key'      => 'pk_7347c71192131d87905aefe5e928f',
-                    'premium_suffix'  => 'pro',
-                    'is_premium'      => false,
-                    'is_premium_only' => false,
-                    'has_addons'      => false,
-                    'has_paid_plans'  => true,
-                    'trial'           => array(
+                    'id'               => '11041',
+                    'slug'             => 'advanced-accordion-block',
+                    'premium_slug'     => 'advanced-accordion-block-pro',
+                    'type'             => 'plugin',
+                    'public_key'       => 'pk_7347c71192131d87905aefe5e928f',
+                    'premium_suffix'   => 'pro',
+                    'is_premium'       => false,
+                    'is_premium_only'  => false,
+                    'has_addons'       => false,
+                    'has_paid_plans'   => true,
+                    'is_org_compliant' => true,
+                    'trial'            => array(
                         'days'               => 14,
                         'is_require_payment' => true,
                     ),
-                    'menu'            => array(
+                    'menu'             => array(
                         'slug'       => 'advanced-accordion-block',
                         'first-path' => 'plugins.php',
                         'contact'    => false,
                         'support'    => false,
                     ),
-                    'is_live'         => true,
+                    'is_live'          => true,
                 ) );
             }
             return $aab_fs;
         }
 
         // Init Freemius.
-        aab_fs();
+        aab_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
         // Signal that SDK was initiated.
         do_action( 'aab_fs_loaded' );
     }
@@ -114,7 +115,7 @@ if ( function_exists( 'aab_fs' ) ) {
          * Define the plugin constants
          */
         private function define_constants() {
-            define( 'AAGB_VERSION', '4.8.0' );
+            define( 'AAGB_VERSION', '4.8.1' );
             define( 'AAGB_URL', plugin_dir_url( __FILE__ ) );
             define( 'AAGB_LIB_URL', AAGB_URL . 'lib/' );
         }
@@ -202,7 +203,7 @@ if ( function_exists( 'aab_fs' ) ) {
                 $handle = 'aagb-' . $attributes['uniqueId'];
                 $custom_css = '';
                 // container
-                $custom_css .= '.aagb_accordion_' . $attributes['uniqueId'] . ' .aagb__accordion_active{ ' . $container_border_color . ' border-width: ' . $attributes['activeAccordionBorder']['width'] . '!important; ' . $container_border_style . ' }';
+                $custom_css .= '.aagb_accordion_' . $attributes['uniqueId'] . ' .aagb__accordion_container.aagb__accordion_active{ ' . $container_border_color . ' border-width: ' . $attributes['activeAccordionBorder']['width'] . '!important; ' . $container_border_style . ' }';
                 // body
                 $custom_css .= '.aagb_accordion_' . $attributes['uniqueId'] . ' .aagb__accordion_body--show{ ' . $body_border_color . ' border-top-width: ' . $attributes['activeAccordionBorder']['width'] . '!important; ' . $body_border_style . ' }';
                 $this->render_inline_css( $handle, $custom_css );
@@ -293,3 +294,32 @@ if ( function_exists( 'aab_fs' ) ) {
     // external admin support file
     require_once plugin_dir_path( __FILE__ ) . 'admin/admin.php';
 }
+add_action( 'init', function () {
+    $patterns = glob( plugin_dir_path( __FILE__ ) . 'block-patterns/*.php' );
+    foreach ( $patterns as $pattern ) {
+        include $pattern;
+    }
+} );
+if ( !function_exists( 'my_custom_block_enqueue_scripts' ) ) {
+    function my_custom_block_enqueue_scripts() : void {
+        // Enqueue your custom block deletion tracker script
+        wp_enqueue_script(
+            'block-deletion-tracker',
+            plugin_dir_url( __FILE__ ) . 'lib/js/block-deletion-tracker.js',
+            ['wp-blocks', 'wp-editor', 'wp-data'],
+            // Dependencies
+            '',
+            true
+        );
+    }
+
+}
+add_action( 'enqueue_block_editor_assets', 'my_custom_block_enqueue_scripts' );
+if ( !function_exists( 'custom_svg_uploads' ) ) {
+    function custom_svg_uploads(  $mimes  ) {
+        $mimes['svg'] = 'image/svg+xml';
+        return $mimes;
+    }
+
+}
+add_filter( 'upload_mimes', 'custom_svg_uploads' );

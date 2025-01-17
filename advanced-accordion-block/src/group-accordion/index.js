@@ -143,6 +143,37 @@ registerBlockType(metadata, {
 				},"showIcon": {
 					"type": "boolean",
 					"default": true
+				},
+				"styledQA":{
+					"type": "boolean"
+				},
+				"qIconText": {
+					"type": "string",
+					"default": "Q"
+				},
+				"qIconColor": {
+					"type": "string",
+					"default": "#fff"
+				},
+				"qIconBg": {
+					"type": "string",
+					"default": "#505050"
+				},
+				"aIconText": {
+					"type": "string",
+					"default": "A"
+				},
+				"aIconColor": {
+					"type": "string",
+					"default": "#fff"
+				},
+				"aIconBg": {
+					"type": "string",
+					"default": "#f5a623"
+				},
+				"customCSS": {
+					"type": "string",
+					"default": ""
 				}
 			},
 			"styles": [

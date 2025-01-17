@@ -3,10 +3,8 @@
 */
 .wp-block-aab-accordion-item {
   overflow: hidden;
+  transition: all 0.3s linear;
 
-  :focus {
-    border: 1px solid lightskyblue;
-  }
 
   .aagb__accordion_head {
     display: flex;
@@ -15,12 +13,36 @@
     cursor: pointer;
     outline: 0;
 
-    &:focus {
-      border: none;
+    &.hasSubHeading {
+      &.active {
+        .head_content_wrapper {
+          transform: translateY(12px);
+        }
+
+        .aagb__accordion_subheading {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
     }
 
+    .head_content_wrapper {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .heading-icon {
+      margin-right: 18px;
+
+      img {
+        max-width: 50px;
+        height: auto;
+        box-shadow: none;
+      }
+    }
+
+
     // Step css
-    #complete-sign {
+    .complete-sign {
       background-color: #66CDA3;
       color: #fff;
       border-radius: 50%;
@@ -42,7 +64,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
+        height: 100%;
       }
 
 
@@ -59,6 +81,15 @@
 
     // heading
     .aagb__accordion_heading {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      transition: all 0.3s ease-in-out;
+
+      .aagb__accordion_subheading {
+        transition: all 0.2s ease-in-out;
+      }
+
       &.aagb_right_icon {
         margin-right: 20px;
         flex: 1;
@@ -69,24 +100,23 @@
         flex: 1;
       }
 
-      &.aagb_right_link {
-        display: flex;
-        align-items: center;
-      }
+      //&.aagb_right_link {
+      //  display: flex;
+      //  align-items: center;
+      //  flex: 1;
+      //}
 
       &.aagb_left_link {
+        .title_wrapper {
+          flex-direction: row-reverse;
+        }
+      }
+
+      .title_wrapper {
         position: relative;
-
-        a {
-          position: absolute;
-          left: 0;
-          top: 2px;
-          padding-left: 0px !important;
-        }
-
-        .aagb__accordion_title {
-          padding-left: 30px;
-        }
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       .aagb__accordion_title.line-through {
@@ -105,6 +135,7 @@
         opacity: 0.5;
         font-size: 1.4rem !important;
         line-height: 0.5;
+        padding-top: 0px;
 
         &.anchorjs-link {
           &:after {
@@ -128,6 +159,7 @@
   .aagb__accordion_body {
     display: none;
     padding-right: 10px;
+    transition: border-top-color 0.3s linear;
     // Step css
     .continue {
       background: #41a9f8;
@@ -155,40 +187,34 @@
 
 
     .aagb__accordion_component {
+      position: relative;
+
       p {
         margin-bottom: 20px;
       }
-      &.aagb_overlay {
-        > p:first-child {
-          position: relative;
-          z-index: 1;
 
-          &::after {
-            content: '';
-            position: absolute;
-            background: linear-gradient(to bottom, #ffffff00, rgba(#ffffff, 0.9));
-            height: 50px;
-            right: 0;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            z-index: 2;
-          }
-        }
+      p:last-child {
+        margin-bottom: 10px;
+      }
+
+      .aagb_overlay {
+        content: '';
+        position: absolute;
+        background: linear-gradient(to bottom, #ffffff00, rgba(#ffffff, 0.9));
+        height: 50px;
+        right: 0;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        z-index: 2;
       }
     }
   }
-
-
-
 }
 
 .wp-block-aab-accordion-item.aagb__accordion_active {
   overflow: hidden;
 
-  :focus {
-    border: 0 solid #000000;
-  }
 }
 
 .aagb_form_inner {
@@ -221,7 +247,11 @@
     color: #333;
     padding-right: 55px;
 
+    &::placeholder {
+      color: #848d95 !important;
+    }
   }
+
 
   input[type=search]::-webkit-search-cancel-button {
     -webkit-appearance: searchfield-cancel-button !important;
@@ -286,9 +316,6 @@
   margin-bottom: 5px;
 }
 
-.aagb__accordion_head--keyboard:focus {
-  //border: 1px solid #d5ac09;
-}
 
 // Step CSS
 .wp-block-aab-group-accordion {
@@ -323,10 +350,6 @@
 
 //Group Accodion QA style
 .wp-block-aab-accordion-item.aagb__accordion_container.style-qa {
-
-  //.aagb__accordion_head--keyboard:focus{
-  //	border: 1px solid #e7e1e6;
-  //}
 
   .aagb__accordion_head {
     padding: 10px;
@@ -388,6 +411,7 @@
 
   .aagb__accordion_body.aagb__accordion_body--show {
     border-top: none !important;
+    transition: border-top-color 0.3s linear;
 
     .aagb__accordion_component :first-child {
       margin-top: 0;
@@ -417,9 +441,7 @@
     }
   }
 
-  .aagb__accordion_head--keyboard:focus {
-    border: none !important;
-  }
+
 }
 
 
@@ -461,6 +483,7 @@
         justify-content: center;
         align-items: center;
         border-radius: 4px;
+        transition: transform 0.3s ease-in-out;
       }
 
       /* Checked State */
@@ -582,20 +605,6 @@
       }
 
 
-      /* Optional: Checkmark Icon (using pseudo-elements) */
-      //.checklist-box:checked::after {
-      //	content: "hi"; /* Unicode checkmark character */
-      //	display: block;
-      //	text-align: center;
-      //	font-size: 16px; /* Adjust size as needed */
-      //	color: #0707a3;
-      //}
-
-      ///* Optional: Focus State */
-      //.checklist-box:focus {
-      //	outline: none; /* Remove default focus outline */
-      //	//box-shadow: 0 0 3px 2px #f5a623; /* Add a subtle box shadow */
-      //}
     }
   }
 }
@@ -619,13 +628,6 @@
 .aagb__accordion_body.aagb__accordion_body--visible {
   display: block !important;
 }
-
-//Test
-//.aagb__accordion_container:focus{
-//	border: 1px solid #871818FF !important;
-//	outline-width: 1px;
-//	outline-style: none;
-//}
 
 
 

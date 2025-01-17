@@ -36,7 +36,7 @@ const saveDep = ({ attributes }) => {
 		stepText,
 		checkList,
 		button_show,
-		readMoreText,
+		readMoreText
 	} = attributes;
 
 	const activeClass = makeActive ? `aagb__accordion_body--show` : '';
@@ -62,18 +62,15 @@ const saveDep = ({ attributes }) => {
 	}
 
 	const renderContent = () => {
-		const innerBlocksContent = Array.from(
-			{ length: contentCount },
-			(_, index) => (
-				<InnerBlocks.Content
-					key={index}
-					className="aagb__accordion_inner_content"
-				/>
-			)
+		const innerBlocksContent = (
+			<InnerBlocks.Content
+				key={0}
+				className="aagb__accordion_inner_content"
+			/>
 		);
 
 		return (
-			<div className={`aagb__accordion_component ${button_show ? "read-more-btn" : ""}`} 	{...(faqSchema ? { itemprop: "text" } : {} )}>
+			<div className={`aagb__accordion_component ${button_show ? "read-more-btn aagb_overlay" : ""}`} data-contentCount={ button_show ? contentCount : null }	{...(faqSchema ? { itemprop: "text" } : {} )}>
 				{innerBlocksContent}
 			</div>
 		);
@@ -82,6 +79,8 @@ const saveDep = ({ attributes }) => {
 	// Check if aab_premium is true
 	const aab_premium 	= aagb_local_object.licensing;
 	const noProClass 	= aab_premium ? '' : 'no-pro-plan';
+
+
 
 	return (
 		<React.Fragment>
@@ -148,7 +147,7 @@ const saveDep = ({ attributes }) => {
 					</div>
 
 					{!showIcon && step && (
-						<span id="complete-sign">&#10003;</span>						 
+						<span id="complete-sign">&#10003;</span>
 					)}
 
 					{showIcon && (
@@ -163,7 +162,7 @@ const saveDep = ({ attributes }) => {
 						>
 							<div className="aagb__icon_dashicons_box">
 								{step && (
-									<span id="complete-sign">&#10003;</span>						 
+									<span id="complete-sign">&#10003;</span>
 								)}
 								<span
 									className={`aagb__icon dashicons dashicons-${currentIconClass}`}
@@ -182,10 +181,30 @@ const saveDep = ({ attributes }) => {
 						...( ! styledQA ? {
 							borderTop: `${border.width} ${border.style} ${border.color}`
 						} : {}),
-						...( ! styledQA ? {
-							padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
-						} : {}),
-						//padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
+						// ...( ! styledQA ? {
+						// 	padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
+						// } : {
+						// 	paddingBottom: `${paddings.bottom}`,
+						// 	paddingRight: `${paddings.right}`,
+						// 	paddingLeft: `calc(${paddings.left} + 90px)`,
+						// }),
+
+						...( !styledQA
+								? {
+									padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
+								}
+								: styledQA && checkList
+									? {
+										paddingBottom: `${paddings.bottom}`,
+										paddingRight: `${paddings.right}`,
+										paddingLeft: `calc(${paddings.left} + 140px)`
+									}
+									: {
+										paddingBottom: `${paddings.bottom}`,
+										paddingRight: `${paddings.right}`,
+										paddingLeft: `calc(${paddings.left} + 90px)`
+									}
+						),
 					}}
 					{...(faqSchema ? { itemScope: true, itemprop: "acceptedAnswer",  itemType: "https://schema.org/Answer" } : {} )}
 				>
@@ -216,7 +235,6 @@ const saveDep = ({ attributes }) => {
 
 					{button_show && aab_premium && (
 						<>
-							<div className="aagb_overlay"></div>
 							<button className="aagb_button_toggle">
 								<RichText.Content
 									value={readMoreText}
@@ -244,28 +262,7 @@ const saveDep = ({ attributes }) => {
 					`}
 				</script>
 			)}
-			<script>
-				{`
-					jQuery(document).ready(function($) {
-						var text_max = parseInt("${contentCount}"); // Parse contentCount as an integer
 
-						$(".expand .aagb__accordion_component p").hide();
-						$(".expand .aagb__accordion_component p").slice(0, text_max).show();
-						
-						$(".expand .aagb_button_toggle").click(function(e) {
-							e.preventDefault();
-							$(".expand .aagb__accordion_component p:hidden").slice(0, text_max).fadeIn("slow");
-							if ($(".expand .aagb__accordion_component p:hidden").length === 0) {
-								$(".aagb_button_toggle").fadeOut("slow");
-								$(".aagb_overlay").fadeOut("slow");
-							}
-						});	
-						
-					});						
-									
-				`}
-			</script>
-			
 		</React.Fragment>
 	);
 };

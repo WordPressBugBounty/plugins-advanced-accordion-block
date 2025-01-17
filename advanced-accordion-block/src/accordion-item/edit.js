@@ -1,12 +1,16 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-shadow */
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
+import React from "react";
+
 const {Fragment} = wp.element;
 import {
     InnerBlocks,
     InspectorControls,
     RichText,
     useBlockProps,
+    MediaUpload,
+    MediaUploadCheck,
 } from '@wordpress/block-editor';
 import {
     ColorPalette,
@@ -14,6 +18,8 @@ import {
     RangeControl,
     SelectControl,
     ToggleControl,
+    TextControl,
+    Button,
     __experimentalBoxControl as BoxControl,
     __experimentalBorderControl as BorderControl,
 } from '@wordpress/components';
@@ -51,6 +57,8 @@ const anchorPositions = [
 
 const Edit = ({attributes, setAttributes, context}) => {
     const {
+        QaStyle,
+        singleAcdId,
         makeActive,
         border,
         margins,
@@ -68,22 +76,23 @@ const Edit = ({attributes, setAttributes, context}) => {
         bodyBg,
         buttonShow,
         anchorPosition,
-        contentCount,
-        styledQA,
         qIconText,
         qIconColor,
         qIconBg,
         aIconColor,
         aIconBg,
         aIconText,
-        faqSchema,
         step,
         stepText,
-        stepCmpltText,
         checkList,
         anchorLinkShow,
         button_show,
         readMoreText,
+        headingIconImageUrl,
+        headingIconAlt,
+        showHeadingIcon,
+        subheading,
+        subheadingColor
     } = attributes;
 
     // Generate the template for InnerBlocks based on contentCount
@@ -105,7 +114,7 @@ const Edit = ({attributes, setAttributes, context}) => {
     const read_more_checked = aab_premium ? buttonShow : 'false';
     const has_disabled_class = aab_premium ? '' : 'aab-pro-element';
 
-    const hasQaStyle = context["aagb/accordion-hasQaStyle"];
+    const hasQaStyle = context["aagb/accordion-QaStyle"];
     const hasFaqSchema = context["aagb/accordion-faqSchema"];
     const hasStep = context["aagb/accordion-step"];
     const hasStepText = context["aagb/accordion-stepText"];
@@ -124,7 +133,6 @@ const Edit = ({attributes, setAttributes, context}) => {
     const hasIconBackground = context["aagb/accordion-iconBackground"];
     const hasHeaderBg = context["aagb/accordion-headerBg"];
     const hasBodyBg = context["aagb/accordion-bodyBg"];
-    const hasStyledQA = context["aagb/accordion-styledQA"];
     const hasQIconText = context["aagb/accordion-qIconText"];
     const hasQIconColor = context["aagb/accordion-qIconColor"];
     const hasQIconBg = context["aagb/accordion-qIconBg"];
@@ -132,9 +140,10 @@ const Edit = ({attributes, setAttributes, context}) => {
     const hasAIconColor = context["aagb/accordion-aIconColor"];
     const hasAIconBg = context["aagb/accordion-aIconBg"];
     const hasContentCount = context["aagb/accordion-contentCount"];
+    const hasSubheadingColor = context["aagb/accordion-subheadingColor"];
 
     useEffect(() => {
-        setAttributes({styledQA: hasQaStyle});
+        setAttributes({QaStyle: hasQaStyle});
     }, [hasQaStyle]);
 
     useEffect(() => {
@@ -197,9 +206,6 @@ const Edit = ({attributes, setAttributes, context}) => {
         setAttributes({bodyBg: hasBodyBg});
     }, [hasBodyBg]);
     useEffect(() => {
-        setAttributes({styledQA: hasStyledQA});
-    }, [hasStyledQA]);
-    useEffect(() => {
         setAttributes({qIconText: hasQIconText});
     }, [hasQIconText]);
     useEffect(() => {
@@ -222,6 +228,10 @@ const Edit = ({attributes, setAttributes, context}) => {
         setAttributes({contentCount: hasContentCount});
     }, [hasContentCount]);
 
+    useEffect(() => {
+        setAttributes({subheadingColor: hasSubheadingColor});
+    }, [hasSubheadingColor]);
+
 
     if (!aab_premium) {
         const observer = new MutationObserver((mutations) => {
@@ -241,10 +251,30 @@ const Edit = ({attributes, setAttributes, context}) => {
         observer.observe(document.body, {childList: true, subtree: true});
     }
 
+    const handleImageSelect = (media) => {
+        setAttributes({
+            headingIconImageUrl: media.url,
+            headingIconAlt: media.alt,
+        });
+    };
+
     return (
         <Fragment>
 
             <InspectorControls>
+                <PanelBody
+                    initialOpen={false}
+                    title={__('Accordion ID', 'advanced-accordion-block')}
+                >
+                    <TextControl
+                        label={__(
+                            'Set Accordion ID',
+                            'advanced-accordion-block'
+                        )}
+                        value={singleAcdId}
+                        onChange={(singleAcdId) => setAttributes({singleAcdId})}
+                    />
+                </PanelBody>
                 <PanelBody
                     initialOpen={false}
                     title={__('Accordion Status', 'advanced-accordion-block')}
@@ -274,15 +304,56 @@ const Edit = ({attributes, setAttributes, context}) => {
                         onChange={(headingTag) => setAttributes({headingTag})}
                         value={headingTag}
                     />
+                    {aab_premium && !QaStyle && (
+                        <ToggleControl
+                            label={__('Show Heading Icon', 'advanced-accordion-block')}
+                            checked={showHeadingIcon}
+                            onChange={() => setAttributes({showHeadingIcon: !showHeadingIcon})}
+                        />
+                    )}
+
+                    {showHeadingIcon && headingIconImageUrl && !QaStyle && (
+                        <>
+                            <img
+                                src={headingIconImageUrl}
+                                alt={headingIconAlt || __('Heading Icon', 'advanced-accordion-block')}
+                                style={{
+                                    maxWidth: '100%',
+                                    marginTop: '10px',
+                                }}
+                            />
+                            <br/>
+                        </>
+                    )}
+                    {showHeadingIcon && !QaStyle && (
+                        <MediaUploadCheck>
+                            <MediaUpload
+                                onSelect={handleImageSelect}
+                                allowedTypes={['image']}
+                                render={({open}) => (
+                                    <Button
+                                        onClick={open}
+                                        variant="secondary"
+                                        icon="format-image"
+                                    >
+                                        {headingIconImageUrl
+                                            ? __('Change Heading Icon', 'advanced-accordion-block')
+                                            : __('Add Heading Icon', 'advanced-accordion-block')}
+                                    </Button>
+                                )}
+                            />
+                        </MediaUploadCheck>
+                    )}
+
                 </PanelBody>
-                {anchorLinkShow && !step && (
+                {anchorLinkShow && !step && !QaStyle && (
                     <PanelBody
                         title={__('Anchor Link', 'advanced-accordion-block')}
                         initialOpen={false}
                         className={has_disabled_class}
                     >
 
-                        {anchorLinkShow && !hasQaStyle && (
+                        {anchorLinkShow && (
                             <Fragment>
                                 <SelectControl
                                     label={__(
@@ -326,7 +397,7 @@ const Edit = ({attributes, setAttributes, context}) => {
                                 value={iconClass}
                             />
 
-                            {!hasQaStyle && (
+                            {!QaStyle && (
                                 <SelectControl
                                     label={__(
                                         'Icon Position',
@@ -348,7 +419,7 @@ const Edit = ({attributes, setAttributes, context}) => {
             <div
                 {...useBlockProps({
 
-                    className: `aagb__accordion_container ${step ? 'step' : ''} ${checkList ? 'check-list' : ''} ${makeActive ? 'aagb__accordion_active' : ''} ${hasQaStyle ? 'style-qa' : ''}`,
+                    className: `aagb__accordion_container ${step ? 'step' : ''} ${checkList ? 'check-list' : ''} ${makeActive ? 'aagb__accordion_active' : ''} ${QaStyle ? 'style-qa' : ''}`,
                 })}
                 style={{
                     border: `${border.width} ${border.style} ${border.color}`,
@@ -356,9 +427,11 @@ const Edit = ({attributes, setAttributes, context}) => {
                     marginBottom: `${margins.bottom}`,
                     borderRadius: `${borderRadius}px`,
                 }}
+
+                id={singleAcdId !== '' ? singleAcdId : ''}
             >
                 <div
-                    className={`aagb__accordion_head ${iconPosition}`}
+                    className={`aagb__accordion_head ${iconPosition} ${makeActive ? 'active' : ''} `}
                     style={{
                         color: headingColor ? headingColor : '#333333',
                         backgroundColor: headerBg ? headerBg : 'transparent',
@@ -378,7 +451,21 @@ const Edit = ({attributes, setAttributes, context}) => {
                                 <span></span>
                             </label>
                         )}
-                        {hasQaStyle && aab_premium && (
+
+
+                        {/* Heading Icon Image Upload */}
+
+                        {showHeadingIcon && headingIconImageUrl && !QaStyle && (
+                            <div className="heading-icon">
+                                <img
+                                    src={headingIconImageUrl}
+                                    alt={headingIconAlt || __('Heading Icon', 'advanced-accordion-block')}
+
+                                />
+                            </div>
+                        )}
+
+                        {QaStyle && aab_premium && (
                             <div className="icon-container">
                                 <div className="icon-q"
                                      style={{
@@ -395,21 +482,46 @@ const Edit = ({attributes, setAttributes, context}) => {
                             </div>
                         )}
 
-                        <RichText
-                            tagName={headingTag}
-                            value={heading}
-                            className="aagb__accordion_title"
-                            onChange={(heading) => setAttributes({heading})}
-                            style={{
-                                margin: 0,
-                                color: headingColor ? headingColor : '#333333',
-                            }}
-                        />
-                        {anchorLinkShow && aab_premium && !step && (
-                            <a className="anchorjs-link" href="#">
-                                <i className="dashicons dashicons-admin-links"></i>
-                            </a>
-                        )}
+
+                        <div className="head_content_wrapper">
+                            <div className="title_wrapper">
+                                <RichText
+                                    tagName={headingTag}
+                                    value={heading}
+                                    className="aagb__accordion_title"
+                                    onChange={(heading) => setAttributes({heading})}
+                                    style={{
+                                        margin: 0,
+                                        color: headingColor ? headingColor : '#333333',
+                                    }}
+                                />
+                                {anchorLinkShow && aab_premium && !step && (
+                                    <a className="anchorjs-link" href="#">
+                                        <i className="dashicons dashicons-admin-links"></i>
+                                    </a>
+                                )}
+                            </div>
+                            <RichText
+                                className="aagb__accordion_subheading"
+                                tagName="p"
+                                placeholder={aab_premium ? "Write some subheading" : "Subheading Available on Pro"}
+                                value={aab_premium ? subheading : ''}
+                                onChange={(value) => {
+                                    setAttributes({subheading: value});
+                                }}
+                                onFocus={(e) => {
+                                    if (!aab_premium) {
+                                        e.target.blur(); // Prevent focus if aab_premium is false
+                                    }
+                                }}
+                                style={{
+                                    margin: 0,
+                                    color: subheadingColor
+                                        ? subheadingColor
+                                        : '#333333',
+                                }}
+                            />
+                        </div>
                     </div>
                     {showIcon && (
                         <div
@@ -421,9 +533,11 @@ const Edit = ({attributes, setAttributes, context}) => {
                                     : 'transparent',
                             }}
                         >
-							<span
-                                className={`aagb__icon dashicons dashicons-${iconClass}`}
-                            ></span>
+                            <div className="aagb__icon_dashicons_box">
+                                <span
+                                    className={`aagb__icon dashicons dashicons-${iconClass}`}
+                                ></span>
+                            </div>
                         </div>
                     )}
                 </div>
@@ -434,22 +548,13 @@ const Edit = ({attributes, setAttributes, context}) => {
                     role="region"
                     style={{
                         backgroundColor: bodyBg ? bodyBg : 'transparent',
-                        ...(!hasQaStyle ? {
-                            borderTop: `${border.width} ${border.style} ${border.color}`
-                        } : {}),
-                        // ...(!hasQaStyle ? {
-                        //     padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
-                        // } : {
-                        //     paddingBottom: `${paddings.bottom}`,
-                        //     paddingRight: `${paddings.right}`,
-                        //     paddingLeft: `calc(${paddings.left} + 90px)`,
-                        // }),
 
-                        ...( !hasQaStyle
+                        ...(!QaStyle
                                 ? {
+                                    borderTop: `${border.width} ${border.style} ${border.color}`,
                                     padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
                                 }
-                                : hasQaStyle && hasCheckList
+                                : QaStyle && hasCheckList
                                     ? {
                                         paddingBottom: `${paddings.bottom}`,
                                         paddingRight: `${paddings.right}`,
@@ -462,16 +567,14 @@ const Edit = ({attributes, setAttributes, context}) => {
                                     }
                         ),
 
-                        ...(hasQaStyle && !aab_premium ? {
-                            padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
-                        } : {}),
                     }}
                 >
-                    <InnerBlocks
-                        allowedBlocks={true}
-                        template={innerBlocksTemplate}
-                    />
-
+                    <div className='aagb__accordion_component'>
+                        <InnerBlocks
+                            allowedBlocks={true}
+                            template={innerBlocksTemplate}
+                        />
+                    </div>
                     {button_show && aab_premium && (
                         <button className="aagb_button_toggle">
                             <RichText
