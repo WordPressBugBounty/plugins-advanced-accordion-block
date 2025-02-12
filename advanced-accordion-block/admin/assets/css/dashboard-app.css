@@ -2,6 +2,24 @@
 	cursor: pointer;
 }
 
+.toplevel_page_aab-block-usage-table{
+	.wp-menu-image img{
+		width: 22px;
+		padding: 7px 0 0;
+	}
+}
+.aab-status-badge {
+	transition: opacity 0.2s;
+}
+.aab-status-badge:hover {
+	opacity: 0.9;
+}
+.aab-issues-tooltip {
+	opacity: 0.8;
+}
+.aab-issues-tooltip:hover {
+	opacity: 1;
+}
 .aab-btn.btn-fill:hover {
 	color: #fff;
 }

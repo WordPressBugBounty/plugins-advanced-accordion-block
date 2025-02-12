@@ -41,7 +41,10 @@
     "aagb/accordion-aIconColor": "aIconColor",
     "aagb/accordion-aIconBg": "aIconBg",
     "aagb/accordion-subheadingColor": "subheadingColor",
-    "aagb/accordion-contentCount": "contentCount"
+    "aagb/accordion-contentCount": "contentCount",
+    "aagb/accordion-headingBorder": "headingBorder",
+    "aagb/accordion-bodyBorder": "bodyBorder",
+    "aagb/accordion-categoryList": "categoryList"
   },
   "attributes": {
     "anchorLinksShow": {
@@ -200,6 +203,46 @@
     "customCSS": {
       "type": "string",
       "default": ""
+    },
+    "openALLBtnPosition": {
+      "type": "string",
+      "default": "right_btn"
+    },
+    "headingBorder": {
+      "type": "object",
+      "default": {
+        "color": "undefined",
+        "style": "solid",
+        "width": "0px"
+      }
+    },
+    "bodyBorder": {
+      "type": "object",
+      "default": {
+        "top": {
+          "color": "#cccccc",
+          "style": "solid",
+          "width": "1px"
+        }
+      }
+    },
+    "activeBackground": {
+      "type": "string"
+    },
+    "categoryList": {
+      "type": "array"
+    },
+    "filterBtnAlignment": {
+      "type": "string",
+      "default": "center_btn"
+    },
+    "filterBtnPosition": {
+      "type": "string",
+      "default": "horizontal_filter"
+    },
+    "enableCategoryFilter": {
+      "type": "boolean",
+      "default": false
     }
   },
   "styles": [

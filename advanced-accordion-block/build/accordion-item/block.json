@@ -32,6 +32,24 @@
         "style": "solid"
       }
     },
+    "headingBorder": {
+      "type": "object",
+      "default": {
+        "color": "undefined",
+        "style": "solid",
+        "width": "0px"
+      }
+    },
+    "bodyBorder": {
+      "type": "object",
+      "default": {
+        "top": {
+          "color": "#cccccc",
+          "style": "solid",
+          "width": "1px"
+        }
+      }
+    },
     "paddings": {
       "type": "object",
       "default": {
@@ -173,6 +191,10 @@
     },
     "button_show": {
       "type": "boolean"
+    },
+    "selectedCategories": {
+      "type": "array",
+      "default": []
     }
   },
   "textdomain": "advanced-accordion-block",

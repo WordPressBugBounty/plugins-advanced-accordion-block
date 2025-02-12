@@ -3,7 +3,7 @@ Contributors: spiderdevs, mdjwel, binsaifullah
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
 Tested up to: 6.7.1
-Stable tag: 4.8.1
+Stable tag: 4.8.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,55 +25,61 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 - [Explore More](https://spider-themes.net/advanced-accordion-block)
 
 ### Key Features
-- **1. Custom Minimal Design:** Experience a sleek, modern interface designed to enhance user engagement with a clean and minimalistic look.
+- **Custom Minimal Design:** Experience a sleek, modern interface designed to enhance user engagement with a clean and minimalistic look.
 
-- **2. Super Fast:** Lightweight, and Optimized: Ensure quick loading times and smooth performance with a highly optimized, lightweight build.
+- **Super Fast:** Lightweight, and Optimized: Ensure quick loading times and smooth performance with a highly optimized, lightweight build.
 
-- **3. Linked Accordion:** Seamlessly connect accordion items for interconnected content, providing a streamlined user experience.
+- **Linked Accordion:** Seamlessly connect accordion items for interconnected content, providing a streamlined user experience.
 
-- **4. Built with Gutenberg Native Components:** Enjoy full integration with Gutenberg, ensuring compatibility and ease of use with WordPress's native block editor.
+- **Built with Gutenberg Native Components:** Enjoy full integration with Gutenberg, ensuring compatibility and ease of use with WordPress's native block editor.
 
-- **5. Unlimited Nested Accordion:** Create complex, multi-level accordions effortlessly, allowing for detailed and organized content structures.
+- **Unlimited Nested Accordion:** Create complex, multi-level accordions effortlessly, allowing for detailed and organized content structures.
 
-- **6. Unlimited Styling Options:** Customize your accordion with extensive styling options, including margin, padding, border radius, color, background, and tag selection.
+- **Unlimited Styling Options:** Customize your accordion with extensive styling options, including margin, padding, border radius, color, background, and tag selection.
 
-- **7. Highly Customizable:** Benefit from extensive customization possibilities, offering flexibility to suit any design requirement.
+- **Highly Customizable:** Benefit from extensive customization possibilities, offering flexibility to suit any design requirement.
 
-- **8. All Content Types Supported:** Insert any type of content, including text, images, videos, and more, within the accordion body for versatility.
+- **All Content Types Supported:** Insert any type of content, including text, images, videos, and more, within the accordion body for versatility.
 
-- **9. Custom Color Palette:** Personalize your accordion's appearance by selecting from a customizable color palette, aligning with your brand's aesthetics.
+- **Custom Color Palette:** Personalize your accordion's appearance by selecting from a customizable color palette, aligning with your brand's aesthetics.
 
-- **10. Active Accordion on Page Load:** Automatically expand the desired section when the page loads, ensuring immediate visibility of important content.
+- **Active Accordion on Page Load:** Automatically expand the desired section when the page loads, ensuring immediate visibility of important content.
 
-- **11. Responsive and SEO Friendly:** Maintain a seamless user experience across devices with a responsive design, while also optimizing your content for search engines.
+- **Responsive and SEO Friendly:** Maintain a seamless user experience across devices with a responsive design, while also optimizing your content for search engines.
 
-- **12. Unlimited FAQs:** Create and manage as many FAQs as needed, ensuring all user queries are addressed comprehensively.
+- **Unlimited FAQs:** Create and manage as many FAQs as needed, ensuring all user queries are addressed comprehensively.
 
-- **13. Infinite Reusable:** Reuse accordion items across different pages, making content management more efficient and consistent.
+- **Infinite Reusable:** Reuse accordion items across different pages, making content management more efficient and consistent.
 
 
 ### PRO Features
-- **1. Instant Search:** Enable a search bar to help users find specific FAQs quickly. It's useful when you have a long list of FAQs.
+- **Instant Search:** Enable a search bar to help users find specific FAQs quickly. It's useful when you have a long list of FAQs.
 
-- **2. QA (Question and Answer) Style:** Display FAQs in a structured question-and-answer format for easy readability and user engagement.
+- **QA (Question and Answer) Style:** Display FAQs in a structured question-and-answer format for easy readability and user engagement.
 
-- **3. Voting Feedback:** Add feedback voting buttons to each FAQ item. From the total vote count, you can understand how helpful an accordion is.
+- **Voting Feedback:** Add feedback voting buttons to each FAQ item. From the total vote count, you can understand how helpful an accordion is.
 
-- **4. Anchor Link:** Generate unique links for each FAQ item. It's handy for directing users to specific FAQs from external sources or within the same page.
+- **Anchor Link:** Generate unique links for each FAQ item. It's handy for directing users to specific FAQs from external sources or within the same page.
 
-- **5. Open All / Close All:** A functionality that lets users expand or collapse all accordion items simultaneously. It provides convenience, especially when users want to view or hide all FAQ items at once.
+- **Open All / Close All:** A functionality that lets users expand or collapse all accordion items simultaneously. It provides convenience, especially when users want to view or hide all FAQ items at once.
 
-- **6. Read More button:** Expand the accordion content beyond a certain character limit or line count, displaying a "Read More" button or link to reveal the entire content.
+- **Read More button:** Expand the accordion content beyond a certain character limit or line count, displaying a "Read More" button or link to reveal the entire content.
 
-- **7. Activator Event:** Choose the event type to activate the accordion. You can choose from Click and Hover.
+- **Activator Event:** Choose the event type to activate the accordion. You can choose from Click and Hover.
 
-- **8. Steps Layout:** Sequentially open accordions, marking previously opened ones as checked, guiding users through a step-by-step process.
+- **Steps Layout:** Sequentially open accordions, marking previously opened ones as checked, guiding users through a step-by-step process.
 
-- **9. Checklist Layout:** Convert accordions into a checklist format, allowing users to tick off completed items, ensuring thorough task management.
+- **Checklist Layout:** Convert accordions into a checklist format, allowing users to tick off completed items, ensuring thorough task management.
 
-- **10. Featured Icon:** Set an icon/image on the accordion header.
+- **Featured Icon:** Integrate custom icons/images into your accordion title to represent different types of themes visually. This enhances user experience and helps quickly differentiate content.
 
-- **11. Subheading support:** You can add a subheading below the main heading of accordion.
+- **Subheading support:** Add unique subheadings to each accordion section for better content organization. This improves user navigation, making it easy for visitors to find and engage with specific information.
+
+- **Custom CSS Field:** With full custom CSS support, you can tailor your accordion’s colors, fonts, and animations to seamlessly align with your website’s style.
+
+- **Filter Tab by Category:** Easily filter and view specific content within your accordion sections. Set custom tags in the parent accordion, and watch the magic happen with dynamic filtering for a more organized and user-friendly experience.
+
+[See All Features](https://spider-themes.net/advanced-accordion-block/features).
 
 ### Creating an Accordion FAQ with Advanced Accordion
 [youtube https://www.youtube.com/watch?v=K40z8KxojxE]
@@ -118,6 +124,14 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
+
+= 4.8.2  (12 February 2025) =
+New: Nested Accordion Support (Now, you can use an accordion within another accordion, allowing for better content structuring and organization)
+New: Accordion Usage Table Dashboard added on admin panel (Now, you can see where your accordions are used in pages or posts and track how many times a specific accordion appears on a single page/post)
+New: Added Custom Recovery Button On top toolbar that recovers all recovery block in a single click (If you see the attempt recovery notice, you'll find a button on the top toolbar. Clicking it will dismiss all recovery notices instantly)
+New: Added Pattern Design (We've added pre-designed patterns to make your accordions look more stylish and visually appealing with just a few clicks)
+Tweaked: Improved the color picker (We've made the color picker more intuitive and compact, simplifying the design for a smoother user experience)
+Updated: Freemius SDK to 2.11.0
 
 = 4.8.1  (18 January 2025) =
 New: You can now set a unique ID in the Group/Separate accordion block

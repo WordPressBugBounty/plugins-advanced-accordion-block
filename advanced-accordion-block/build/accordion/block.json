@@ -208,6 +208,24 @@
     "customCSS": {
       "type": "string",
       "default": ""
+    },
+    "headingBorder": {
+      "type": "object",
+      "default": {
+        "color": "undefined",
+        "style": "solid",
+        "width": "0px"
+      }
+    },
+    "bodyBorder": {
+      "type": "object",
+      "default": {
+        "top": {
+          "color": "#72aee6",
+          "style": "solid",
+          "width": "2px"
+        }
+      }
     }
   },
   "styles": [
