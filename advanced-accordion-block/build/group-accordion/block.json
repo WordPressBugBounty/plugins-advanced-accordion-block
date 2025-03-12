@@ -44,7 +44,9 @@
     "aagb/accordion-contentCount": "contentCount",
     "aagb/accordion-headingBorder": "headingBorder",
     "aagb/accordion-bodyBorder": "bodyBorder",
-    "aagb/accordion-categoryList": "categoryList"
+    "aagb/accordion-categoryList": "categoryList",
+    "aagb/accordion-labelsGlobalTextColor": "labelsGlobalTextColor",
+    "aagb/accordion-labelsGlobalBgColor": "labelsGlobalBgColor"
   },
   "attributes": {
     "anchorLinksShow": {
@@ -62,13 +64,16 @@
       "type": "object",
       "default": {
         "width": "1px",
-        "color": "#000000",
+        "color": "#ebebeb",
         "style": "solid"
       }
     },
     "searchShow": {
       "type": "boolean",
       "default": false
+    },
+    "placeholderText": {
+      "type": "string"
     },
     "showAllbtn": {
       "type": "boolean",
@@ -133,35 +138,37 @@
       "type": "object",
       "default": {
         "width": "1px",
-        "color": "#cccccc",
+        "color": "#bcb6b638",
         "style": "solid"
       }
     },
     "paddings": {
       "type": "object",
       "default": {
-        "top": "10px",
-        "left": "15px",
-        "right": "15px",
-        "bottom": "10px"
+        "top": "",
+        "right": "",
+        "left": "",
+        "bottom": ""
       }
     },
     "margins": {
       "type": "object",
       "default": {
         "top": "0px",
+        "right": "",
+        "left": "",
         "bottom": "15px"
       }
     },
     "borderRadius": {
-      "type": "number",
-      "default": 0
+      "type": "number"
     },
     "headingColor": {
       "type": "string"
     },
     "headerBg": {
-      "type": "string"
+      "type": "string",
+      "default": "#bcb6b638"
     },
     "iconColor": {
       "type": "string"
@@ -211,7 +218,7 @@
     "headingBorder": {
       "type": "object",
       "default": {
-        "color": "undefined",
+        "color": null,
         "style": "solid",
         "width": "0px"
       }
@@ -220,7 +227,7 @@
       "type": "object",
       "default": {
         "top": {
-          "color": "#cccccc",
+          "color": "#bcb6b638",
           "style": "solid",
           "width": "1px"
         }
@@ -240,9 +247,57 @@
       "type": "string",
       "default": "horizontal_filter"
     },
+    "filterBtnColor": {
+      "type": "string",
+      "default": "#0866ff"
+    },
+    "filterBtnBg": {
+      "type": "string",
+      "default": "#10b3d608"
+    },
+    "filterBtnActiveColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "filterBtnActiveBg": {
+      "type": "string",
+      "default": "#0866ff"
+    },
     "enableCategoryFilter": {
       "type": "boolean",
       "default": false
+    },
+    "showMoreBtn": {
+      "type": "boolean",
+      "default": false
+    },
+    "showMoreBtnTxt": {
+      "type": "string",
+      "default": "Show More"
+    },
+    "showLessBtnTxt": {
+      "type": "string",
+      "default": "Show Less"
+    },
+    "itemsToShow": {
+      "type": "number",
+      "default": 5
+    },
+    "showMoreBtnColor": {
+      "type": "string",
+      "default": "#010101"
+    },
+    "showMoreBtnBg": {
+      "type": "string",
+      "default": "#eaeaea"
+    },
+    "labelsGlobalTextColor": {
+      "type": "string",
+      "default": "#1570EC"
+    },
+    "labelsGlobalBgColor": {
+      "type": "string",
+      "default": "#c1d8f7"
     }
   },
   "styles": [
@@ -261,19 +316,12 @@
     }
   ],
   "textdomain": "advanced-accordion-block",
-  "editorScript": [
-    "file:./index.js",
-    "aagb-anchor",
-    "aagb-separate-accordion",
-    "aagb-accordion-group"
-  ],
+  "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": [
     "aagb-group-accordion"
   ],
   "viewScript": [
-    "aagb-anchor",
-    "aagb-separate-accordion",
     "aagb-accordion-group",
     "aagb-group-accordion-frontend"
   ]

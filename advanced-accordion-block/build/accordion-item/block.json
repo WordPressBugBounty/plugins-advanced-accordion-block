@@ -28,14 +28,14 @@
       "type": "object",
       "default": {
         "width": "1px",
-        "color": "#cccccc",
+        "color": "#bcb6b638",
         "style": "solid"
       }
     },
     "headingBorder": {
       "type": "object",
       "default": {
-        "color": "undefined",
+        "color": null,
         "style": "solid",
         "width": "0px"
       }
@@ -44,7 +44,7 @@
       "type": "object",
       "default": {
         "top": {
-          "color": "#cccccc",
+          "color": "#bcb6b638",
           "style": "solid",
           "width": "1px"
         }
@@ -53,22 +53,23 @@
     "paddings": {
       "type": "object",
       "default": {
-        "top": "10px",
-        "left": "15px",
-        "right": "15px",
-        "bottom": "10px"
+        "top": "",
+        "right": "",
+        "left": "",
+        "bottom": ""
       }
     },
     "margins": {
       "type": "object",
       "default": {
         "top": "0px",
+        "right": "",
+        "left": "",
         "bottom": "15px"
       }
     },
     "borderRadius": {
-      "type": "number",
-      "default": 0
+      "type": "number"
     },
     "heading": {
       "type": "string",
@@ -83,13 +84,14 @@
     },
     "headingTag": {
       "type": "string",
-      "default": "h4"
+      "default": "h5"
     },
     "headingColor": {
       "type": "string"
     },
     "headerBg": {
-      "type": "string"
+      "type": "string",
+      "default": "#bcb6b638"
     },
     "headingIconImageUrl": {
       "type": "string",
@@ -195,15 +197,37 @@
     "selectedCategories": {
       "type": "array",
       "default": []
+    },
+    "enableLabels": {
+      "type": "boolean",
+      "default": false
+    },
+    "labels": {
+      "type": "array",
+      "default": []
+    },
+    "labelsTextColor": {
+      "type": "string",
+      "default": ""
+    },
+    "labelsBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "labelsGlobalTextColor": {
+      "type": "string",
+      "default": "#1570EC"
+    },
+    "labelsGlobalBgColor": {
+      "type": "string",
+      "default": "#c1d8f7"
     }
   },
   "textdomain": "advanced-accordion-block",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": [
-    "aagb-anchor",
-    "aagb-separate-accordion",
-    "aagb-accordion-group"
-  ]
+  "style": [
+    "aagb-group-accordion-item"
+  ],
+  "viewScript": []
 }

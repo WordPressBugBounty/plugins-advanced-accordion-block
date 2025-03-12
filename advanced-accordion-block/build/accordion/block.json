@@ -23,30 +23,31 @@
     "border": {
       "type": "object",
       "default": {
-        "color": "#72aee6",
+        "color": "#bcb6b638",
         "style": "solid",
-        "width": "2px"
+        "width": "1px"
       }
     },
     "paddings": {
       "type": "object",
       "default": {
-        "top": "10px",
-        "left": "20px",
-        "right": "20px",
-        "bottom": "10px"
+        "top": "",
+        "right": "",
+        "left": "",
+        "bottom": ""
       }
     },
     "margins": {
       "type": "object",
       "default": {
         "top": "0px",
+        "right": "",
+        "left": "",
         "bottom": "15px"
       }
     },
     "borderRadius": {
-      "type": "number",
-      "default": 0
+      "type": "number"
     },
     "qIconText": {
       "type": "string",
@@ -85,13 +86,14 @@
     },
     "headingTag": {
       "type": "string",
-      "default": "h4"
+      "default": "h5"
     },
     "headingColor": {
       "type": "string"
     },
     "headerBg": {
-      "type": "string"
+      "type": "string",
+      "default": "#bcb6b638"
     },
     "headingIconImageUrl": {
       "type": "string",
@@ -123,7 +125,7 @@
     },
     "iconFontSize": {
       "type": "number",
-      "default": 25
+      "default": 23
     },
     "iconColor": {
       "type": "string"
@@ -134,14 +136,13 @@
     "iconBorder": {
       "type": "object",
       "default": {
-        "width": "1px",
+        "width": "0px",
         "style": "solid",
         "color": "transparent"
       }
     },
     "iconBorderRadius": {
-      "type": "string",
-      "default": "50%"
+      "type": "string"
     },
     "bodyBg": {
       "type": "string"
@@ -212,7 +213,7 @@
     "headingBorder": {
       "type": "object",
       "default": {
-        "color": "undefined",
+        "color": null,
         "style": "solid",
         "width": "0px"
       }
@@ -221,9 +222,9 @@
       "type": "object",
       "default": {
         "top": {
-          "color": "#72aee6",
+          "color": "#bcb6b638",
           "style": "solid",
-          "width": "2px"
+          "width": "1px"
         }
       }
     }
@@ -245,17 +246,13 @@
   ],
   "editorScript": [
     "file:./index.js",
-    "aagb-anchor",
-    "aagb-separate-accordion",
-    "aagb-accordion-group"
+    "aagb-separate-accordion"
   ],
   "editorStyle": "file:./index.css",
   "style": [
     "aagb-separate-accordion"
   ],
   "viewScript": [
-    "aagb-anchor",
-    "aagb-separate-accordion",
-    "aagb-accordion-group"
+    "aagb-separate-accordion"
   ]
 }

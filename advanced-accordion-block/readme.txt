@@ -1,9 +1,9 @@
 === Advanced Accordion Gutenberg Block ===
-Contributors: spiderdevs, mdjwel, binsaifullah
+Contributors: spiderdevs, mdjwel
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
 Tested up to: 6.7.1
-Stable tag: 4.8.2
+Stable tag: 5.0.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,7 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 **Advanced Accordion Gutenberg Block** is a custom native Gutenberg Block that allows you to build a **FAQs Section** or **Accordion** easily on your site post and page using **Gutenberg Editor**.
 
 ### Video Overview
-[youtube https://www.youtube.com/watch?v=GXeYq4xvz_Q]
+[youtube https://www.youtube.com/watch?v=UQDLpqro9yU]
 
 ## 🔗 USEFUL LINKS ##
 - [Get the Pro Version](https://spider-themes.net/advanced-accordion-block/flexible-pricing-for-all)
@@ -51,6 +51,8 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 
 - **Infinite Reusable:** Reuse accordion items across different pages, making content management more efficient and consistent.
 
+- **Pattern Design:** Pre-built stylish accordion patterns to enhance your layout instantly, with exclusive premium designs available in the Pro version.
+
 
 ### PRO Features
 - **Instant Search:** Enable a search bar to help users find specific FAQs quickly. It's useful when you have a long list of FAQs.
@@ -78,6 +80,10 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 - **Custom CSS Field:** With full custom CSS support, you can tailor your accordion’s colors, fonts, and animations to seamlessly align with your website’s style.
 
 - **Filter Tab by Category:** Easily filter and view specific content within your accordion sections. Set custom tags in the parent accordion, and watch the magic happen with dynamic filtering for a more organized and user-friendly experience.
+
+- **Show More Button:** Enhance user experience by enabling the "Show More" button in Group Accordion. Control how many items are displayed per click, keeping content organized and accessible.
+
+- **Labelling Option:** User can add custom text label beside the Single accordion title, making it easier to highlight key information and categorize content effectively.
 
 [See All Features](https://spider-themes.net/advanced-accordion-block/features).
 
@@ -124,6 +130,14 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
+
+= 5.0.0  (12 March 2025) =
+New: language file added
+New: Added a default background color for every single accordion title
+Tweaked: Reorganized controls & structure
+Tweaked: Improved default accordion design
+Tweaked: Improved custom colorpicker
+Tweaked: lib folder name renamed to assets to organize all CSS and JS files in a single folder
 
 = 4.8.2  (12 February 2025) =
 New: Nested Accordion Support (Now, you can use an accordion within another accordion, allowing for better content structuring and organization)

@@ -1,18 +1,18 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./lib/img/pro-patterns sync \\.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$":
-/*!***********************************************************************************!*\
-  !*** ./lib/img/pro-patterns/ sync nonrecursive \.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$ ***!
-  \***********************************************************************************/
+/***/ "./assets/img/pro-patterns sync \\.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$":
+/*!**************************************************************************************!*\
+  !*** ./assets/img/pro-patterns/ sync nonrecursive \.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$ ***!
+  \**************************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./Accordion Search.png": "./lib/img/pro-patterns/Accordion Search.png",
-	"./Anchor-link-with-feature-icon.png": "./lib/img/pro-patterns/Anchor-link-with-feature-icon.png",
-	"./Featured-icon-with-Showclose-all.png": "./lib/img/pro-patterns/Featured-icon-with-Showclose-all.png",
-	"./Modern-QA.png": "./lib/img/pro-patterns/Modern-QA.png",
-	"./Steps-With-Subheading.png": "./lib/img/pro-patterns/Steps-With-Subheading.png"
+	"./Accordion Search.png": "./assets/img/pro-patterns/Accordion Search.png",
+	"./Anchor-link-with-feature-icon.png": "./assets/img/pro-patterns/Anchor-link-with-feature-icon.png",
+	"./Featured-icon-with-Showclose-all.png": "./assets/img/pro-patterns/Featured-icon-with-Showclose-all.png",
+	"./Modern-QA.png": "./assets/img/pro-patterns/Modern-QA.png",
+	"./Steps-With-Subheading.png": "./assets/img/pro-patterns/Steps-With-Subheading.png"
 };
 
 
@@ -33,7 +33,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = "./lib/img/pro-patterns sync \\.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$";
+webpackContext.id = "./assets/img/pro-patterns sync \\.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$";
 
 /***/ }),
 
@@ -182,46 +182,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-/**
- * Retrieves the block patterns inserter state.
- *
- * @param {Function} onInsert     function called when inserter a list of blocks.
- * @param {string=}  rootClientId Insertion's root client ID.
- *
- * @return {Array} Returns the patterns state. (patterns, categories, onSelect handler)
- */
-const usePatternsState = (onInsert, rootClientId) => {
-  const {
-    patterns
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
-    const {
-      __experimentalGetAllowedPatterns,
-      getSettings
-    } = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.store);
+const usePatternsState = rootClientId => {
+  const patterns = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
+    try {
+      const {
+        __experimentalGetAllowedPatterns,
+        getSettings
+      } = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.store);
 
-    // Fetch any register pattern category types with the custom REST
-    // API endpoint. Eventually replace with core functionality.
-    var allPatterns = __experimentalGetAllowedPatterns(rootClientId);
-    var allPatternsresults = allPatterns.filter(pattern => {
-      // If the selected category is uncategorized, return all block
-      // patterns without assigned categories.
-      return pattern.categories?.includes("advanced-accordion-block-category");
-    });
-    return {
-      patterns: allPatternsresults
-    };
+      // Safely handle potential undefined or null return
+      const allPatterns = __experimentalGetAllowedPatterns?.(rootClientId) || [];
+
+      // Use memoization to prevent unnecessary re-renders
+      return allPatterns.filter(pattern => pattern.categories?.includes("advanced-accordion-block-category"));
+    } catch (error) {
+      console.error('Error fetching patterns:', error);
+      return [];
+    }
   }, [rootClientId]);
-  return [patterns];
+
+  // Use useMemo to further optimize rendering
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => [patterns], [patterns]);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (usePatternsState);
 
@@ -240,10 +226,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./lib/img/pro-patterns/Accordion Search.png":
-/*!***************************************************!*\
-  !*** ./lib/img/pro-patterns/Accordion Search.png ***!
-  \***************************************************/
+/***/ "./assets/img/pro-patterns/Accordion Search.png":
+/*!******************************************************!*\
+  !*** ./assets/img/pro-patterns/Accordion Search.png ***!
+  \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -251,10 +237,10 @@ module.exports = __webpack_require__.p + "images/Accordion Search.125b3cc3.png";
 
 /***/ }),
 
-/***/ "./lib/img/pro-patterns/Anchor-link-with-feature-icon.png":
-/*!****************************************************************!*\
-  !*** ./lib/img/pro-patterns/Anchor-link-with-feature-icon.png ***!
-  \****************************************************************/
+/***/ "./assets/img/pro-patterns/Anchor-link-with-feature-icon.png":
+/*!*******************************************************************!*\
+  !*** ./assets/img/pro-patterns/Anchor-link-with-feature-icon.png ***!
+  \*******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -262,10 +248,10 @@ module.exports = __webpack_require__.p + "images/Anchor-link-with-feature-icon.e
 
 /***/ }),
 
-/***/ "./lib/img/pro-patterns/Featured-icon-with-Showclose-all.png":
-/*!*******************************************************************!*\
-  !*** ./lib/img/pro-patterns/Featured-icon-with-Showclose-all.png ***!
-  \*******************************************************************/
+/***/ "./assets/img/pro-patterns/Featured-icon-with-Showclose-all.png":
+/*!**********************************************************************!*\
+  !*** ./assets/img/pro-patterns/Featured-icon-with-Showclose-all.png ***!
+  \**********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -273,10 +259,10 @@ module.exports = __webpack_require__.p + "images/Featured-icon-with-Showclose-al
 
 /***/ }),
 
-/***/ "./lib/img/pro-patterns/Modern-QA.png":
-/*!********************************************!*\
-  !*** ./lib/img/pro-patterns/Modern-QA.png ***!
-  \********************************************/
+/***/ "./assets/img/pro-patterns/Modern-QA.png":
+/*!***********************************************!*\
+  !*** ./assets/img/pro-patterns/Modern-QA.png ***!
+  \***********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -284,10 +270,10 @@ module.exports = __webpack_require__.p + "images/Modern-QA.1ce8ea07.png";
 
 /***/ }),
 
-/***/ "./lib/img/pro-patterns/Steps-With-Subheading.png":
-/*!********************************************************!*\
-  !*** ./lib/img/pro-patterns/Steps-With-Subheading.png ***!
-  \********************************************************/
+/***/ "./assets/img/pro-patterns/Steps-With-Subheading.png":
+/*!***********************************************************!*\
+  !*** ./assets/img/pro-patterns/Steps-With-Subheading.png ***!
+  \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -572,7 +558,7 @@ function HeaderToolbarButton() {
   };
 
   // Dynamically require all images from the `pro-patterns` folder
-  const proPatternsContext = __webpack_require__("./lib/img/pro-patterns sync \\.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$");
+  const proPatternsContext = __webpack_require__("./assets/img/pro-patterns sync \\.(png%7Cjpg%7Cjpeg%7Cgif%7Csvg)$");
   const proPatterns = proPatternsContext.keys().map(fileName => ({
     name: fileName.replace('./', ''),
     // Extract the file name without './'
