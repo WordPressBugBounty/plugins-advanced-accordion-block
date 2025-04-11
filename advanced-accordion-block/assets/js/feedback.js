@@ -41,6 +41,7 @@
             const voteValue = $button.data('value');
             // Get the vote identifier (either user ID or the cookie-based identifier)
             var voteIdentifier = getVoteIdentifier(); // Function to get the identifier
+
             $.ajax({
                 url: aab_feedbackAjax.ajaxurl,
                 type: 'POST',
@@ -53,6 +54,7 @@
                 },
                 success: function (response) {
                     if (response.success) {
+
                         // Update vote counts
                         $('body').append(
                             '<div class="aab-feedback-thankyou">Thank you for your feedback!</div>'
@@ -95,6 +97,7 @@
             // Otherwise, if not logged in, use the cookie value
             var voteIdentifier = getCookie('aab_vote_identifier');
             return voteIdentifier;
+
         }
 
         // Function to get cookie value

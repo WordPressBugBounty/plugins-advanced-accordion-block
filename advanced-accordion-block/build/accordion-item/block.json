@@ -221,6 +221,14 @@
     "labelsGlobalBgColor": {
       "type": "string",
       "default": "#c1d8f7"
+    },
+    "accessibilityOn": {
+      "type": "boolean",
+      "default": true
+    },
+    "focusOutlineColor": {
+      "type": "string",
+      "default": "#C2DBFE"
     }
   },
   "textdomain": "advanced-accordion-block",
@@ -228,6 +236,5 @@
   "editorStyle": "file:./index.css",
   "style": [
     "aagb-group-accordion-item"
-  ],
-  "viewScript": []
+  ]
 }

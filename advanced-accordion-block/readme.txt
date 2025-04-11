@@ -2,8 +2,8 @@
 Contributors: spiderdevs, mdjwel
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
-Tested up to: 6.7.1
-Stable tag: 5.0.0
+Tested up to: 6.7.3
+Stable tag: 5.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 
 ## 🔗 USEFUL LINKS ##
 - [Get the Pro Version](https://spider-themes.net/advanced-accordion-block/flexible-pricing-for-all)
-- [Demo (built with Advanced Accordion Gutenberg Block)](https://spider-themes.net/advanced-accordion-block/qa-question-and-answer-style)
+- [Demo (built with Advanced Accordion Gutenberg Block)](https://spider-themes.net/advanced-accordion-block/features)
 - [Documentation](https://helpdesk.spider-themes.net/docs/advance-accordions)
 - [Explore More](https://spider-themes.net/advanced-accordion-block)
 
@@ -52,6 +52,8 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 - **Infinite Reusable:** Reuse accordion items across different pages, making content management more efficient and consistent.
 
 - **Pattern Design:** Pre-built stylish accordion patterns to enhance your layout instantly, with exclusive premium designs available in the Pro version.
+
+- **Keyboard Accessibility:** Navigate and interact with accordions using keyboard keys—Tab, Shift+Tab, and Enter/Space—for a smoother and more accessible user experience.
 
 
 ### PRO Features
@@ -110,7 +112,14 @@ Never, it is light-weight and never slow down your site. In addition, it only lo
 Yes, it is built with 100% Gutenberg Native Components.
 
 == Screenshots ==
-
+1. Default Group Accordion View with Side Panel (Left & Right).
+2. Pre-Built Patterns of Advanced Accordion Block.
+3. Pre-built pattern design one.
+4. Pre-built pattern design two.
+5. Pre-built pattern design three.
+6. Pre-built pattern design four.
+7. Overview of the Custom Color Picker of single accordion.
+8. Accordion Usage Table Dashboard on admin panel.
 
 == Installation ==
 
@@ -131,9 +140,13 @@ It's really easy and super simple to install **Quick Edit** plugin.
 == Changelog ==
 
 
+= 5.0.1  (11 April 2025) =
+New: Keyboard Accessibility for Better Navigation (Tab Key → Moves focus to the next accordion, Shift + Tab → Moves focus to the previous accordion, Space/Enter Key → Expands the focused accordion)
+Tweaked: Hide global labels color if no accordion has labels enabled
+
 = 5.0.0  (12 March 2025) =
 New: language file added
-New: Added a default background color for every single accordion title
+New: Added a default background color in every single accordion title
 Tweaked: Reorganized controls & structure
 Tweaked: Improved default accordion design
 Tweaked: Improved custom colorpicker
@@ -162,77 +175,3 @@ Tweaked: Moved the styling options to parent in the Group Accordion
 Tweaked: Adding some padding in the content are of every single accordion
 Tweaked: Deprecated function updated
 Updated: Freemius SDK to 2.10.1
-
-= 4.7.4  (23 November 2024) =
-Fixed: Attempt recovery issue fixed
-Fixed: Undefined issue resolved
-
-= 4.7.3  (23 November 2024) =
-New: Added deprecated function
-Fixed: Pattern compatibility issue fixed
-Fixed: Resolved some option issues
-Tweaked: Improved some settings
-Updated: Freemius SDK to 2.9.0
-
-= 4.7.2  (09 September 2024) =
-Fixed: Hard to click on separate accordion content section
-Fixed: The separate accordion icon was not centered
-Updated: Freemius SDK to 2.7.4
-
-= 4.7.1  (02 August 2024) =
-Fixed: PRO notice issue resolved (The issue was occurred on editor style tab where any block is used)
-Fixed: Group accordion active style issue fixed
-Updated: Freemius SDK to 2.7.3
-
-= 4.7.0  (05 June 2024) =
-New: Added FAQ schema option. Now, you're able to turn on FAQ schema for your accordion
-New: Accordion headings keyboard-navigable
-New: Added Question & Answer style layout
-Fixed: Resolve Accordion focus issue
-Fixed: Resolve icon change & position option
-Tweaked: Style & Script loaded conditionally
-Tweaked: Move the styling fields to Styles tab
-Updated: Freemius SDK to 2.7.2
-
-= 4.6.0  (23 November 2023) =
-Updated: Freemius SDK to 2.6.1
-Tweaked: Removed some unnecessary links
-
-= 4.6.0 =
-* Changed the plugin ownership to spider-themes
-* Plugin's page moved under the WordPress Settings page from Tools page
-* Plugin's welcome page design changed/improved
-
-= 4.5.0 =
-* Adding new Group Accordion block
-* Adding animation
-* Fixing minor issues
-
-= 4.0.0 =
-* Click event issue fixing
-* Id for accordion
-* Linked Accordion feature
-* Disable Accordion feature
-* Block Patterns added
-
-= 3.0.0 =
-* A Major updates with a lot of changes
-* Remoe jQuery dependency
-* Fix Border Complicity
-* More Icons and Icons separate styling
-* Border Radius
-* **Active Accordion on Page Load**
-* Custom Margin & Padding Options
-
-= 2.0.0 =
-* A Major updates with a lot of changes
-* Nested Accordion
-* Accordion Container Border
-* Accordion head & body color & background
-
-= 1.0.2 =
-* Supports all blocks for building accordion content
-* Icon issue fixing
-* Compatibility check with latest WP version
-= 1.0.0 =
-* Initially released this version.

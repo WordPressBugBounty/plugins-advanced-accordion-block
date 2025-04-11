@@ -18,6 +18,7 @@
             const accordionBodyContinue = $(accordionBody).children('.continue');
             const completeSign = $(accordionHead).find('.complete-sign');
             const aagbIcon = $(accordionHead).find('.aagb__icon');
+            const $stepResult = $("#" + accordionId).find('> .step-result');
 
 
             /* cookie work's here */
@@ -27,12 +28,6 @@
                     completeSign.show();
                     aagbIcon.hide();
                     accordionBodyContinue.hide();
-
-                    if (allAccordionsCompleted(accordionCompletionStatus, accordionItems)) {
-                        $("#" + accordionId).find('> .step-result').css('display', 'block');
-                    } else {
-                        $("#" + accordionId).find('> .step-result').hide();
-                    }
                 }
             } else {
                 accordionCompletionStatus[index] = false;
@@ -47,7 +42,11 @@
                 setCookie('aab-completion-status-' + accordionId, JSON.stringify(accordionCompletionStatus), 30);
 
                 if (allAccordionsCompleted(accordionCompletionStatus, accordionItems)) {
-                    $("#" + accordionId).find('> .step-result').css('display', 'block');
+                    $stepResult.css('display', 'block');
+                    setTimeout(() => {
+                        $stepResult.hide();
+                    }, 5000)
+
                 } else {
                     let nextIndex = index + 1;
 
@@ -76,7 +75,6 @@
         // Select and modify last accordion item
         const lastAccordionItem = accordionItems.last();
         const lastAccordionItemStepText = lastAccordionItem.find('> .aagb__accordion_body').children('.continue').find('.step-text'); // Select the content of the last accordion item
-
 
         if (lastAccordionItemStepText.length > 0) { // Check if the last child element exists
             lastAccordionItemStepText.text("End"); // Change its text content
@@ -188,19 +186,55 @@
 
     if ($('.wp-block-aab-group-accordion').length) {
         $(".wp-block-aab-group-accordion").each(function () {
-            const showMoreBtn = $(this).find('> .aab-show-more-btn-container .show-more-btn');
-            const showLessBtn = $(this).find('> .aab-show-more-btn-container .show-less-btn');
-            let itemsPerClick = Number(showMoreBtn.data('items-to-show'));
+            const $groupAccordion = $(this);
+            const $accordionItems = $groupAccordion.find('> .wp-block-aab-accordion-item');
+            const $searchContainer = $groupAccordion.find('> .aagb_form_inner');
+            const $search = $searchContainer.find('> .aagb_form_group .aagb-search-control');
+            const $searchHelp = $searchContainer.find('> .help-block');
+            const $searchWrapperBtn = $groupAccordion.find('> .aagb_accordion_wrapper_btn');
+            const $showMoreBtn = $groupAccordion.find('> .aab-show-more-btn-container .show-more-btn');
+            const $showLessBtn = $groupAccordion.find('> .aab-show-more-btn-container .show-less-btn');
+
+            let itemsPerClick = Number($showMoreBtn.data('items-to-show'));
             let itemsToShow = itemsPerClick;
             let filterClass = '';
+            let searchTxt = '';
+
+            $search.on('input', function () {
+                searchTxt = $search.val();
+                loadAccordions();
+            });
 
             function loadAccordions() {
-                let _targetItems = targetItems;
+                let _targetItems = $accordionItems;
                 _targetItems.hide();
-                showMoreBtn.parent()?.show();
+                
+                if (filterClass) _targetItems = _targetItems.filter(`.${filterClass}`);
+                
+                $searchContainer.removeClass('has-success has-error');
+                $groupAccordion?.unmark?.();
+                $searchHelp.hide();
 
-                if (filterClass)
-                    _targetItems = _targetItems.filter(`.${filterClass}`);
+                if(searchTxt) {
+                    $searchHelp.show();
+
+                    _targetItems = _targetItems.filter(function() {
+                        return $(this).text()?.toLowerCase().includes(searchTxt.toLowerCase());
+                    });
+
+                    if(_targetItems.length) {
+                        $searchHelp.text(`${_targetItems.length} question(s) found.`);
+                        $searchContainer.addClass('has-success');
+                        _targetItems?.mark?.(searchTxt);
+                        $searchWrapperBtn.show();
+                    } else {
+                        $searchContainer.addClass('has-error');
+                        $searchHelp.text('No questions found.');
+                        $searchWrapperBtn.hide();
+                    }
+                }
+
+                $showMoreBtn.parent()?.show();
 
                 // if not greater than zero, all accordions are shown (covers the case of showMoreBtn feature not being activated)
                 if (itemsToShow > 0) {
@@ -215,19 +249,21 @@
                     });
 
                     if(loaded >= _targetItems.length) {
-                        showMoreBtn.hide();
+                        $showMoreBtn.hide();
 
-                        showLessBtn.show();
-                        showLessBtn.parent()?.css("background-color", "#ffffff00");
+                        $showLessBtn.show(0, function () {
+                            $(this).css("display", "flex");
+                        });
+                        $showLessBtn.parent()?.css("background-color", "#ffffff00");
 
-                        if(loaded <= itemsPerClick) showMoreBtn.parent()?.hide();
+                        if(loaded <= itemsPerClick) $showMoreBtn.parent()?.hide();
                     } else {
-                        showMoreBtn.show();
-                        showLessBtn.hide();
+                        $showMoreBtn.show();
+                        $showLessBtn.hide();
                     }
                 } else { // show-more-btn feature is not activated (or invalid items-per-click value)
                     _targetItems.show();
-                    showMoreBtn?.parent()?.hide();
+                    $showMoreBtn?.parent()?.hide();
                 }
                 
             }
@@ -235,7 +271,6 @@
             var filterButtons = $(this).find('> .aab-filter-button-group button');
             var allButton = $(this).find('> .aab-filter-button-group .cat_all_item'); // Select the "All" button
 
-            var targetItems = $(this).find('> .wp-block-aab-accordion-item');
             filterButtons.on('click', function () {
                 filterClass = $(this).data('filter');
 
@@ -257,14 +292,16 @@
             allButton.click();
             loadAccordions();
 
-            showMoreBtn.on('click', function () {
+            $showMoreBtn.on('click', function () {
                 itemsToShow += itemsPerClick;
                 loadAccordions();
+                $showLessBtn.focus();
             });
 
-            showLessBtn.on('click', function () {
+            $showLessBtn.on('click', function () {
                 itemsToShow = itemsPerClick;
                 loadAccordions();
+                $showMoreBtn.focus();
             });
         });
     }

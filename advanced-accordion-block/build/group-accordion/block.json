@@ -46,7 +46,9 @@
     "aagb/accordion-bodyBorder": "bodyBorder",
     "aagb/accordion-categoryList": "categoryList",
     "aagb/accordion-labelsGlobalTextColor": "labelsGlobalTextColor",
-    "aagb/accordion-labelsGlobalBgColor": "labelsGlobalBgColor"
+    "aagb/accordion-labelsGlobalBgColor": "labelsGlobalBgColor",
+    "aagb/accordion-accessibilityOn": "accessibilityOn",
+    "aagb/accordion-focusOutlineColor": "focusOutlineColor"
   },
   "attributes": {
     "anchorLinksShow": {
@@ -253,11 +255,19 @@
     },
     "filterBtnBg": {
       "type": "string",
-      "default": "#10b3d608"
+      "default": "#F4F8FF"
+    },
+    "filterBtnHoverColor": {
+      "type": "string",
+      "default": "#0866ff"
+    },
+    "filterBtnHoverBg": {
+      "type": "string",
+      "default": "#DDE9FD"
     },
     "filterBtnActiveColor": {
       "type": "string",
-      "default": "#fff"
+      "default": "#F4F8FF"
     },
     "filterBtnActiveBg": {
       "type": "string",
@@ -298,6 +308,14 @@
     "labelsGlobalBgColor": {
       "type": "string",
       "default": "#c1d8f7"
+    },
+    "accessibilityOn": {
+      "type": "boolean",
+      "default": true
+    },
+    "focusOutlineColor": {
+      "type": "string",
+      "default": "#C2DBFE"
     }
   },
   "styles": [

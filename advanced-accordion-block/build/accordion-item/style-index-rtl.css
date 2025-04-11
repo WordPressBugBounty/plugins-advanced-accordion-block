@@ -47,6 +47,20 @@
   transition: all 0.3s linear;
   text-decoration: none;
   cursor: pointer;
+  color: #0866ff;
+  background-color: #F4F8FF;
+  border-color: rgba(8, 102, 255, 0.2);
+}
+.wp-block-aab-group-accordion .aab-filter-button-group .btn:hover {
+  color: #0866ff;
+  background-color: #DDE9FD;
+  border-color: rgba(8, 102, 255, 0.2);
+}
+.wp-block-aab-group-accordion .aab-filter-button-group .btn.active, .wp-block-aab-group-accordion .aab-filter-button-group .btn.active:hover {
+  color: #F4F8FF;
+  background-color: #0866ff;
+  border-color: #0866ff;
+  cursor: default;
 }
 .wp-block-aab-group-accordion .aab-show-more-btn-container {
   margin-top: -50px;
@@ -54,13 +68,12 @@
   display: flex;
   justify-content: center;
 }
-.wp-block-aab-group-accordion .aab-show-more-btn-container button.show-more-btn,
-.wp-block-aab-group-accordion .aab-show-more-btn-container button.show-less-btn {
+.wp-block-aab-group-accordion .aab-show-more-btn-container .show-more-btn, .wp-block-aab-group-accordion .aab-show-more-btn-container .show-less-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  outline: none;
+  outline: 3px solid rgba(0, 0, 0, 0);
   border: none;
   padding: 10px 20px;
   border-radius: 50px;
@@ -68,17 +81,18 @@
   color: #010101;
   cursor: pointer;
 }
-.wp-block-aab-group-accordion .aab-show-more-btn-container button.show-more-btn:hover,
-.wp-block-aab-group-accordion .aab-show-more-btn-container button.show-less-btn:hover {
+.wp-block-aab-group-accordion .aab-show-more-btn-container .show-more-btn:hover, .wp-block-aab-group-accordion .aab-show-more-btn-container .show-less-btn:hover {
   opacity: 80%;
 }
-.wp-block-aab-group-accordion .aab-show-more-btn-container button.show-more-btn:active,
-.wp-block-aab-group-accordion .aab-show-more-btn-container button.show-less-btn:active {
+.wp-block-aab-group-accordion .aab-show-more-btn-container .show-more-btn:active, .wp-block-aab-group-accordion .aab-show-more-btn-container .show-less-btn:active {
   transition-duration: 300ms;
   scale: 95%;
 }
 .wp-block-aab-group-accordion .aab-show-more-btn-container button.show-less-btn {
   display: none;
+}
+.wp-block-aab-group-accordion .aagb__accordion_container.no-pro-plan .aagb__accordion_body {
+  padding: 10px !important;
 }
 .wp-block-aab-group-accordion .aagb__accordion_container.step .aagb__accordion_icon {
   width: auto;
@@ -203,6 +217,8 @@
 }
 .wp-block-aab-accordion-item .highlight, .wp-block-aab-accordion-item mark {
   background: yellow !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .wp-block-aab-accordion-item .aagb__accordion_head {
   display: flex;
@@ -211,13 +227,6 @@
   cursor: pointer;
   outline: 0;
   padding: 13px 22px;
-}
-.wp-block-aab-accordion-item .aagb__accordion_head.hasSubHeading.active .head_content_wrapper {
-  transform: translateY(12px);
-}
-.wp-block-aab-accordion-item .aagb__accordion_head.hasSubHeading.active .aagb__accordion_subheading {
-  opacity: 0;
-  visibility: hidden;
 }
 .wp-block-aab-accordion-item .aagb__accordion_head .head_content_wrapper {
   transition: all 0.3s ease-in-out;

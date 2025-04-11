@@ -227,6 +227,14 @@
           "width": "1px"
         }
       }
+    },
+    "accessibilityOn": {
+      "type": "boolean",
+      "default": true
+    },
+    "focusOutlineColor": {
+      "type": "string",
+      "default": "#C2DBFE"
     }
   },
   "styles": [

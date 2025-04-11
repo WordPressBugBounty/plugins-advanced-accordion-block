@@ -9,6 +9,13 @@
   transition: all 0.3s ease-in-out;
   border-radius: 6px;
 }
+.wp-block-aab-accordion-block.accessibilityOn {
+  transition-duration: 0ms !important;
+  outline: 2px solid rgba(0, 0, 0, 0);
+}
+.wp-block-aab-accordion-block.accessibilityOn:focus-visible {
+  outline: 2px solid #C2DBFE;
+}
 .wp-block-aab-accordion-block.aab__accordion_disabled {
   pointer-events: none !important;
 }
@@ -38,9 +45,6 @@
 .wp-block-aab-accordion-block .aab__accordion_head.hasSubHeading.active .aab__accordion_subheading {
   opacity: 0;
   visibility: hidden;
-}
-.wp-block-aab-accordion-block .aab__accordion_head.aab__accordion_head--keyboard:focus {
-  outline: none;
 }
 .wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_icon {
   width: 20px;
@@ -142,6 +146,12 @@
 .feedback-btn-wrap {
   text-align: right;
   display: block;
+}
+.feedback-btn-wrap.accessible-feedback .feedback-btn {
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.feedback-btn-wrap.accessible-feedback .feedback-btn:focus-visible {
+  border-color: #333;
 }
 .feedback-btn-wrap > span {
   margin-right: 10px;
