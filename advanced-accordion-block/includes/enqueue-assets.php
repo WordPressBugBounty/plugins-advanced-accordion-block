@@ -22,15 +22,23 @@ class AAB_Enqueue_Block_Assets {
 
 		wp_register_script(
 			'anchor',
-			AAGB_ASSETS . '../assets/js/anchor.js',
+			AAGB_ASSETS . 'js/anchor.js',
 			array( 'jquery' ),
-			'',
+			'5.0.0',
 			true
 		);
 
 		wp_register_script(
 			'aagb-separate-accordion',
 			plugins_url( '/', __FILE__ ) . '../assets/js/separate-accordion.js',
+			array( 'jquery' ),
+			AAGB_VERSION,
+			true
+		);
+
+		wp_register_script(
+			'aahb-horizontal-accordion',
+			plugins_url( '/', __FILE__ ) . '../assets/js/horizontal-accordion.js',
 			array( 'jquery' ),
 			AAGB_VERSION,
 			true
@@ -69,7 +77,7 @@ class AAB_Enqueue_Block_Assets {
 
 		wp_register_script(
 			'mark',
-			'https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js',
+			plugins_url( '/', __FILE__ ) . '../assets/js/jquery.mark.min.js',
 			array( 'jquery' ),
 			AAGB_VERSION,
 			true
@@ -79,7 +87,8 @@ class AAB_Enqueue_Block_Assets {
 		wp_localize_script( 'jquery', 'aagb_local_object', array(
 			'ajax_url'  => admin_url( 'admin-ajax.php' ),
 			'nonce'     => wp_create_nonce( 'aagb_accordion_nonce' ),
-			'licensing' => $licensing['can_use_premium_code']
+			'licensing' => $licensing['can_use_premium_code'],
+			'assets'    => AAGB_ASSETS
 		) );
 	}
 
@@ -112,15 +121,15 @@ class AAB_Enqueue_Block_Assets {
 			'aab-block_deletion_tracker',
 			plugin_dir_url( __FILE__ ) . '../assets/js/block-deletion-tracker.js',
 			[ 'wp-blocks', 'wp-editor', 'wp-data' ], // Dependencies
-			'',
+			AAGB_VERSION,
 			true
 		);
 
 		wp_enqueue_script(
 			'aab-attempt-recovery-all',
-			plugin_dir_url( __FILE__ ) . '../assets/js/attempt-recovery-all.js', // Path to your JS file
+			plugin_dir_url( __FILE__ ) . '../assets/js/attempt-recovery-all.js',
 			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data' ),
-			'',
+			AAGB_VERSION,
 			true
 		);
 	}

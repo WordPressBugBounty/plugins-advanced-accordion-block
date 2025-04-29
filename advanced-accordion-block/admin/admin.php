@@ -73,7 +73,7 @@ if ( ! function_exists( 'aab_admin_page_content_callback' ) ) {
                                         allowfullscreen></iframe>
                             </div>
                             <span class="ezd-d-flex">
-                        <a href="<?php echo admin_url( 'post-new.php?post_type=page' ); ?>" target="_blank"
+                        <a href="<?php echo esc_url(admin_url( 'post-new.php?post_type=page' )); ?>" target="_blank"
                            class="aab-btn btn-fill">
                             Create New Page
                         </a>
@@ -159,8 +159,9 @@ if ( ! class_exists( 'AAB_Block_Usage_Table' ) ) {
 	class AAB_Block_Usage_Table extends WP_List_Table {
 		private $blocks
 			= [
-				'aab/accordion-block' => 'Separate Accordion',
-				'aab/group-accordion' => 'Group Accordion',
+				'aab/accordion-block ' => 'Separate Accordion',
+				'aab/group-accordion ' => 'Group Accordion',
+				'aab/horizontal-accordion ' => 'Horizontal Accordion',
 			];
 
 		public function __construct() {
@@ -309,7 +310,6 @@ if ( ! class_exists( 'AAB_Block_Usage_Table' ) ) {
 			foreach ( $posts as $post ) {
 				$block_summary = [];
 				$total_count   = 0;
-
 				foreach ( $this->blocks as $block_name => $block_label ) {
 					$block_count = substr_count( $post->post_content, '<!-- wp:' . $block_name );
 
@@ -327,7 +327,7 @@ if ( ! class_exists( 'AAB_Block_Usage_Table' ) ) {
 						'block_names' => implode( ', ', $block_summary ),
 						'block_count' => $total_count,
 						'post_type'   => get_post_type( $post->ID ),
-						'date'        => date( 'Y/m/d', strtotime( $post->post_date ) ),
+						'date'        => gmdate( 'Y/m/d', strtotime( $post->post_date ) ),
 					];
 				}
 			}

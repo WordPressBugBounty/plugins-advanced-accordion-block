@@ -1,341 +1,140 @@
 /* eslint-disable no-undef */
-var $ = jQuery;
+(function ($) {
+const iconToggleMap = new Map([
+    ['dashicons-plus-alt2', 'dashicons-minus'],
+    ['dashicons-minus', 'dashicons-plus-alt2'],
+    ['dashicons-arrow-down-alt2', 'dashicons-arrow-up-alt2'],
+    ['dashicons-arrow-up-alt2', 'dashicons-arrow-down-alt2'],
+    ['dashicons-arrow-down', 'dashicons-arrow-up'],
+    ['dashicons-arrow-up', 'dashicons-arrow-down'],
+    ['dashicons-plus-alt', 'dashicons-dismiss'],
+    ['dashicons-dismiss', 'dashicons-plus-alt'],
+    ['dashicons-insert', 'dashicons-remove'],
+    ['dashicons-remove', 'dashicons-insert'],
+]);
 
-// Accordion
-const groupAccordions = $('.wp-block-aab-group-accordion.click');
-groupAccordions.each(function () {
-    // accordion head
-    const accordionHeads = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_head');
-    const accordionContents = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_body');
-    const accordionIcons = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_head').find('.aagb__icon');
+function toggleIcon(element, target = ['expand', 'collapse'][0]) {
+    const $icon = $(element);
+    const classList = $icon.attr('class').split(/\s+/);
 
-    // active accordion
-    const activeAccordion = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_body--show');
-    // all accordions
-    const accordions = $(this).children('.wp-block-aab-accordion-item');
-    // show active accrodion on load
-    if (activeAccordion.length) {
-        activeAccordion.slideDown();
-    }
+    for(const cls of classList) {
+        for(const [collapsedCls, expandedCls] of iconToggleMap) {
+            if(collapsedCls === cls || expandedCls === cls) {
+                const targetCls = {
+                    expand: collapsedCls,
+                    collapse: expandedCls
+                }[target];
 
-    // each btn click
-    accordionHeads.each(function () {
-        // click event
-        $(this).click(function () {
-            // get parent
-            const parent = $(this).parent();
-            // get panel
-            const panel = parent.children('.aagb__accordion_body');
-
-            // adding active class
-
-
-            // icon
-            const $icon = $(this).find('.aagb__icon');
-
-            if (panel.hasClass('aagb__accordion_body--show')) {
-
-
-                $(this).removeClass('active');
-
-                // active class to parent
-                parent.removeClass('aagb__accordion_active');
-                panel.removeClass('aagb__accordion_body--show');
-                panel.slideUp();
-                // icons
-                if ($icon.hasClass('dashicons-plus-alt2')) {
-                    $icon.removeClass('dashicons-plus-alt2');
-                    $icon.addClass('dashicons-minus');
-                } else if ($icon.hasClass('dashicons-minus')) {
-                    $icon.removeClass('dashicons-minus');
-                    $icon.addClass('dashicons-plus-alt2');
-                } else if ($icon.hasClass('dashicons-arrow-down-alt2')) {
-                    $icon.removeClass('dashicons-arrow-down-alt2');
-                    $icon.addClass('dashicons-arrow-up-alt2');
-                } else if ($icon.hasClass('dashicons-arrow-up-alt2')) {
-                    $icon.removeClass('dashicons-arrow-up-alt2');
-                    $icon.addClass('dashicons-arrow-down-alt2');
-                } else if ($icon.hasClass('dashicons-arrow-down')) {
-                    $icon.removeClass('dashicons-arrow-down');
-                    $icon.addClass('dashicons-arrow-up');
-                } else if ($icon.hasClass('dashicons-arrow-up')) {
-                    $icon.removeClass('dashicons-arrow-up');
-                    $icon.addClass('dashicons-arrow-down');
-                } else if ($icon.hasClass('dashicons-plus-alt')) {
-                    $icon.removeClass('dashicons-plus-alt');
-                    $icon.addClass('dashicons-dismiss');
-                } else if ($icon.hasClass('dashicons-dismiss')) {
-                    $icon.removeClass('dashicons-dismiss');
-                    $icon.addClass('dashicons-plus-alt');
-                } else if ($icon.hasClass('dashicons-insert')) {
-                    $icon.removeClass('dashicons-insert');
-                    $icon.addClass('dashicons-remove');
-                } else if ($icon.hasClass('dashicons-remove')) {
-                    $icon.removeClass('dashicons-remove');
-                    $icon.addClass('dashicons-insert');
-                }
-            } else {
-                accordionHeads.each(function () {
-                    if ($(this).hasClass('active')) {
-                        $(this).removeClass('active');
-                    }
-                });
-                $(this).addClass('active');
-
-                accordionContents.each(function () {
-                    if ($(this).hasClass('aagb__accordion_body--show')) {
-                        $(this).removeClass('aagb__accordion_body--show');
-                        $(this).slideUp();
-                    }
-                });
-
-                // accordions
-                accordions.each(function () {
-                    if ($(this).hasClass('aagb__accordion_active')) {
-                        $(this).removeClass('aagb__accordion_active');
-                    }
-                });
-
-                // icons
-                accordionIcons.each(function () {
-                    if ($(this).hasClass('dashicons-minus')) {
-                        $(this).removeClass('dashicons-minus');
-                        $(this).addClass('dashicons-plus-alt2');
-                    } else if ($(this).hasClass('dashicons-arrow-up')) {
-                        $(this).removeClass('dashicons-arrow-up');
-                        $(this).addClass('dashicons-arrow-down');
-                    } else if (
-                        $(this).hasClass('dashicons-arrow-up-alt2')
-                    ) {
-                        $(this).removeClass('dashicons-arrow-up-alt2');
-                        $(this).addClass('dashicons-arrow-down-alt2');
-                    } else if ($(this).hasClass('dashicons-dismiss')) {
-                        $(this).removeClass('dashicons-dismiss');
-                        $(this).addClass('dashicons-plus-alt');
-                    } else if ($(this).hasClass('dashicons-remove')) {
-                        $(this).removeClass('dashicons-remove');
-                        $(this).addClass('dashicons-insert');
-                    }
-                });
-                parent.addClass('aagb__accordion_active');
-                panel.addClass('aagb__accordion_body--show');
-                panel.slideDown();
-                // icons
-                if ($icon.hasClass('dashicons-plus-alt2')) {
-                    $icon.removeClass('dashicons-plus-alt2');
-                    $icon.addClass('dashicons-minus');
-                } else if ($icon.hasClass('dashicons-minus')) {
-                    $icon.removeClass('dashicons-minus');
-                    $icon.addClass('dashicons-plus-alt2');
-                } else if ($icon.hasClass('dashicons-arrow-down-alt2')) {
-                    $icon.removeClass('dashicons-arrow-down-alt2');
-                    $icon.addClass('dashicons-arrow-up-alt2');
-                } else if ($icon.hasClass('dashicons-arrow-up-alt2')) {
-                    $icon.removeClass('dashicons-arrow-up-alt2');
-                    $icon.addClass('dashicons-arrow-down-alt2');
-                } else if ($icon.hasClass('dashicons-arrow-down')) {
-                    $icon.removeClass('dashicons-arrow-down');
-                    $icon.addClass('dashicons-arrow-up');
-                } else if ($icon.hasClass('dashicons-arrow-up')) {
-                    $icon.removeClass('dashicons-arrow-up');
-                    $icon.addClass('dashicons-arrow-down');
-                } else if ($icon.hasClass('dashicons-plus-alt')) {
-                    $icon.removeClass('dashicons-plus-alt');
-                    $icon.addClass('dashicons-dismiss');
-                } else if ($icon.hasClass('dashicons-dismiss')) {
-                    $icon.removeClass('dashicons-dismiss');
-                    $icon.addClass('dashicons-plus-alt');
-                } else if ($icon.hasClass('dashicons-insert')) {
-                    $icon.removeClass('dashicons-insert');
-                    $icon.addClass('dashicons-remove');
-                } else if ($icon.hasClass('dashicons-remove')) {
-                    $icon.removeClass('dashicons-remove');
-                    $icon.addClass('dashicons-insert');
-                }
+                $icon.removeClass(cls);
+                $icon.addClass(targetCls)
+                return;
             }
-        });
-    });
-});
-// Keyboard Navigation for Group Accordion
-groupAccordions.each(function () {
-    const accordionItems = $(this).children('.wp-block-aab-accordion-item');
-    accordionItems.each(function (index) {
-        const accordionItem = $(this);
-        accordionItem.addClass('aagb__accordion_head--keyboard');
-        accordionItem.on('keydown', function (e) {
+        }
+    }
+}
 
-            if (e.key === 'Enter' || e.key === ' ') {  // Enter or Spacebar
+function stickToTheSamePlace ($accordion, stopAfter = 500) {
+    if(window.innerWidth >= 756) return;
+
+    const accordionPosition = $accordion[0]?.getBoundingClientRect().top || 0;
+
+    const intervalId = setInterval(() => {
+        const accordionOffset = $accordion.offset().top;
+        const scrollTo = accordionOffset - accordionPosition;
+        window.scrollTo({ top: scrollTo });
+    }, 5)
+
+    setTimeout(() => {
+        clearInterval(intervalId);
+    }, stopAfter)
+}
+
+const $groupAccordions = $('.wp-block-aab-group-accordion');
+
+$groupAccordions.each(function () {
+    const $groupAccordion = $(this);
+    const $accordions = $groupAccordion.find('> .wp-block-aab-accordion-item');
+    const $accordionHeads = $accordions.find('> .aagb__accordion_head');
+    const $accordionIcons = $accordionHeads.find('.aagb__icon');
+    const $accordionBodies = $accordions.find('> .aagb__accordion_body');
+
+    const activatorEvent = $groupAccordion.hasClass('hover') ? 'mouseenter' : 'click';
+
+    $accordionBodies.each(function() {
+        const $accordionBody = $(this);
+        const isActive = $accordionBody.hasClass('aagb__accordion_body--show');
+        if(isActive) $accordionBody.slideDown();
+    })
+
+    $accordionHeads.on(activatorEvent, function () {
+        const $accordionHead = $(this);
+        const $accordion = $accordionHead.parent();
+        const $accordionBody = $accordion.find('.aagb__accordion_body');
+        const $accordionIcon = $accordionHead.find('.aagb__icon');
+
+        const isActive = $accordionBody.hasClass('aagb__accordion_body--show');
+        stickToTheSamePlace($accordion);
+
+        if (isActive) {
+            $accordion.removeClass('aagb__accordion_active');
+            $accordionHead.removeClass('active');
+            $accordionBody.removeClass('aagb__accordion_body--show')
+            toggleIcon($accordionIcon, 'expand');
+
+            $accordionBody.slideUp();
+        } else {
+            $accordionHeads.removeClass('active');
+            $accordionBodies.removeClass('aagb__accordion_body--show');
+            $accordionBodies.slideUp();
+            $accordions.removeClass('aagb__accordion_active');
+
+            $accordionIcons.each(function() {
+                toggleIcon($(this), 'expand');
+            })
+            toggleIcon($accordionIcon, 'collapse');
+
+            $accordionHead.addClass('active');
+            $accordion.addClass('aagb__accordion_active');
+            $accordionBody.addClass('aagb__accordion_body--show');
+            $accordionBody.slideDown();
+        }
+    });
+
+    $accordions.each(function (index) {
+        const $accordion = $(this);
+
+        $accordion.addClass('aagb__accordion_head--keyboard');
+        $accordion.on('keydown', function (e) {
+            const $accordion = $(this);
+            const $focused = $(document.activeElement);
+            if(!$focused.is($accordion)) return;
+
+            if (e.code === 'Enter' || e.code === 'Space') {
                 e.preventDefault();
-                $(accordionItem).children('.aagb__accordion_head').click(); // Trigger the click event
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                $accordion.find('> .aagb__accordion_head').trigger(activatorEvent)
+            } else if (/^Arrow(Up|Down|Left|Right)$/.test(e.code)) {
                 e.preventDefault();
-                const nextIndex = e.key === 'ArrowUp' ? index - 1 : index + 1;
-                const nextHead = accordionItems.eq(nextIndex);
+                const nextIndex = index + {
+                    ArrowUp: -1,
+                    ArrowLeft: -1,
+                    ArrowDown: +1,
+                    ArrowRight: +1,
+                }[e.code];
+                const nextHead = $accordions.eq(nextIndex);
 
                 if (nextHead.length) {
                     nextHead.focus();
                 }
-            } else if (e.key === 'Home') {
+            } else if (e.code === 'Home') {
                 e.preventDefault();
-                accordionItems.first().focus();
-            } else if (e.key === 'End') {
+                $accordions.first().focus();
+            } else if (e.code === 'End') {
                 e.preventDefault();
-                accordionItems.last().focus();
+                $accordions.last().focus();
             }
         });
-
-
     });
 });
-// hover function js
-if ($('.wp-block-aab-group-accordion.hover').length) {
-    const groupAccordions = $('.wp-block-aab-group-accordion.hover');
-    groupAccordions.each(function () {
-        // accordion head
-        const accordionHeads = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_head');
-        const accordionContents = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_body');
-        const accordionIcons = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_head').find('.aagb__icon');
-        // active accordion
-        const activeAccordion = $(this).children('.wp-block-aab-accordion-item').children('.aagb__accordion_body--show');
-        // all accordions
-        const accordions = $(this).children('.wp-block-aab-accordion-item');
-        // show active accrodion on load
-        if (activeAccordion.length) {
-            activeAccordion.slideDown();
-        }
-        // each btn click
-        accordionHeads.each(function () {
-            // click event
-            $(this).hover(function () {
-                // get parent
-                const parent = $(this).parent();
-
-                // get panel
-                const panel = parent.children('.aagb__accordion_body');
-                // icon
-                const $icon = $(this).find('.aagb__icon');
-
-                if (panel.hasClass('aagb__accordion_body--show')) {
-                    // active class to parent
-                    parent.removeClass('aagb__accordion_active');
-                    panel.removeClass('aagb__accordion_body--show');
-                    panel.slideUp();
-                    // icons
-                    if ($icon.hasClass('dashicons-plus-alt2')) {
-                        $icon.removeClass('dashicons-plus-alt2');
-                        $icon.addClass('dashicons-minus');
-                    } else if ($icon.hasClass('dashicons-minus')) {
-                        $icon.removeClass('dashicons-minus');
-                        $icon.addClass('dashicons-plus-alt2');
-                    } else if (
-                        $icon.hasClass('dashicons-arrow-down-alt2')
-                    ) {
-                        $icon.removeClass('dashicons-arrow-down-alt2');
-                        $icon.addClass('dashicons-arrow-up-alt2');
-                    } else if ($icon.hasClass('dashicons-arrow-up-alt2')) {
-                        $icon.removeClass('dashicons-arrow-up-alt2');
-                        $icon.addClass('dashicons-arrow-down-alt2');
-                    } else if ($icon.hasClass('dashicons-arrow-down')) {
-                        $icon.removeClass('dashicons-arrow-down');
-                        $icon.addClass('dashicons-arrow-up');
-                    } else if ($icon.hasClass('dashicons-arrow-up')) {
-                        $icon.removeClass('dashicons-arrow-up');
-                        $icon.addClass('dashicons-arrow-down');
-                    } else if ($icon.hasClass('dashicons-plus-alt')) {
-                        $icon.removeClass('dashicons-plus-alt');
-                        $icon.addClass('dashicons-dismiss');
-                    } else if ($icon.hasClass('dashicons-dismiss')) {
-                        $icon.removeClass('dashicons-dismiss');
-                        $icon.addClass('dashicons-plus-alt');
-                    } else if ($icon.hasClass('dashicons-insert')) {
-                        $icon.removeClass('dashicons-insert');
-                        $icon.addClass('dashicons-remove');
-                    } else if ($icon.hasClass('dashicons-remove')) {
-                        $icon.removeClass('dashicons-remove');
-                        $icon.addClass('dashicons-insert');
-                    }
-                } else {
-                    accordionContents.each(function () {
-                        if (
-                            $(this).hasClass('aagb__accordion_body--show')
-                        ) {
-                            $(this).removeClass(
-                                'aagb__accordion_body--show'
-                            );
-                            $(this).slideUp();
-                        }
-                    });
-
-                    // accordions
-                    accordions.each(function () {
-                        if ($(this).hasClass('aagb__accordion_active')) {
-                            $(this).removeClass('aagb__accordion_active');
-                        }
-                    });
-
-                    // icons
-                    accordionIcons.each(function () {
-                        if ($(this).hasClass('dashicons-minus')) {
-                            $(this).removeClass('dashicons-minus');
-                            $(this).addClass('dashicons-plus-alt2');
-                        } else if ($(this).hasClass('dashicons-arrow-up')) {
-                            $(this).removeClass('dashicons-arrow-up');
-                            $(this).addClass('dashicons-arrow-down');
-                        } else if (
-                            $(this).hasClass('dashicons-arrow-up-alt2')
-                        ) {
-                            $(this).removeClass('dashicons-arrow-up-alt2');
-                            $(this).addClass('dashicons-arrow-down-alt2');
-                        } else if ($(this).hasClass('dashicons-dismiss')) {
-                            $(this).removeClass('dashicons-dismiss');
-                            $(this).addClass('dashicons-plus-alt');
-                        } else if ($(this).hasClass('dashicons-remove')) {
-                            $(this).removeClass('dashicons-remove');
-                            $(this).addClass('dashicons-insert');
-                        }
-                    });
-                    parent.addClass('aagb__accordion_active');
-                    panel.addClass('aagb__accordion_body--show');
-                    panel.slideDown();
-                    // icons
-                    if ($icon.hasClass('dashicons-plus-alt2')) {
-                        $icon.removeClass('dashicons-plus-alt2');
-                        $icon.addClass('dashicons-minus');
-                    } else if ($icon.hasClass('dashicons-minus')) {
-                        $icon.removeClass('dashicons-minus');
-                        $icon.addClass('dashicons-plus-alt2');
-                    } else if (
-                        $icon.hasClass('dashicons-arrow-down-alt2')
-                    ) {
-                        $icon.removeClass('dashicons-arrow-down-alt2');
-                        $icon.addClass('dashicons-arrow-up-alt2');
-                    } else if ($icon.hasClass('dashicons-arrow-up-alt2')) {
-                        $icon.removeClass('dashicons-arrow-up-alt2');
-                        $icon.addClass('dashicons-arrow-down-alt2');
-                    } else if ($icon.hasClass('dashicons-arrow-down')) {
-                        $icon.removeClass('dashicons-arrow-down');
-                        $icon.addClass('dashicons-arrow-up');
-                    } else if ($icon.hasClass('dashicons-arrow-up')) {
-                        $icon.removeClass('dashicons-arrow-up');
-                        $icon.addClass('dashicons-arrow-down');
-                    } else if ($icon.hasClass('dashicons-plus-alt')) {
-                        $icon.removeClass('dashicons-plus-alt');
-                        $icon.addClass('dashicons-dismiss');
-                    } else if ($icon.hasClass('dashicons-dismiss')) {
-                        $icon.removeClass('dashicons-dismiss');
-                        $icon.addClass('dashicons-plus-alt');
-                    } else if ($icon.hasClass('dashicons-insert')) {
-                        $icon.removeClass('dashicons-insert');
-                        $icon.addClass('dashicons-remove');
-                    } else if ($icon.hasClass('dashicons-remove')) {
-                        $icon.removeClass('dashicons-remove');
-                        $icon.addClass('dashicons-insert');
-                    }
-                }
-            });
-        });
-    });
-}
 
 // accordion autoplay js
 $(document).ready(function () {
@@ -470,3 +269,5 @@ if (accordionItemsChecklist.length) {
         accordionHeading.prepend("<input type='checkbox' class='checklist-box'></input>")
     });
 }
+
+})(jQuery);

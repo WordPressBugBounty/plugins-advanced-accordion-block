@@ -30,6 +30,12 @@ class AAB_Block_Register {
 		$this->register_block( 'accordion-toolbar', array(
 			'render_callback' => [ $this, 'render_accordion_toolbar' ],
 		) );
+		$this->register_block( 'horizontal-accordion', array(
+			'render_callback' => [ $this, 'render_horizontal_accordion' ],
+		) );
+		$this->register_block( 'horizontal-accordion-item', array(
+			'render_callback' => [ $this, 'render_horizontal_accordion_item' ],
+		) );
 	}
 
 	// render inline css
@@ -107,5 +113,14 @@ class AAB_Block_Register {
 
 		return $content;
 	}
-}
+	
+	// Horizontal accordion render callback
+	public function render_horizontal_accordion( $attributes, $content ) {
+		return $content;
+	}
 
+	// Horizontal accordion item render callback
+	public function render_horizontal_accordion_item( $attributes, $content ) {
+		return $content;
+	}
+}

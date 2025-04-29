@@ -2,8 +2,8 @@
 Contributors: spiderdevs, mdjwel
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
-Tested up to: 6.7.3
-Stable tag: 5.0.1
+Tested up to: 6.8
+Stable tag: 5.0.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -49,12 +49,13 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 
 - **Unlimited FAQs:** Create and manage as many FAQs as needed, ensuring all user queries are addressed comprehensively.
 
-- **Infinite Reusable:** Reuse accordion items across different pages, making content management more efficient and consistent.
+- **Infinite Reusability:** Reuse accordion items across different pages, making content management more efficient and consistent.
 
 - **Pattern Design:** Pre-built stylish accordion patterns to enhance your layout instantly, with exclusive premium designs available in the Pro version.
 
 - **Keyboard Accessibility:** Navigate and interact with accordions using keyboard keys—Tab, Shift+Tab, and Enter/Space—for a smoother and more accessible user experience.
 
+- **Horizontal Accordion block:** Display accordions side by side with support for titles, subtitles, icons, and all inner blocks—perfect for creating dynamic, content-rich layouts.
 
 ### PRO Features
 - **Instant Search:** Enable a search bar to help users find specific FAQs quickly. It's useful when you have a long list of FAQs.
@@ -139,6 +140,16 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
+
+= 5.0.3  (26 April 2025) =
+Fixed: Vulnerability issues resolved
+
+= 5.0.2  (25 April 2025) =
+New: Introduced Horizontal Accordion Block – Easily create side-by-side accordions with support for titles, subtitles, icons, and full inner block customization
+Fixed: Vulnerability issues resolved
+Fixed: Resolved the enter/space key issue in nested accordions
+Tweaked: Improve keyboard accessibility (ArrowUp/ArrowLeft → Moves to the previous accordion, ArrowDown/ArrowRight → Moves to the next accordion)
+Tweaked: Keeping the scroll position at the same place while an accordion expands/collapses
 
 = 5.0.1  (11 April 2025) =
 New: Keyboard Accessibility for Better Navigation (Tab Key → Moves focus to the next accordion, Shift + Tab → Moves focus to the previous accordion, Space/Enter Key → Expands the focused accordion)

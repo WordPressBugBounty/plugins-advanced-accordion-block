@@ -8,7 +8,7 @@
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./Accordion Search.png": "./assets/img/pro-patterns/Accordion Search.png",
+	"./Accordion-Search.png": "./assets/img/pro-patterns/Accordion-Search.png",
 	"./Anchor-link-with-feature-icon.png": "./assets/img/pro-patterns/Anchor-link-with-feature-icon.png",
 	"./Featured-icon-with-Showclose-all.png": "./assets/img/pro-patterns/Featured-icon-with-Showclose-all.png",
 	"./Modern-QA.png": "./assets/img/pro-patterns/Modern-QA.png",
@@ -287,14 +287,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./assets/img/pro-patterns/Accordion Search.png":
+/***/ "./assets/img/pro-patterns/Accordion-Search.png":
 /*!******************************************************!*\
-  !*** ./assets/img/pro-patterns/Accordion Search.png ***!
+  !*** ./assets/img/pro-patterns/Accordion-Search.png ***!
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-module.exports = __webpack_require__.p + "images/Accordion Search.125b3cc3.png";
+module.exports = __webpack_require__.p + "images/Accordion-Search.125b3cc3.png";
 
 /***/ }),
 
