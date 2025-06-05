@@ -1,9 +1,9 @@
 === Advanced Accordion Gutenberg Block ===
-Contributors: spiderdevs, mdjwel
+Contributors: spiderdevs, mdjwel, freemius
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 5.0.3
+Stable tag: 5.0.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -56,6 +56,8 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 - **Keyboard Accessibility:** Navigate and interact with accordions using keyboard keys—Tab, Shift+Tab, and Enter/Space—for a smoother and more accessible user experience.
 
 - **Horizontal Accordion block:** Display accordions side by side with support for titles, subtitles, icons, and all inner blocks—perfect for creating dynamic, content-rich layouts.
+
+- **Global Style Settings:** Easily manage and apply global styles to all your accordions from a single toolbar setting.
 
 ### PRO Features
 - **Instant Search:** Enable a search bar to help users find specific FAQs quickly. It's useful when you have a long list of FAQs.
@@ -140,6 +142,10 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
+
+= 5.0.4  (05 June 2025) =
+New: Added Global Style settings (Set a global design for all accordions from one place. Just click the AAB icon in the editor toolbar to style them all at once)
+Updated: Freemius SDK updated to 2.12.0
 
 = 5.0.3  (26 April 2025) =
 Fixed: Vulnerability issues resolved

@@ -29,7 +29,7 @@ if ( ! function_exists( 'aab_plugin_admin_page' ) ) {
 			'manage_options',      // Capability
 			'aab-settings',        // Menu slug
 			'aab_admin_page_content_callback', // No callback, will redirect instead
-			'data:image/svg+xml;base64,' . base64_encode( file_get_contents( plugin_dir_path( __FILE__ ) . 'assets/custom-icon.svg' ) ),
+			'data:image/svg+xml;base64,' . base64_encode( preg_replace('/\s+/', ' ', file_get_contents( plugin_dir_path( __FILE__ ) . 'assets/custom-icon.svg' )) ),
 			// Path to your SVG file,
 			26
 		);

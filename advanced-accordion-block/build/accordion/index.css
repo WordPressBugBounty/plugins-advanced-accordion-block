@@ -178,8 +178,7 @@ pre[class*="language-"] {
 }
 
 .aab-component-toolpanel {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding: 12px 0 !important;
 }
 .aab-component-toolpanel .components-grid {
   gap: 0;
@@ -228,6 +227,19 @@ pre[class*="language-"] {
 
 .custom-css-notice {
   font-style: italic !important;
+}
+
+.components-tools-panel-item .components-h-stack .components-input-control ~ .components-range-control {
+  margin-top: 0;
+}
+
+.components-h-stack .components-unit-control ~ .components-range-control {
+  margin-bottom: 15px;
+}
+
+.components-panel__body-title + .aab-component-toolpanel {
+  padding-top: 0 !important;
+  border-top: 0;
 }
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/@wordpress/scripts/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/colorpicker.scss ***!
@@ -286,6 +298,7 @@ pre[class*="language-"] {
 }
 .aab-color-picker .components-button {
   padding: 0;
+  height: 30px;
 }
 .aab-color-picker .component-color-indicator {
   background: linear-gradient(45deg, #ddd 25%, transparent 0), linear-gradient(-45deg, #ddd 25%, transparent 0), linear-gradient(45deg, transparent 75%, #ddd 0), linear-gradient(-45deg, transparent 75%, #ddd 0);

@@ -21,57 +21,34 @@
       "type": "string"
     },
     "border": {
-      "type": "object",
-      "default": {
-        "color": "#bcb6b638",
-        "style": "solid",
-        "width": "1px"
-      }
+      "type": "object"
     },
     "paddings": {
-      "type": "object",
-      "default": {
-        "top": "",
-        "right": "",
-        "left": "",
-        "bottom": ""
-      }
+      "type": "object"
     },
     "margins": {
-      "type": "object",
-      "default": {
-        "top": "0px",
-        "right": "",
-        "left": "",
-        "bottom": "15px"
-      }
+      "type": "object"
     },
     "borderRadius": {
       "type": "number"
     },
     "qIconText": {
-      "type": "string",
-      "default": "Q"
+      "type": "string"
     },
     "qIconColor": {
-      "type": "string",
-      "default": "#fff"
+      "type": "string"
     },
     "qIconBg": {
-      "type": "string",
-      "default": "#505050"
+      "type": "string"
     },
     "aIconText": {
-      "type": "string",
-      "default": "A"
+      "type": "string"
     },
     "aIconColor": {
-      "type": "string",
-      "default": "#fff"
+      "type": "string"
     },
     "aIconBg": {
-      "type": "string",
-      "default": "#f5a623"
+      "type": "string"
     },
     "heading": {
       "type": "string",
@@ -85,15 +62,13 @@
       "type": "string"
     },
     "headingTag": {
-      "type": "string",
-      "default": "h5"
+      "type": "string"
     },
     "headingColor": {
       "type": "string"
     },
     "headerBg": {
-      "type": "string",
-      "default": "#bcb6b638"
+      "type": "string"
     },
     "headingIconImageUrl": {
       "type": "string",
@@ -112,8 +87,7 @@
       "default": true
     },
     "anchorLinkShow": {
-      "type": "boolean",
-      "default": false
+      "type": "boolean"
     },
     "iconClass": {
       "type": "string",
@@ -124,8 +98,7 @@
       "default": "aab_right_icon"
     },
     "iconFontSize": {
-      "type": "number",
-      "default": 23
+      "type": "number"
     },
     "iconColor": {
       "type": "string"
@@ -134,12 +107,7 @@
       "type": "string"
     },
     "iconBorder": {
-      "type": "object",
-      "default": {
-        "width": "0px",
-        "style": "solid",
-        "color": "transparent"
-      }
+      "type": "object"
     },
     "iconBorderRadius": {
       "type": "string"
@@ -199,34 +167,20 @@
       "default": "aab_right_link"
     },
     "faqSchema": {
-      "type": "boolean",
-      "default": false
+      "type": "boolean"
     },
     "QaStyle": {
-      "type": "boolean",
-      "default": false
+      "type": "boolean"
     },
     "customCSS": {
       "type": "string",
       "default": ""
     },
     "headingBorder": {
-      "type": "object",
-      "default": {
-        "color": null,
-        "style": "solid",
-        "width": "0px"
-      }
+      "type": "object"
     },
     "bodyBorder": {
-      "type": "object",
-      "default": {
-        "top": {
-          "color": "#bcb6b638",
-          "style": "solid",
-          "width": "1px"
-        }
-      }
+      "type": "object"
     },
     "accessibilityOn": {
       "type": "boolean",
@@ -235,6 +189,9 @@
     "focusOutlineColor": {
       "type": "string",
       "default": "#C2DBFE"
+    },
+    "defaultStyles": {
+      "type": "object"
     }
   },
   "styles": [

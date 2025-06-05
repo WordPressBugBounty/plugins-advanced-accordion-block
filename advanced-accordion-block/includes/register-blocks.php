@@ -30,6 +30,9 @@ class AAB_Block_Register {
 		$this->register_block( 'accordion-toolbar', array(
 			'render_callback' => [ $this, 'render_accordion_toolbar' ],
 		) );
+		$this->register_block( 'accordion-default', array(
+			'render_callback' => [ $this, 'render_accordion_default' ],
+		) );
 		$this->register_block( 'horizontal-accordion', array(
 			'render_callback' => [ $this, 'render_horizontal_accordion' ],
 		) );
@@ -49,10 +52,12 @@ class AAB_Block_Register {
 	public function render_separate_accordion( $attributes, $content ) {
 		wp_register_style( 'aagb-separate-accordion', plugins_url( '/', __FILE__ ) . '../build/accordion/style-index.css' );
 
-		if ( $attributes['anchorLinkShow'] == '1' ) {
+		if (
+			($attributes['anchorLinkShow'] ?? '') == 1 ||
+			( ($attributes['anchorLinkShow'] ?? '') != 1 && ($attributes['defaultStyles']['anchorLinkShow'] ?? '') == 1 )
+		) {
 			wp_enqueue_script( 'anchor' );
 		}
-
 		if ( $attributes['feedbackShow'] == '1' ) {
 			wp_enqueue_script( 'aagb-separate-accordion-feedback' );
 		}
@@ -67,9 +72,16 @@ class AAB_Block_Register {
 		return $content;
 	}
 
-	// Separate accordion-item render callback
+	// Accordion Toolbar render callback
 	public function render_accordion_toolbar( $attributes, $content ) {
 		wp_register_style( 'aagb-accordion-toolbar', plugins_url( '/', __FILE__ ) . '../build/accordion-toolbar/index.css' );
+
+		return $content;
+	}
+
+	// Accordion Toolbar render callback
+	public function render_accordion_default( $attributes, $content ) {
+		wp_register_style( 'aagb-accordion-defaults', plugins_url( '/', __FILE__ ) . '../build/accordion-default/index.css' );
 
 		return $content;
 	}
@@ -77,7 +89,11 @@ class AAB_Block_Register {
 	// Group accordion render callback
 	public function render_group_accordion( $attributes, $content ) {
 
-		if ( $attributes['anchorLinksShow'] == '1' ) {
+
+		if (
+			($attributes['anchorLinksShow'] ?? '') == 1 ||
+			( ($attributes['anchorLinksShow'] ?? '') != 1 && ($attributes['defaultStyles']['anchorLinkShow'] ?? '') == 1 )
+		) {
 			wp_enqueue_script( 'anchor' );
 		}
 

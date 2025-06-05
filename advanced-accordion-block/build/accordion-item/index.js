@@ -376,11 +376,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _output__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./output */ "./src/accordion-item/output/index.js");
 /* harmony import */ var _editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor */ "./src/accordion-item/editor/index.js");
 /* harmony import */ var _utils_disable_qa_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/disable-qa-button */ "./src/utils/disable-qa-button.js");
+/* harmony import */ var _utils_global_settings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/global-settings */ "./src/utils/global-settings.js");
 
 
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-shadow */
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
+
 
 
 
@@ -401,7 +403,6 @@ const Edit = props => {
   const hasStepText = context["aagb/accordion-stepText"];
   const hasStepCmpltText = context["aagb/accordion-stepCmpltText"];
   const hasCheckList = context["aagb/accordion-checkList"];
-  const anchorLinksShow = context["aagb/accordion-anchorLinksShow"];
   const buttonShowContext = context["aagb/accordion-buttonShow"];
   const readMoreTxt = context["aagb/accordion-readMoreText"];
   const hasBorder = context["aagb/accordion-border"];
@@ -429,6 +430,12 @@ const Edit = props => {
   const hasLabelsGlobalBgColor = context["aagb/accordion-labelsGlobalBgColor"];
   const hasAccessibilityOn = context["aagb/accordion-accessibilityOn"];
   const hasFocusOutlineColor = context["aagb/accordion-focusOutlineColor"];
+  const hasAnchorLinksShow = context["aagb/accordion-anchorLinksShow"];
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    setAttributes({
+      anchorLinkShow: hasAnchorLinksShow
+    });
+  }, [hasAnchorLinksShow]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     setAttributes({
       QaStyle: hasQaStyle
@@ -459,11 +466,6 @@ const Edit = props => {
       checkList: hasCheckList
     });
   }, [hasCheckList]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    setAttributes({
-      anchorLinkShow: anchorLinksShow
-    });
-  }, [anchorLinksShow]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     setAttributes({
       button_show: buttonShowContext
@@ -599,6 +601,16 @@ const Edit = props => {
       focusOutlineColor: hasFocusOutlineColor
     });
   }, [hasFocusOutlineColor]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const fetchGlobalSettings = async () => {
+      const settings = await (0,_utils_global_settings__WEBPACK_IMPORTED_MODULE_7__.loadGlobalSettings)(); // Fetch global settings
+
+      setAttributes({
+        defaultStyles: settings
+      });
+    };
+    fetchGlobalSettings(); // Fetch settings when the component mounts
+  }, []);
   if (!aab_premium) (0,_utils_disable_qa_button__WEBPACK_IMPORTED_MODULE_6__["default"])();
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_editor__WEBPACK_IMPORTED_MODULE_5__["default"].Settings, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_editor__WEBPACK_IMPORTED_MODULE_5__["default"].Styles, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_output__WEBPACK_IMPORTED_MODULE_4__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     isEditor: true
@@ -851,6 +863,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_global_settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utils/global-settings */ "./src/utils/global-settings.js");
+
 
 
 
@@ -866,13 +880,15 @@ function AnchorLinkPanel({
   attributes,
   setAttributes
 }) {
+  var _getAttrDeep;
   const {
     QaStyle,
     anchorPosition,
-    step,
-    anchorLinkShow
+    step
   } = attributes;
   const aab_premium = aagb_local_object.licensing;
+  const getAttrDeep = (0,_utils_global_settings__WEBPACK_IMPORTED_MODULE_4__.createAttrGetter)(attributes);
+  const anchorLinkShow = (_getAttrDeep = getAttrDeep('anchorLinkShow')) !== null && _getAttrDeep !== void 0 ? _getAttrDeep : false;
   if (!anchorLinkShow || step || QaStyle) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Anchor Link', 'advanced-accordion-block'),
@@ -1158,8 +1174,7 @@ __webpack_require__.r(__webpack_exports__);
         "type": "string"
       },
       "headingTag": {
-        "type": "string",
-        "default": "h5"
+        "type": "string"
       },
       "headingColor": {
         "type": "string"
@@ -1198,6 +1213,9 @@ __webpack_require__.r(__webpack_exports__);
       "iconBackground": {
         "type": "string"
       },
+      "iconFontSize": {
+        "type": "number"
+      },
       "bodyBg": {
         "type": "string"
       },
@@ -1213,7 +1231,8 @@ __webpack_require__.r(__webpack_exports__);
         "default": false
       },
       "anchorLinkShow": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
       },
       "anchorPosition": {
         "type": "string",
@@ -1331,6 +1350,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _utils_get_border_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/get-border-style */ "./src/utils/get-border-style.js");
 /* harmony import */ var _components_icons_step_down__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/step-down */ "./src/components/icons/step-down.js");
+/* harmony import */ var _utils_global_settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/global-settings */ "./src/utils/global-settings.js");
+
 
 
 
@@ -1338,15 +1359,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function AccordionBody(props) {
-  var _paddings$left, _paddings$left2;
+  var _getAttrDeep, _getAttrDeep2, _getAttrDeep3, _getAttrDeep4, _paddings$left, _paddings$left2;
   const InnerBlocks = props.isEditor ? _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks : _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content;
   const EXCLUDED_BLOCKS = ["aab/accordion-item"];
   const ALLOWED_BLOCKS = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.getBlockTypes)().map(block => block.name).filter(blockName => !EXCLUDED_BLOCKS.includes(blockName));
   const aab_premium = aagb_local_object.licensing;
   const {
     makeActive,
-    paddings,
-    bodyBg,
     buttonShow,
     contentCount,
     QaStyle,
@@ -1354,16 +1373,21 @@ function AccordionBody(props) {
     stepText,
     checkList,
     button_show,
-    readMoreText,
-    bodyBorder
+    readMoreText
   } = props.attributes;
   const activeClass = makeActive ? `aagb__accordion_body--show` : '';
   const expandClass = buttonShow ? 'expand' : '';
+  const getAttrDeep = (0,_utils_global_settings__WEBPACK_IMPORTED_MODULE_6__.createAttrGetter)(props.attributes);
+  const bodyBorder = (_getAttrDeep = getAttrDeep('bodyBorder')) !== null && _getAttrDeep !== void 0 ? _getAttrDeep : {};
+  const paddings = (_getAttrDeep2 = getAttrDeep('paddings')) !== null && _getAttrDeep2 !== void 0 ? _getAttrDeep2 : {};
+  const bodyBg = (_getAttrDeep3 = getAttrDeep('bodyBg')) !== null && _getAttrDeep3 !== void 0 ? _getAttrDeep3 : {};
+  const borderRadius = (_getAttrDeep4 = getAttrDeep('borderRadius')) !== null && _getAttrDeep4 !== void 0 ? _getAttrDeep4 : {};
   const bodyBorderStyle = (0,_utils_get_border_style__WEBPACK_IMPORTED_MODULE_4__.getBorderStyle)(bodyBorder);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `aagb__accordion_body ${activeClass} ${expandClass} `,
     role: "region",
     style: {
+      borderRadius: borderRadius ? `0 0 ${borderRadius}px ${borderRadius}px` : '0',
       ...(bodyBg && {
         backgroundColor: bodyBg
       }),
@@ -1391,7 +1415,7 @@ function AccordionBody(props) {
         ...(paddings.right && {
           paddingRight: paddings.right
         }),
-        paddingLeft: `calc(${(_paddings$left2 = paddings.left) !== null && _paddings$left2 !== void 0 ? _paddings$left2 : '15px'} + 90px)`
+        paddingLeft: `calc(${(_paddings$left2 = paddings.left) !== null && _paddings$left2 !== void 0 ? _paddings$left2 : '15px'} + 95px)`
       })
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1441,6 +1465,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_icons_complete__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/complete */ "./src/components/icons/complete.js");
 /* harmony import */ var _utils_get_border_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/get-border-style */ "./src/utils/get-border-style.js");
+/* harmony import */ var _utils_global_settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/global-settings */ "./src/utils/global-settings.js");
+
 
 
 
@@ -1459,37 +1485,23 @@ function AccordionHead({
   attributes,
   setAttributes
 }) {
+  var _getAttrDeep, _getAttrDeep2, _getAttrDeep3, _getAttrDeep4, _getAttrDeep5, _getAttrDeep6, _getAttrDeep7, _getAttrDeep8, _getAttrDeep9, _getAttrDeep10, _getAttrDeep11, _getAttrDeep12, _getAttrDeep13, _getAttrDeep14, _getAttrDeep15, _getAttrDeep16, _getAttrDeep17;
   const RichText = isEditor ? _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText : _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText.Content;
   const aab_premium = aagb_local_object.licensing;
   const {
     QaStyle,
     makeActive,
-    paddings,
     heading,
-    headingTag,
-    headingColor,
     showIcon,
     iconClass,
     iconPosition,
-    iconColor,
-    iconBackground,
-    headerBg,
     anchorPosition,
-    qIconText,
-    qIconColor,
-    qIconBg,
-    aIconColor,
-    aIconBg,
-    aIconText,
     step,
     checkList,
-    anchorLinkShow,
     headingIconImageUrl,
     headingIconAlt,
     showHeadingIcon,
     subheading,
-    subheadingColor,
-    headingBorder,
     enableLabels,
     labels,
     labelsTextColor,
@@ -1498,15 +1510,38 @@ function AccordionHead({
     labelsGlobalBgColor,
     accessibilityOn
   } = attributes;
+  const getAttrDeep = (0,_utils_global_settings__WEBPACK_IMPORTED_MODULE_6__.createAttrGetter)(attributes);
+  const anchorLinkShow = (_getAttrDeep = getAttrDeep('anchorLinkShow')) !== null && _getAttrDeep !== void 0 ? _getAttrDeep : false;
+  const paddings = (_getAttrDeep2 = getAttrDeep('paddings')) !== null && _getAttrDeep2 !== void 0 ? _getAttrDeep2 : {};
+  const headingColor = (_getAttrDeep3 = getAttrDeep('headingColor')) !== null && _getAttrDeep3 !== void 0 ? _getAttrDeep3 : null;
+  const headingTag = (_getAttrDeep4 = getAttrDeep('headingTag')) !== null && _getAttrDeep4 !== void 0 ? _getAttrDeep4 : 'h5';
+  const iconColor = (_getAttrDeep5 = getAttrDeep('iconColor')) !== null && _getAttrDeep5 !== void 0 ? _getAttrDeep5 : null;
+  const iconBackground = (_getAttrDeep6 = getAttrDeep('iconBackground')) !== null && _getAttrDeep6 !== void 0 ? _getAttrDeep6 : null;
+  const headerBg = (_getAttrDeep7 = getAttrDeep('headerBg')) !== null && _getAttrDeep7 !== void 0 ? _getAttrDeep7 : null;
+  const aIconText = (_getAttrDeep8 = getAttrDeep('aIconText')) !== null && _getAttrDeep8 !== void 0 ? _getAttrDeep8 : 'A';
+  const qIconText = (_getAttrDeep9 = getAttrDeep('qIconText')) !== null && _getAttrDeep9 !== void 0 ? _getAttrDeep9 : 'Q';
+  const qIconColor = (_getAttrDeep10 = getAttrDeep('qIconColor')) !== null && _getAttrDeep10 !== void 0 ? _getAttrDeep10 : '';
+  const qIconBg = (_getAttrDeep11 = getAttrDeep('qIconBg')) !== null && _getAttrDeep11 !== void 0 ? _getAttrDeep11 : '';
+  const aIconColor = (_getAttrDeep12 = getAttrDeep('aIconColor')) !== null && _getAttrDeep12 !== void 0 ? _getAttrDeep12 : '';
+  const aIconBg = (_getAttrDeep13 = getAttrDeep('aIconBg')) !== null && _getAttrDeep13 !== void 0 ? _getAttrDeep13 : '';
+  const subheadingColor = (_getAttrDeep14 = getAttrDeep('subheadingColor')) !== null && _getAttrDeep14 !== void 0 ? _getAttrDeep14 : null;
+  const headingBorder = (_getAttrDeep15 = getAttrDeep('headingBorder')) !== null && _getAttrDeep15 !== void 0 ? _getAttrDeep15 : {
+    color: null,
+    style: 'solid',
+    width: '0px'
+  };
+  const iconFontSize = (_getAttrDeep16 = getAttrDeep('iconFontSize')) !== null && _getAttrDeep16 !== void 0 ? _getAttrDeep16 : null;
+  const borderRadius = (_getAttrDeep17 = getAttrDeep('borderRadius')) !== null && _getAttrDeep17 !== void 0 ? _getAttrDeep17 : {};
   const headingBorderStyle = (0,_utils_get_border_style__WEBPACK_IMPORTED_MODULE_5__.getBorderStyle)(headingBorder);
   const currentIconClass = makeActive ? iconClassesMap[iconClass] : iconClass;
-  const calculatedHeaderBg = QaStyle && headerBg.toLowerCase() === "#bcb6b638" ? "transparent" : headerBg;
+  const calculatedHeaderBg = QaStyle && headerBg?.toLowerCase() === "#bcb6b638" ? "transparent" : headerBg;
   let subheadingPlaceholder = aab_premium ? "Write some subheading" : "Subheading Available on Pro";
   if (!isEditor) subheadingPlaceholder = "";
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `aagb__accordion_head ${iconPosition} ${subheading && aab_premium ? 'hasSubHeading' : ''} ${makeActive ? 'aagb__accordion_active' : ''}`,
     "data-active": makeActive,
     style: {
+      borderRadius: borderRadius ? `${borderRadius}px ${borderRadius}px 0 0` : '0',
       backgroundColor: headerBg ? calculatedHeaderBg : undefined,
       ...(Object.values(paddings).some(v => !!v) && {
         padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
@@ -1601,7 +1636,10 @@ function AccordionHead({
   }, step && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "complete-sign"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_icons_complete__WEBPACK_IMPORTED_MODULE_4__["default"], null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: `aagb__icon dashicons dashicons-${currentIconClass}`
+    className: `aagb__icon dashicons dashicons-${currentIconClass}`,
+    style: {
+      fontSize: iconFontSize ? iconFontSize + 'px' : ''
+    }
   }))) : step && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "complete-sign"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_icons_complete__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
@@ -1629,6 +1667,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_get_border_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/get-border-style */ "./src/utils/get-border-style.js");
 /* harmony import */ var _accordion_head__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./accordion-head */ "./src/accordion-item/output/accordion-head.js");
 /* harmony import */ var _accordion_body__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./accordion-body */ "./src/accordion-item/output/accordion-body.js");
+/* harmony import */ var _utils_global_settings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/global-settings */ "./src/utils/global-settings.js");
+
 
 
 
@@ -1637,19 +1677,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Output(props) {
+  var _getAttrDeep, _getAttrDeep2, _getAttrDeep3;
   const useBlockProps = props.isEditor ? _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps : _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save;
   const {
     singleAcdId,
     makeActive,
-    border,
-    margins,
-    borderRadius,
     QaStyle,
     step,
     checkList,
     selectedCategories,
     accessibilityOn
   } = props.attributes;
+  const getAttrDeep = (0,_utils_global_settings__WEBPACK_IMPORTED_MODULE_7__.createAttrGetter)(props.attributes);
+  const border = (_getAttrDeep = getAttrDeep('border')) !== null && _getAttrDeep !== void 0 ? _getAttrDeep : {};
+  const margins = (_getAttrDeep2 = getAttrDeep('margins')) !== null && _getAttrDeep2 !== void 0 ? _getAttrDeep2 : {};
+  const borderRadius = (_getAttrDeep3 = getAttrDeep('borderRadius')) !== null && _getAttrDeep3 !== void 0 ? _getAttrDeep3 : {};
   const borderStyle = (0,_utils_get_border_style__WEBPACK_IMPORTED_MODULE_4__.getBorderStyle)(border);
   const categoryClassList = (selectedCategories || []).map(item => {
     return "cat_" + item.toLowerCase() // Convert to lowercase
@@ -1895,6 +1937,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _tags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../tags */ "./src/tags.js");
+/* harmony import */ var _utils_global_settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../utils/global-settings */ "./src/utils/global-settings.js");
+
 
 
 
@@ -1905,14 +1949,16 @@ function AccordionHeadPanel({
   attributes,
   setAttributes
 }) {
+  var _getAttrDeep;
   const {
-    headingTag,
     QaStyle,
     showHeadingIcon,
     headingIconImageUrl,
     headingIconAlt
   } = attributes;
   const aab_premium = aagb_local_object.licensing;
+  const getAttrDeep = (0,_utils_global_settings__WEBPACK_IMPORTED_MODULE_6__.createAttrGetter)(attributes);
+  const headingTag = (_getAttrDeep = getAttrDeep('headingTag')) !== null && _getAttrDeep !== void 0 ? _getAttrDeep : null;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Accordion Head', 'advanced-accordion-block')
@@ -2099,23 +2145,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getBorderStyle: () => (/* binding */ getBorderStyle)
 /* harmony export */ });
-const getBorderStyle = ({
-  width,
-  style,
-  color,
-  top,
-  right,
-  bottom,
-  left
-}) => {
-  if (width && style && color) return {
-    border: `${width} ${style} ${color}`
-  };
+const getBorderStyle = input => {
+  if (!input) return null;
+  const {
+    width,
+    style,
+    color,
+    top,
+    right,
+    bottom,
+    left
+  } = input;
+  if (width && style && color) {
+    return {
+      border: `${width} ${style} ${color}`
+    };
+  }
   return {
     borderTop: top ? `${top.width} ${top.style} ${top.color}` : "none",
     borderRight: right ? `${right.width} ${right.style} ${right.color}` : "none",
     borderBottom: bottom ? `${bottom.width} ${bottom.style} ${bottom.color}` : "none",
     borderLeft: left ? `${left.width} ${left.style} ${left.color}` : "none"
+  };
+};
+
+/***/ }),
+
+/***/ "./src/utils/global-settings.js":
+/*!**************************************!*\
+  !*** ./src/utils/global-settings.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createAttrGetter: () => (/* binding */ createAttrGetter),
+/* harmony export */   loadGlobalSettings: () => (/* binding */ loadGlobalSettings)
+/* harmony export */ });
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
+// Import necessary WordPress packages
+
+
+// Function to load global settings from the WordPress database
+const loadGlobalSettings = async () => {
+  try {
+    const data = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      path: '/wp/v2/settings'
+    });
+    const savedGlobalStyles = data.aab_settings_defaults ? JSON.parse(data.aab_settings_defaults) : {};
+    return {
+      ...savedGlobalStyles
+    };
+  } catch (error) {
+    console.error('Error loading global styles:', error);
+    return null; // Return default values in case of an error
+  }
+};
+const createAttrGetter = attributes => {
+  return path => {
+    const keys = path.split('.');
+    let val = attributes;
+    for (let key of keys) val = val?.[key];
+    if (val !== undefined) return val;
+    val = attributes.defaultStyles;
+    for (let key of keys) val = val?.[key];
+    return val;
   };
 };
 
@@ -2164,6 +2259,16 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module) => {
 
 module.exports = window["React"];
+
+/***/ }),
+
+/***/ "@wordpress/api-fetch":
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["apiFetch"];
 
 /***/ }),
 
@@ -2246,7 +2351,7 @@ function _extends() {
   \***************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"aab/accordion-item","version":"0.1.0","title":"Single Accordion","category":"accordion-block","description":"Single Accordion for Group Accordion","parent":["aab/group-accordion"],"supports":{"html":false},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"QaStyle":{"type":"boolean","default":false},"singleAcdId":{"type":"string"},"border":{"type":"object","default":{"width":"1px","color":"#bcb6b638","style":"solid"}},"headingBorder":{"type":"object","default":{"color":null,"style":"solid","width":"0px"}},"bodyBorder":{"type":"object","default":{"top":{"color":"#bcb6b638","style":"solid","width":"1px"}}},"paddings":{"type":"object","default":{"top":"","right":"","left":"","bottom":""}},"margins":{"type":"object","default":{"top":"0px","right":"","left":"","bottom":"15px"}},"borderRadius":{"type":"number"},"heading":{"type":"string","default":"Accordion Heading"},"subheading":{"type":"string","default":""},"subheadingColor":{"type":"string"},"headingTag":{"type":"string","default":"h5"},"headingColor":{"type":"string"},"headerBg":{"type":"string","default":"#bcb6b638"},"headingIconImageUrl":{"type":"string","default":""},"headingIconAlt":{"type":"string","default":""},"showHeadingIcon":{"type":"boolean","default":false},"showIcon":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"uniqueId":{"type":"string"},"buttonShow":{"type":"boolean","default":false},"anchorLinkShow":{"type":"boolean"},"anchorPosition":{"type":"string","default":"aagb_right_link"},"contentCount":{"type":"number","default":300},"readMoreText":{"type":"string"},"qIconText":{"type":"string","default":"Q"},"qIconColor":{"type":"string","default":"#fff"},"qIconBg":{"type":"string","default":"#505050"},"aIconText":{"type":"string","default":"A"},"aIconColor":{"type":"string","default":"#fff"},"aIconBg":{"type":"string","default":"#f5a623"},"faqSchema":{"type":"boolean"},"step":{"type":"boolean"},"stepText":{"type":"string"},"stepCmpltText":{"type":"string","default":"Congratulations, you are done!"},"checkList":{"type":"boolean"},"button_show":{"type":"boolean"},"selectedCategories":{"type":"array","default":[]},"enableLabels":{"type":"boolean","default":false},"labels":{"type":"array","default":[]},"labelsTextColor":{"type":"string","default":""},"labelsBgColor":{"type":"string","default":""},"labelsGlobalTextColor":{"type":"string","default":"#1570EC"},"labelsGlobalBgColor":{"type":"string","default":"#c1d8f7"},"accessibilityOn":{"type":"boolean","default":true},"focusOutlineColor":{"type":"string","default":"#C2DBFE"}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":["aagb-group-accordion-item"]}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"aab/accordion-item","version":"0.1.0","title":"Single Accordion","category":"accordion-block","description":"Single Accordion for Group Accordion","parent":["aab/group-accordion"],"supports":{"html":false},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"QaStyle":{"type":"boolean","default":false},"singleAcdId":{"type":"string"},"border":{"type":"object"},"headingBorder":{"type":"object"},"bodyBorder":{"type":"object"},"paddings":{"type":"object"},"margins":{"type":"object"},"borderRadius":{"type":"number"},"heading":{"type":"string","default":"Accordion Heading"},"subheading":{"type":"string","default":""},"subheadingColor":{"type":"string"},"headingTag":{"type":"string"},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"headingIconImageUrl":{"type":"string","default":""},"headingIconAlt":{"type":"string","default":""},"showHeadingIcon":{"type":"boolean","default":false},"showIcon":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"uniqueId":{"type":"string"},"buttonShow":{"type":"boolean","default":false},"anchorLinkShow":{"type":"boolean"},"anchorPosition":{"type":"string","default":"aagb_right_link"},"contentCount":{"type":"number","default":300},"readMoreText":{"type":"string"},"qIconText":{"type":"string"},"qIconColor":{"type":"string"},"qIconBg":{"type":"string"},"aIconText":{"type":"string"},"aIconColor":{"type":"string"},"aIconBg":{"type":"string"},"faqSchema":{"type":"boolean"},"step":{"type":"boolean"},"stepText":{"type":"string"},"stepCmpltText":{"type":"string","default":"Congratulations, you are done!"},"checkList":{"type":"boolean"},"button_show":{"type":"boolean"},"selectedCategories":{"type":"array","default":[]},"enableLabels":{"type":"boolean","default":false},"labels":{"type":"array","default":[]},"labelsTextColor":{"type":"string","default":""},"labelsBgColor":{"type":"string","default":""},"labelsGlobalTextColor":{"type":"string","default":"#1570EC"},"labelsGlobalBgColor":{"type":"string","default":"#c1d8f7"},"accessibilityOn":{"type":"boolean","default":true},"focusOutlineColor":{"type":"string","default":"#C2DBFE"},"defaultStyles":{"type":"object"}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":["aagb-group-accordion-item"]}');
 
 /***/ })
 

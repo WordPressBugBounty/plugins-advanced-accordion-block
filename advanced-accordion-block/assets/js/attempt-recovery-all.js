@@ -1,11 +1,3 @@
-// Function to check if there are any accordion blocks with warnings
-function checkForRecoverableBlocks() {
-    const recoverableBlocks = document.querySelectorAll(
-        '.wp-block-aab-group-accordion.has-warning, .wp-block-aab-accordion-block.has-warning,.wp-block-aab-accordion-item.has-warning'
-    );
-    return recoverableBlocks.length > 0;
-}
-
 // Function to recover accordion blocks
 function recoverAccordionBlocks() {
     const accordionBlocks = document.querySelectorAll(
@@ -19,6 +11,16 @@ function recoverAccordionBlocks() {
         }
     });
 }
+// Function to check if there are any accordion blocks with warnings
+function checkForRecoverableBlocks() {
+    const recoverableBlocks = document.querySelectorAll(
+        '.wp-block-aab-group-accordion.has-warning, .wp-block-aab-accordion-block.has-warning,.wp-block-aab-accordion-item.has-warning'
+    );
+    return recoverableBlocks.length > 0;
+
+}
+
+
 
 // Function to add or update the recovery button in editor settings
 function addRecoveryButtonToSettings() {
@@ -55,7 +57,10 @@ function addRecoveryButtonToSettings() {
 function initRecoveryButton() {
     const interval = setInterval(() => {
         if (document.querySelector('.editor-header__settings')) {
-            addRecoveryButtonToSettings();
+            // addRecoveryButtonToSettings();
+            if (checkForRecoverableBlocks()) {
+                recoverAccordionBlocks();
+            }
             clearInterval(interval);
         }
     }, 500);
@@ -79,12 +84,9 @@ function observeBlocksForChanges() {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initRecoveryButton();
-    observeBlocksForChanges();
 });
 
 // Also try on editor load
 wp.domReady(() => {
     initRecoveryButton();
-    observeBlocksForChanges();
-
 });
