@@ -1,5 +1,5 @@
 === Advanced Accordion Gutenberg Block – Easy FAQ & Content Accordion Plugin ===
-Contributors: spiderdevs, mdjwel
+Contributors: spiderdevs, mdjwel, freemius
 Tags: accordion block, FAQ, FAQs, Accordion, FAQ block
 Requires at least: 5.0
 Tested up to: 6.8
@@ -148,75 +148,7 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
-[//]: # fs_premium_only_begin
-= 5.1.0 (14 August 2025) =
-New: Added autoplay functionality to Group Accordion blocks (Your accordions will now switch between sections automatically without needing clicks, making navigation faster and smoother. Right sidebar → Activator Event → Autoplay)
-New: Added feature image support to Group Accordion blocks (You can now add a custom image to each accordion group, making your content more visually appealing and easier to identify. Right sidebar → Enable Feature Image)
-New: Added auto-numbering with color support to the Accordion block and settings UI (Automatically number your accordion items with customizable colors for a cleaner, more organized look. Right sidebar → Enable Auto Numbering)
-New: Added "Steps with Progress Bar" feature and created `Steps with Progress Bar` pattern
-New: Added a new pattern `Icon Menu Box` in Group Accordion blocks
-New: Added a new pattern `Easy Schedule` in Group Accordion blocks
-Fixed: Border radius issue and QA style
-Fixed: Accordion body padding issue
-Tweaked: Improved Accordion block settings panel
-Updated: Accordion styles and cleaned up "Show All" button component
-Updated: Search bar styling
-Updated: CSS with conditional rendering
-Updated: Freemius SDK to version 2.12.1
 
-= 5.0.4  (05 June 2025) =
-Updated: Freemius SDK updated to 2.12.0
-
-= 5.0.3  (26 April 2025) =
-Fixed: Vulnerability issues resolved
-
-= 5.0.2  (25 April 2025) =
-Fixed: Vulnerability issues resolved
-
-= 5.0.1  (11 April 2025) =
-New: Color control added for hover effect in category filter buttons
-Fixed: fixes for head color change option on QA style
-Tweaked: Icon and text (for show less btn) are aligned to center
-Tweaked: Color control for showMoreBtn is moved to the settings tab from the styles tab
-Tweaked: Color control for category filter is moved to a standalone panel from the 'accordion styles' panel
-Tweaked: subheading is always visible from now (earlier it used to dispear on expand)
-Tweaked: Read more btn is moved to the top of the step continue button
-Tweaked: Disappear the steps done message after 5s
-
-= 5.0.0  (12 March 2025) =
-New: Added a "Show More" button option for Group Accordion, allowing you to enable/disable it and set the number of items displayed per click
-New: Added a new feature called "Labels" for every single accordion (Now you can add a custom text label beside your Single accordion title, making it easier to highlight key information and categorize content effectively)
-New: Added Account page in the dashboard (For Pro user)
-New: Added set color & background control for category filter buttons
-Fixed: Resolved accordion search highlight issue
-Tweaked: Made the anchor.js conditional to load the it on demand
-Tweaked: Moved Anchor link, Faq schema, Activator Event option under the "More Features" option
-
-= 4.8.2  (12 February 2025) =
-New: Added Search Highlight Feature in the Search Functionality (Now, the searched keyword will be highlighted, making it easier to spot within the content)
-New: Alignment Support for the Open/Close All Button (You can now position the button to the left, right, or center for better layout flexibility)
-New: Added Pattern Design (We've added pre-designed patterns to make your accordions look more stylish and visually appealing with just a few clicks)
-New: Added Filter Tabs by Category (Category filtering now available! Set tags in the parent accordion to easily filter and display content dynamically)
-Tweaked: Improved feedback voting system & integration voting with Database
-Updated: Freemius SDK to 2.11.0
-
-= 4.8.1  (18 January 2025) =
-New: Featured Icon (Now, you can set an Icon/image on the accordion header from 'Accordion Head > Show heading icon')
-New: Subheading support (You can add a subheading below the main heading of accordion)
-New: Added a custom css field in the block editor
-New: Added Q/A style in the separate accordion block
-Tweaked: improved the Accordion Search Placeholder text color
-Tweaked: improved the 'Read more' functionality
-
-= 4.8.0  (03 January 2025) =
-New: Added an field for changing 'Congratulation' message of steps layout
-Fixed: Read more button option
-Fixed: Border control for group accordion
-Fixed: Dynamic padding for Q/A style
-Tweaked: Open/Close All options improved
-[//]: # fs_premium_only_end
-
-[//]: # fs_free_only_begin
 = 5.1.0  (14 August 2025) =
 Fixed: Editor slow performance issue
 Fixed: Accordion style options spacing control issue (Margin & Padding)
@@ -273,4 +205,3 @@ Tweaked: Moved the styling options to parent in the Group Accordion
 Tweaked: Adding some padding in the content are of every single accordion
 Tweaked: Deprecated function updated
 Updated: Freemius SDK to 2.10.1
-[//]: # fs_free_only_end
