@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "title": "Accordion defaults",
   "category": "accordion-block",
-  "description": "Build Accordion and FAQs Easily.",
+  "description": "Sets default styles and configurations for accordion blocks across your site.",
   "editorScript": [
     "file:./index.js"
   ],

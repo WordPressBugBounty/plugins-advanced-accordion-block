@@ -203,9 +203,22 @@
             let filterClass = '';
             let searchTxt = '';
 
+            let searchTimeout;
             $search.on('input', function () {
-                searchTxt = $search.val();
-                loadAccordions();
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    searchTxt = $search.val();
+                    loadAccordions();
+                }, 300);
+            });
+
+            // Cache search content
+            $search.one('focus input', function () {
+                $accordionItems.each(function () {
+                    if (!$(this).data('search-content')) {
+                        $(this).data('search-content', $(this).text().toLowerCase());
+                    }
+                });
             });
 
             function loadAccordions() {
@@ -220,9 +233,11 @@
 
                 if(searchTxt) {
                     $searchHelp.show();
+                    const searchLower = searchTxt.toLowerCase();
 
                     _targetItems = _targetItems.filter(function() {
-                        return $(this).text()?.toLowerCase().includes(searchTxt.toLowerCase());
+                        const content = $(this).data('search-content') || $(this).text().toLowerCase();
+                        return content.includes(searchLower);
                     });
 
                     if(_targetItems.length) {

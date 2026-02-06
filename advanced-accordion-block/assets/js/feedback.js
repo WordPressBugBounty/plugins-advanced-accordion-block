@@ -1,27 +1,43 @@
 (function ($) {
     'use strict';
     $(document).ready(function () {
+        // Collect all feedback IDs for batch request
+        const feedbackIds = [];
         $('.feedback-btn-wrap').each(function () {
-            const $feedbackWrap = $(this);
-            const feedbackId = $feedbackWrap.data('id');
+            const id = $(this).data('id');
+            if (id) {
+                feedbackIds.push(id);
+            }
+        });
+
+        if (feedbackIds.length > 0) {
             $.ajax({
                 url: aab_feedbackAjax.ajaxurl,
                 type: 'POST',
                 data: {
                     action: 'get_votes',
-                    feedbackId: feedbackId,
+                    feedbackIds: feedbackIds,
                     nonce: aab_feedbackAjax.nonce
                 },
                 success: function (response) {
                     if (response.success) {
-                        $feedbackWrap.find('button[data-value="yes"] .count').text(response.data.yes);
-                        $feedbackWrap.find('button[data-value="no"] .count').text(response.data.no);
+                        const dataMap = response.data;
+                        $('.feedback-btn-wrap').each(function () {
+                            const $feedbackWrap = $(this);
+                            const feedbackId = $feedbackWrap.data('id');
+                            const data = dataMap[feedbackId];
 
-                        // Update button states if user has voted
-                        if (response.data.userVote) {
-                            $feedbackWrap.find('.feedback-btn').removeClass('active');
-                            $feedbackWrap.find(`button[data-value="${response.data.userVote}"]`).addClass('active');
-                        }
+                            if (data) {
+                                $feedbackWrap.find('button[data-value="yes"] .count').text(data.yes);
+                                $feedbackWrap.find('button[data-value="no"] .count').text(data.no);
+
+                                // Update button states if user has voted
+                                if (data.userVote) {
+                                    $feedbackWrap.find('.feedback-btn').removeClass('active');
+                                    $feedbackWrap.find(`button[data-value="${data.userVote}"]`).addClass('active');
+                                }
+                            }
+                        });
                     }
                 },
                 error: function (xhr, status, error) {
@@ -32,7 +48,7 @@
                     });
                 }
             });
-        });
+        }
         // Handle feedback button click
         $('.feedback-btn').on('click', function () {
             const $button = $(this);

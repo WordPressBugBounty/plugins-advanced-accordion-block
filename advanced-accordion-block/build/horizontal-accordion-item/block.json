@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "title": "Horizontal Accordion Item",
   "category": "accordion-block",
-  "description": "Accordion Item for Horizontal Accordion",
+  "description": "Individual item that works as a child block within the Horizontal Accordion parent block.",
   "parent": [
     "aab/horizontal-accordion"
   ],

@@ -1,7 +1,7 @@
 // Function to recover accordion blocks
 function recoverAccordionBlocks() {
     const accordionBlocks = document.querySelectorAll(
-        '.wp-block-aab-group-accordion.has-warning, .wp-block-aab-accordion-block.has-warning,.wp-block-aab-accordion-item.has-warning'
+        '.wp-block-aab-group-accordion.has-warning, .wp-block-aab-accordion-item.has-warning, .wp-block-aab-accordion-block.has-warning, .wp-block-aab-horizontal-accordion.has-warning, .wp-block-aab-horizontal-accordion-item.has-warning'
     );
 
     accordionBlocks.forEach(block => {
@@ -14,7 +14,7 @@ function recoverAccordionBlocks() {
 // Function to check if there are any accordion blocks with warnings
 function checkForRecoverableBlocks() {
     const recoverableBlocks = document.querySelectorAll(
-        '.wp-block-aab-group-accordion.has-warning, .wp-block-aab-accordion-block.has-warning,.wp-block-aab-accordion-item.has-warning'
+        '.wp-block-aab-group-accordion.has-warning, .wp-block-aab-accordion-item.has-warning, .wp-block-aab-accordion-block.has-warning, .wp-block-aab-horizontal-accordion.has-warning, .wp-block-aab-horizontal-accordion-item.has-warning'
     );
     return recoverableBlocks.length > 0;
 

@@ -1,10 +1,10 @@
 {
   "apiVersion": 2,
   "name": "aab/accordion-block",
-  "version": "0.1.0",
+  "version": "5.2.2",
   "title": "Separate Accordion",
   "category": "accordion-block",
-  "description": "Build Accordion and FAQs Easily.",
+  "description": "Create standalone accordion blocks that work independently for FAQs, expandable content, and collapsible sections.",
   "attributes": {
     "style": {
       "type": "object",
@@ -68,6 +68,12 @@
       "type": "string"
     },
     "headerBg": {
+      "type": "string"
+    },
+    "activeHeaderBg": {
+      "type": "string"
+    },
+    "activeHeadingColor": {
       "type": "string"
     },
     "headingIconImageUrl": {
@@ -210,8 +216,7 @@
     }
   ],
   "editorScript": [
-    "file:./index.js",
-    "aagb-separate-accordion"
+    "file:./index.js"
   ],
   "editorStyle": "file:./index.css",
   "style": [

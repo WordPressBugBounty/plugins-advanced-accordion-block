@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "title": "Accordion Toolbar",
   "category": "accordion-block",
-  "description": "Build Accordion and FAQs Easily.",
+  "description": "Provides toolbar controls for managing accordion blocks in the editor.",
   "editorScript": [
     "file:./index.js"
   ],

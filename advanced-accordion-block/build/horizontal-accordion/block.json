@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "title": "Horizontal Accordion",
   "category": "accordion-block",
-  "description": "Build unique and modern horizontal style accordions",
+  "description": "Create side-by-side horizontal accordion layouts with customizable titles, icons, and expandable content.",
   "supports": {
     "spacing": {
       "padding": true,

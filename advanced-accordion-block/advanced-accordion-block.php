@@ -5,8 +5,8 @@
  * Description: <strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
  * Requires at least: 5.7
  * Requires PHP: 7.4
- * Version: 5.1.0
- * Plugin URI: https://spider-themes.net/advanced-accordion-block
+ * Version: 5.2.3
+ * Plugin URI: https://advanced-accordion-block.spider-themes.net
  * Author: Spider Themes
  * Author URI: https://spider-themes.net
  * License: GPLv3 or later
@@ -33,7 +33,7 @@ if ( function_exists( 'aab_fs' ) ) {
                     define( 'WP_FS__PRODUCT_11041_MULTISITE', true );
                 }
                 // Include Freemius SDK.
-                require_once dirname( __FILE__ ) . '/vendor/fs/start.php';
+                require_once dirname( __FILE__ ) . '/vendor/freemius/wordpress-sdk/start.php';
                 $aab_fs = fs_dynamic_init( array(
                     'id'               => '11041',
                     'slug'             => 'advanced-accordion-block',
@@ -132,7 +132,7 @@ if ( !class_exists( 'AAGB_BLOCKS_CLASS' ) ) {
          * Define the plugin constants
          */
         private function define_constants() {
-            define( 'AAGB_VERSION', '5.1.0' );
+            define( 'AAGB_VERSION', '5.2.3' );
             define( 'AAGB_URL', plugin_dir_url( __FILE__ ) );
             define( 'AAGB_ASSETS', AAGB_URL . 'assets/' );
             define( 'AAGB_PLUGIN_FILE', __FILE__ );
@@ -159,7 +159,7 @@ if ( !class_exists( 'AAGB_BLOCKS_CLASS' ) ) {
          * @return void
          */
         function user_redirecting( $plugin ) {
-            if ( plugin_basename( __FILE__ ) == $plugin ) {
+            if ( plugin_basename( __FILE__ ) === $plugin ) {
                 wp_redirect( admin_url( 'admin.php?page=aab-settings' ) );
                 die;
             }

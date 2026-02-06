@@ -1,10 +1,10 @@
 {
   "apiVersion": 2,
   "name": "aab/accordion-item",
-  "version": "0.1.0",
+  "version": "5.2.2",
   "title": "Single Accordion",
   "category": "accordion-block",
-  "description": "Single Accordion for Group Accordion",
+  "description": "Individual accordion item that works as a child block within the Group Accordion parent block.",
   "parent": [
     "aab/group-accordion"
   ],
@@ -64,7 +64,9 @@
     },
     "heading": {
       "type": "string",
-      "default": "Accordion Heading"
+      "default": "Accordion Heading",
+      "source": "html",
+      "selector": ".aagb__accordion_title"
     },
     "subheading": {
       "type": "string",
@@ -80,6 +82,12 @@
       "type": "string"
     },
     "headerBg": {
+      "type": "string"
+    },
+    "activeHeaderBg": {
+      "type": "string"
+    },
+    "activeHeadingColor": {
       "type": "string"
     },
     "headingIconImageUrl": {
@@ -236,6 +244,10 @@
       "type": "string"
     },
     "progressBarOn": {
+      "type": "boolean",
+      "default": false
+    },
+    "nextPrevious": {
       "type": "boolean",
       "default": false
     }
