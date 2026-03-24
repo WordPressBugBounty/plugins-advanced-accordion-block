@@ -344,8 +344,8 @@
                            .addClass('aab-ext-btn-active')
                            .prop('disabled', true);
 
-                        // Optional: Reload to update the page
-                        // location.reload();
+                        // Reload to update the page state
+                        location.reload();
                     } else {
                         btn.text(originalText).removeClass('aab-ext-btn-loading').prop('disabled', false);
                         alert(response.data.message || 'Activation failed. Please try again.');

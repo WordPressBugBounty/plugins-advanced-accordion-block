@@ -11,10 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/class-remote-notice-client.php';
 
 // Disable notices when Pro is active
-add_action('admin_init', function () {
+add_action('plugins_loaded', function () {
     if (aab_fs()->is_premium()) {
         Remote_Notice_Client::disable('Advanced accordion block');
         return;
+    }else{
+        Remote_Notice_Client::enable('Advanced accordion block');
     }
 
     Remote_Notice_Client::init('Advanced accordion block', [
@@ -347,6 +349,84 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                                     <h3 class="aab-block-name"><?php esc_html_e('Horizontal Accordion', 'advanced-accordion-block'); ?></h3>
                                                     <p class="aab-block-desc"><?php esc_html_e('Side-by-side accordion layout with titles, subtitles, and icons. Great for feature showcases and comparisons.', 'advanced-accordion-block'); ?></p>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- AI FAQ Generator -->
+                                <?php
+                                $atml_plugin_file = 'antimanual/antimanual.php';
+                                $atml_is_active   = is_plugin_active( $atml_plugin_file );
+                                $atml_is_installed = file_exists( WP_PLUGIN_DIR . '/' . $atml_plugin_file );
+                                ?>
+                                <section class="aab-card aab-ai-faq-card aab-animate-fade-in aab-animate-delay-2" aria-labelledby="aab-ai-faq-title">
+                                    <div class="aab-card-body">
+                                        <div class="aab-ai-faq-content">
+                                            <div class="aab-ai-faq-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                                </svg>
+                                                <span class="aab-ai-faq-sparkle" aria-hidden="true">
+                                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                                        <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div class="aab-ai-faq-text">
+                                                <div class="aab-ai-faq-header">
+                                                    <h2 id="aab-ai-faq-title" class="aab-ai-faq-title"><?php esc_html_e( 'AI FAQ Generator', 'advanced-accordion-block' ); ?></h2>
+                                                    <span class="aab-ai-faq-badge"><?php esc_html_e( 'AI-Powered', 'advanced-accordion-block' ); ?></span>
+                                                </div>
+                                                <p class="aab-ai-faq-desc"><?php esc_html_e( 'Generate comprehensive FAQ sections instantly with AI. Choose topics, set the tone, and let AI create professional Q&A content — all from a guided 4-step wizard.', 'advanced-accordion-block' ); ?></p>
+                                                <div class="aab-ai-faq-features">
+                                                    <span class="aab-ai-faq-feature">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+                                                        <?php esc_html_e( 'Quick Topic Presets', 'advanced-accordion-block' ); ?>
+                                                    </span>
+                                                    <span class="aab-ai-faq-feature">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+                                                        <?php esc_html_e( 'Multiple Tone Styles', 'advanced-accordion-block' ); ?>
+                                                    </span>
+                                                    <span class="aab-ai-faq-feature">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+                                                        <?php esc_html_e( 'Preview & Edit', 'advanced-accordion-block' ); ?>
+                                                    </span>
+                                                    <span class="aab-ai-faq-feature">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+                                                        <?php esc_html_e( 'Export & Publish', 'advanced-accordion-block' ); ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="aab-ai-faq-cta">
+                                                <?php if ( $atml_is_active ) : ?>
+                                                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=atml-faq-generator' ) ); ?>" class="aab-btn aab-btn-ai-faq">
+                                                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                                                            <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" />
+                                                        </svg>
+                                                        <?php esc_html_e( 'Generate FAQs', 'advanced-accordion-block' ); ?>
+                                                    </a>
+                                                <?php elseif ( $atml_is_installed ) : ?>
+                                                    <button class="aab-btn aab-btn-ai-faq aab-ext-btn-activate" data-plugin="<?php echo esc_attr( $atml_plugin_file ); ?>">
+                                                        <?php esc_html_e( 'Activate Antimanual', 'advanced-accordion-block' ); ?>
+                                                    </button>
+                                                <?php else : ?>
+                                                    <button class="aab-btn aab-btn-ai-faq aab-ext-btn-install" data-slug="antimanual">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                            <polyline points="7 10 12 15 17 10" />
+                                                            <line x1="12" y1="15" x2="12" y2="3" />
+                                                        </svg>
+                                                        <?php esc_html_e( 'Install Antimanual', 'advanced-accordion-block' ); ?>
+                                                    </button>
+                                                <?php endif; ?>
+                                                <a href="https://wordpress.org/plugins/antimanual/" target="_blank" rel="noopener" class="aab-ai-faq-learn-more">
+                                                    <?php esc_html_e( 'Learn More', 'advanced-accordion-block' ); ?>
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                                        <polyline points="7 7 17 7 17 17" />
+                                                    </svg>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
