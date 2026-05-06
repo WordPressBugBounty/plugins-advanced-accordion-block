@@ -1,8 +1,28 @@
 /* eslint-disable no-undef */
 (function ($) {
 	'use strict';
+
+	function hasActiveTextSelection() {
+		const selection = window.getSelection ? window.getSelection() : null;
+
+		return Boolean(
+			selection &&
+				selection.rangeCount > 0 &&
+				!selection.isCollapsed &&
+				String(selection).trim() !== ''
+		);
+	}
+
 	// show body on click head
-	$(document).on('click', '.aab__accordion_head', function () {
+	$(document).on('click', '.aab__accordion_head', function (event) {
+		if ($(event.target).closest('[contenteditable="true"]').length) {
+			return;
+		}
+
+		if (hasActiveTextSelection()) {
+			return;
+		}
+
 		const $this = $(this);
 		const $parent = $this.parent();
 		const $icon = $this

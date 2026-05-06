@@ -2,8 +2,8 @@
 Contributors: spiderdevs, mdjwel , muaz404, freemius
 Tags: accordion, FAQ, Gutenberg block, accordion block, FAQs
 Requires at least: 5.0
-Tested up to: 6.9
-Stable tag: 5.3.0
+Tested up to: 6.9.4
+Stable tag: 5.3.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -248,10 +248,14 @@ Major feature release with Show More button, Labels support, and significant UI 
 
 == Changelog ==
 
+= 5.3.1 (06 May 2026) =
+Fixed: Stabilized the RichText toolbar to prevent formatting loss and premature popup closing in the editor.
+Updated: Remote Notice SDK for improved reliability.
+Updated: Security improvements and codebase optimization for overall plugin stability and performance.
+
 = 5.3.0 (24 March 2026) =
 New: Copy/Paste Styles – Easily transfer design configurations between Accordion blocks in the editor without manually recreating them.
 New: AI FAQ Generator Card – Added a quick access card to the admin dashboard for creating AI-powered FAQs instantly.
-Improved: General enhancements and minor fixes applied across the block for better stability
 
 = 5.2.3 (03 February 2026) =
 Added: backward-compatible deprecations for Group Accordion and Accordion Item to ensure smooth upgrades.
@@ -320,3 +324,27 @@ Tweaked: Reorganized controls & structure
 Tweaked: Improved default accordion design
 Tweaked: Improved custom colorpicker
 Tweaked: lib folder name renamed to assets to organize all CSS and JS files in a single folder
+
+= 4.8.2  (12 February 2025) =
+New: Nested Accordion Support (Now, you can use an accordion within another accordion, allowing for better content structuring and organization)
+New: Accordion Usage Table Dashboard added on admin panel (Now, you can see where your accordions are used in pages or posts and track how many times a specific accordion appears on a single page/post)
+New: Added Custom Recovery Button On top toolbar that recovers all recovery block in a single click (If you see the attempt recovery notice, you'll find a button on the top toolbar. Clicking it will dismiss all recovery notices instantly)
+New: Added Pattern Design (We've added pre-designed patterns to make your accordions look more stylish and visually appealing with just a few clicks)
+Tweaked: Improved the color picker (We've made the color picker more intuitive and compact, simplifying the design for a smoother user experience)
+Updated: Freemius SDK to 2.11.0
+
+= 4.8.1  (18 January 2025) =
+New: You can now set a unique ID in the Group/Separate accordion block
+Fixed: HTML anchor issue
+Fixed: Translatable accordion title (previously it was not translatable with the WPML plugin)
+Tweaked: Removed the 'Active accordion border' option from "Q/A" style
+Tweaked: Now you can set separate IDs in every accordion
+
+= 4.8.0  (03 January 2025) =
+Fixed: Icon change option of group accordion
+Tweaked: Focus border color removed from Separate Accordion block
+Tweaked: Added padding support in accordion body (Previously, padding support was only available for the header. Now, it has been added to both the header and body)
+Tweaked: Moved the styling options to parent in the Group Accordion
+Tweaked: Adding some padding in the content are of every single accordion
+Tweaked: Deprecated function updated
+Updated: Freemius SDK to 2.10.1

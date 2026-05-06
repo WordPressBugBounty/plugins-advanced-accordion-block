@@ -223,7 +223,6 @@
 
             function loadAccordions() {
                 let _targetItems = $accordionItems;
-                _targetItems.hide();
                 
                 if (filterClass) _targetItems = _targetItems.filter(`.${filterClass}`);
                 
@@ -254,19 +253,13 @@
 
                 $showMoreBtn.parent()?.show();
 
+                let visibleSet;
+
                 // if not greater than zero, all accordions are shown (covers the case of showMoreBtn feature not being activated)
                 if (itemsToShow > 0) {
-                    let loaded = 0;
-                    _targetItems.each(function () {
-                        $(this).hide();
+                    visibleSet = _targetItems.slice(0, itemsToShow);
 
-                        if (loaded < itemsToShow) {
-                            $(this).show();
-                            loaded++;
-                        }
-                    });
-
-                    if(loaded >= _targetItems.length) {
+                    if(visibleSet.length >= _targetItems.length) {
                         $showMoreBtn.hide();
 
                         $showLessBtn.show(0, function () {
@@ -274,15 +267,19 @@
                         });
                         $showLessBtn.parent()?.css("background-color", "#ffffff00");
 
-                        if(loaded <= itemsPerClick) $showMoreBtn.parent()?.hide();
+                        if(visibleSet.length <= itemsPerClick) $showMoreBtn.parent()?.hide();
                     } else {
                         $showMoreBtn.show();
                         $showLessBtn.hide();
                     }
                 } else { // show-more-btn feature is not activated (or invalid items-per-click value)
-                    _targetItems.show();
+                    visibleSet = _targetItems;
                     $showMoreBtn?.parent()?.hide();
                 }
+
+                // Batch DOM updates: Hide what needs to be hidden, Show what needs to be shown
+                $accordionItems.not(visibleSet).hide();
+                visibleSet.show();
                 
             }
 

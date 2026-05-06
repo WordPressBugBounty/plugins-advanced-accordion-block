@@ -33,34 +33,55 @@ class AAB_Block_Register {
 	 * Registers all the blocks for the plugin.
 	 */
 	public function blocks_init() {
-		$this->register_block( 'accordion', [
-			'render_callback' => [ $this, 'render_separate_accordion' ],
-		] );
-		$this->register_block( 'group-accordion', [
-			'render_callback' => [ $this, 'render_group_accordion' ],
-		] );
-		$this->register_block( 'accordion-item', [
-			'render_callback' => [ $this, 'render_group_accordion_item' ],
-		] );
-		$this->register_block( 'accordion-toolbar', [
-			'render_callback' => [ $this, 'render_accordion_toolbar' ],
-		] );
-		$this->register_block( 'accordion-default', [
-			'render_callback' => [ $this, 'render_accordion_default' ],
-		] );
-		$this->register_block( 'horizontal-accordion', [
-			'render_callback' => [ $this, 'render_horizontal_accordion' ],
-		] );
-		$this->register_block( 'horizontal-accordion-item', [
-			'render_callback' => [ $this, 'render_horizontal_accordion_item' ],
-		] );
+		$this->register_block(
+			'accordion',
+			[
+				'render_callback' => [ $this, 'render_separate_accordion' ],
+			]
+		);
+		$this->register_block(
+			'group-accordion',
+			[
+				'render_callback' => [ $this, 'render_group_accordion' ],
+			]
+		);
+		$this->register_block(
+			'accordion-item',
+			[
+				'render_callback' => [ $this, 'render_group_accordion_item' ],
+			]
+		);
+		$this->register_block(
+			'accordion-toolbar',
+			[
+				'render_callback' => [ $this, 'render_accordion_toolbar' ],
+			]
+		);
+		$this->register_block(
+			'accordion-default',
+			[
+				'render_callback' => [ $this, 'render_accordion_default' ],
+			]
+		);
+		$this->register_block(
+			'horizontal-accordion',
+			[
+				'render_callback' => [ $this, 'render_horizontal_accordion' ],
+			]
+		);
+		$this->register_block(
+			'horizontal-accordion-item',
+			[
+				'render_callback' => [ $this, 'render_horizontal_accordion_item' ],
+			]
+		);
 	}
 
 	/**
 	 * Sanitize CSS values to prevent injection
 	 *
-	 * @param string $value
-	 * @return string
+	 * @param string $value Input value.
+	 * @return string Sanitized value.
 	 */
 	private function sanitize_css_value( $value ) {
 		// Strip tags and remove characters that could break out of CSS context
@@ -281,7 +302,7 @@ class AAB_Block_Register {
 		$paddings  = $get_attr( 'paddings' );
 
 		// Calculate header background (transparent for QA style if default)
-		if ( $qa_style && $header_bg && strtolower( $header_bg ) === '#e3dfdf38' ) {
+		if ( $qa_style && $header_bg && '#e3dfdf38' === strtolower( $header_bg ) ) {
 			$header_bg = 'transparent';
 		}
 
@@ -301,7 +322,7 @@ class AAB_Block_Register {
 		}
 
 		$heading_border = $get_attr( 'headingBorder' );
-		if ( is_array( $heading_border ) && ! empty( $heading_border['width'] ) && $heading_border['width'] !== '0px' ) {
+		if ( is_array( $heading_border ) && ! empty( $heading_border['width'] ) && '0px' !== $heading_border['width'] ) {
 			$head_styles[] = 'border: ' . $this->sanitize_css_value( $heading_border['width'] ?? '' ) . ' '
 				. $this->sanitize_css_value( $heading_border['style'] ?? 'solid' ) . ' '
 				. $this->sanitize_css_value( $heading_border['color'] ?? '' );
@@ -642,7 +663,7 @@ class AAB_Block_Register {
 		return implode( '; ', $result );
 	}
 
-	/** 
+	/**
 	 * Horizontal accordion render callback.
 	 *
 	 * @param array  $attributes Block attributes.

@@ -61,12 +61,15 @@ class AAB_Enqueue_Block_Assets {
 			true
 		);
 
-		wp_localize_script( 'aagb-separate-accordion-feedback', 'aab_feedbackAjax', [
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'nonce'   => wp_create_nonce( 'my_ajax_nonce' ),
-			'user_id' => get_current_user_id(), // Pass user ID to JS (0 if not logged in)
-		] );
-
+		wp_localize_script(
+			'aagb-separate-accordion-feedback',
+			'aab_feedbackAjax',
+			[
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'my_ajax_nonce' ),
+				'user_id' => get_current_user_id(), // Pass user ID to JS (0 if not logged in).
+			]
+		);
 
 		wp_register_script(
 			'aagb-accordion-group',
@@ -92,12 +95,14 @@ class AAB_Enqueue_Block_Assets {
 			true
 		);
 
-		$this->localize_for_handles( [
-			'jquery',
-			'aagb-accordion-single',
-			'aagb-accordion-group',
-			'aahb-horizontal-accordion',
-		] );
+		$this->localize_for_handles(
+			[
+				'jquery',
+				'aagb-accordion-single',
+				'aagb-accordion-group',
+				'aahb-horizontal-accordion',
+			]
+		);
 	}
 
 	/**
@@ -175,7 +180,7 @@ class AAB_Enqueue_Block_Assets {
 		wp_enqueue_script(
 			'aab-block_deletion_tracker',
 			AAGB_ASSETS . 'js/block-deletion-tracker.js',
-			[ 'wp-blocks', 'wp-editor', 'wp-data' ], // Dependencies
+			[ 'wp-blocks', 'wp-editor', 'wp-data' ], // Dependencies.
 			AAGB_VERSION,
 			true
 		);
@@ -188,5 +193,4 @@ class AAB_Enqueue_Block_Assets {
 			true
 		);
 	}
-
 }

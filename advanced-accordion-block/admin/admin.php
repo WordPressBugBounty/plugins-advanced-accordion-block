@@ -10,20 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/class-remote-notice-client.php';
 
-// Disable notices when Pro is active
-add_action('plugins_loaded', function () {
-    if (aab_fs()->is_premium()) {
-        Remote_Notice_Client::disable('Advanced accordion block');
-        return;
-    }else{
-        Remote_Notice_Client::enable('Advanced accordion block');
+add_action( 'admin_init', function() {
+    if ( class_exists( 'Remote_Notice_Client' ) ) {
+        Remote_Notice_Client::init( 'AAB', [
+            'api_url'        => 'https://manage.spider-themes.net/wp-json/noticepilot/v1/content/aab',
+            'plugin_version' => AAGB_VERSION,
+            'is_pro'         => aab_fs()->can_use_premium_code(),
+        ]);
     }
-
-    Remote_Notice_Client::init('Advanced accordion block', [
-        'api_url' => 'https://manage.spider-themes.net/wp-json/html-notice-widget/v1/content/advanced-accordion-block',
-    ]);
 });
-
 // Include Documentation Builder page
 require_once plugin_dir_path(__FILE__) . 'documentation-builder.php';
 
