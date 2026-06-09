@@ -19,6 +19,55 @@ class AAB_Enqueue_Block_Assets {
 	public function __construct() {
 		add_action( 'enqueue_block_assets', [ $this, 'external_libraries' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'block_editor_assets' ] );
+		// Print before the editor's scripts run so the guard is in place first.
+		add_action( 'admin_head', [ $this, 'floating_ui_crash_guard' ], 0 );
+	}
+
+	/**
+	 * Guard against a fatal floating-ui crash in the block editor.
+	 *
+	 * WordPress positions Popovers/Tooltips with floating-ui, whose `autoUpdate`
+	 * loop calls `window.getComputedStyle( anchor )`. When an anchored element is
+	 * removed from the DOM a tick before autoUpdate's cleanup runs (block insert,
+	 * removal, or programmatic recovery), the anchor resolves to `null` and
+	 * `getComputedStyle( null )` throws "parameter 1 is not of type 'Element'",
+	 * which the editor's error boundary turns into a full white-screen.
+	 *
+	 * A non-Element argument is always a bug in the caller — valid code never
+	 * passes one — so it is safe to fall back to <body> and let that stray
+	 * positioning pass be a harmless no-op instead of crashing the editor.
+	 *
+	 * Printed in <head> on block-editor screens so it runs before the editor JS.
+	 */
+	public function floating_ui_crash_guard() {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return;
+		}
+		$screen = get_current_screen();
+		if ( ! $screen || ! method_exists( $screen, 'is_block_editor' ) || ! $screen->is_block_editor() ) {
+			return;
+		}
+
+		$js = <<<'JS'
+( function () {
+	if ( window.__aabFloatingUiGuard ) { return; }
+	window.__aabFloatingUiGuard = true;
+	var native = window.getComputedStyle;
+	if ( typeof native !== 'function' ) { return; }
+	window.getComputedStyle = function ( element, pseudoElt ) {
+		if ( ! ( element instanceof Element ) ) {
+			return native.call( window, document.body, pseudoElt || undefined );
+		}
+		return native.call( window, element, pseudoElt );
+	};
+} )();
+JS;
+
+		if ( function_exists( 'wp_print_inline_script_tag' ) ) {
+			wp_print_inline_script_tag( $js );
+		} else {
+			echo '<script>' . $js . '</script>'; // phpcs:ignore
+		}
 	}
 
 	/**
@@ -61,15 +110,12 @@ class AAB_Enqueue_Block_Assets {
 			true
 		);
 
-		wp_localize_script(
-			'aagb-separate-accordion-feedback',
-			'aab_feedbackAjax',
-			[
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( 'my_ajax_nonce' ),
-				'user_id' => get_current_user_id(), // Pass user ID to JS (0 if not logged in).
-			]
-		);
+		wp_localize_script( 'aagb-separate-accordion-feedback', 'aab_feedbackAjax', [
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'nonce'   => wp_create_nonce( 'my_ajax_nonce' ),
+			'user_id' => get_current_user_id(), // Pass user ID to JS (0 if not logged in)
+		] );
+
 
 		wp_register_script(
 			'aagb-accordion-group',
@@ -95,14 +141,12 @@ class AAB_Enqueue_Block_Assets {
 			true
 		);
 
-		$this->localize_for_handles(
-			[
-				'jquery',
-				'aagb-accordion-single',
-				'aagb-accordion-group',
-				'aahb-horizontal-accordion',
-			]
-		);
+		$this->localize_for_handles( [
+			'jquery',
+			'aagb-accordion-single',
+			'aagb-accordion-group',
+			'aahb-horizontal-accordion',
+		] );
 	}
 
 	/**
@@ -180,7 +224,7 @@ class AAB_Enqueue_Block_Assets {
 		wp_enqueue_script(
 			'aab-block_deletion_tracker',
 			AAGB_ASSETS . 'js/block-deletion-tracker.js',
-			[ 'wp-blocks', 'wp-editor', 'wp-data' ], // Dependencies.
+			[ 'wp-blocks', 'wp-editor', 'wp-data' ], // Dependencies
 			AAGB_VERSION,
 			true
 		);
@@ -193,4 +237,5 @@ class AAB_Enqueue_Block_Assets {
 			true
 		);
 	}
+
 }

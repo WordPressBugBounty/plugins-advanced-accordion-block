@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Accordion Block 5.3.1\n"
+"Project-Id-Version: Advanced Accordion Block 5.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/advanced-accordion-block\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-06T05:00:36+00:00\n"
+"POT-Creation-Date: 2026-06-09T14:50:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: advanced-accordion-block\n"
@@ -39,383 +39,393 @@ msgstr ""
 msgid "https://spider-themes.net"
 msgstr ""
 
-#: admin/admin.php:199
+#: admin/admin.php:56
+msgid "You do not have permission to create pages."
+msgstr ""
+
+#: admin/admin.php:57
+msgid "Unauthorized"
+msgstr ""
+
+#: admin/admin.php:93
+msgid "Advanced Accordion Page"
+msgstr ""
+
+#: admin/admin.php:291
 msgid "Dashboard navigation"
 msgstr ""
 
-#: admin/admin.php:201
+#: admin/admin.php:293
 msgid "Welcome"
 msgstr ""
 
-#: admin/admin.php:203
+#: admin/admin.php:295
 msgid "Lite vs Pro"
 msgstr ""
 
-#: admin/admin.php:214
+#: admin/admin.php:306
 msgid "Unlock Pro Features"
 msgstr ""
 
-#: admin/admin.php:219
-#: admin/admin.php:258
-#: admin/admin.php:468
-#: admin/admin.php:533
+#: admin/admin.php:311
+#: admin/admin.php:350
+#: admin/admin.php:560
+#: admin/admin.php:625
 msgid "PRO"
 msgstr ""
 
-#: admin/admin.php:219
-#: admin/admin.php:258
+#: admin/admin.php:311
+#: admin/admin.php:350
 msgid "LITE"
 msgstr ""
 
-#: admin/admin.php:222
-#: admin/admin.php:753
-#: admin/admin.php:788
+#: admin/admin.php:314
+#: admin/admin.php:845
+#: admin/admin.php:880
 msgid "Documentation"
 msgstr ""
 
-#: admin/admin.php:228
+#: admin/admin.php:320
 msgid "Changelog"
 msgstr ""
 
-#: admin/admin.php:255
+#: admin/admin.php:347
 #, php-format
 msgid "Hello %s,"
 msgstr ""
 
-#: admin/admin.php:257
+#: admin/admin.php:349
 msgid "Welcome to Advanced Accordion"
 msgstr ""
 
-#: admin/admin.php:261
+#: admin/admin.php:353
 msgid "Advanced Accordion is a powerful Gutenberg block that lets you create beautiful, fully customizable accordions and FAQ sections. Built with native WordPress components for optimal performance."
 msgstr ""
 
-#: admin/admin.php:270
-#: admin/admin.php:305
+#: admin/admin.php:362
+#: admin/admin.php:397
 msgid "Create New Page"
 msgstr ""
 
-#: admin/admin.php:273
+#: admin/admin.php:365
 msgid "Watch the Quick Starter Guide"
 msgstr ""
 
-#: admin/admin.php:281
+#: admin/admin.php:373
 msgid "Play video tutorial"
 msgstr ""
 
-#: admin/admin.php:286
+#: admin/admin.php:378
 msgid "Quick Start Guide - v"
 msgstr ""
 
-#: admin/admin.php:288
+#: admin/admin.php:380
 msgid "ACCORDION"
 msgstr ""
 
-#: admin/admin.php:289
+#: admin/admin.php:381
 msgid "GETTING"
 msgstr ""
 
-#: admin/admin.php:289
+#: admin/admin.php:381
 msgid "STARTED"
 msgstr ""
 
-#: admin/admin.php:304
+#: admin/admin.php:396
 msgid "Available Blocks"
 msgstr ""
 
-#: admin/admin.php:318
+#: admin/admin.php:410
 msgid "Separate Accordion"
 msgstr ""
 
-#: admin/admin.php:319
+#: admin/admin.php:411
 msgid "Individual accordion blocks that work independently. Perfect for single FAQs or standalone collapsible content."
 msgstr ""
 
-#: admin/admin.php:331
-#: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/group-accordion-panel.js:27
+#: admin/admin.php:423
 msgid "Group Accordion"
 msgstr ""
 
-#: admin/admin.php:332
+#: admin/admin.php:424
 msgid "Container for multiple accordion items with shared settings. Ideal for FAQ sections and structured content."
 msgstr ""
 
-#: admin/admin.php:344
-#: admin/admin.php:564
+#: admin/admin.php:436
+#: admin/admin.php:656
 msgid "Horizontal Accordion"
 msgstr ""
 
-#: admin/admin.php:345
+#: admin/admin.php:437
 msgid "Side-by-side accordion layout with titles, subtitles, and icons. Great for feature showcases and comparisons."
 msgstr ""
 
-#: admin/admin.php:373
+#: admin/admin.php:465
 msgid "AI FAQ Generator"
 msgstr ""
 
-#: admin/admin.php:374
+#: admin/admin.php:466
 msgid "AI-Powered"
 msgstr ""
 
-#: admin/admin.php:376
+#: admin/admin.php:468
 msgid "Generate comprehensive FAQ sections instantly with AI. Choose topics, set the tone, and let AI create professional Q&A content — all from a guided 4-step wizard."
 msgstr ""
 
-#: admin/admin.php:380
+#: admin/admin.php:472
 msgid "Quick Topic Presets"
 msgstr ""
 
-#: admin/admin.php:384
+#: admin/admin.php:476
 msgid "Multiple Tone Styles"
 msgstr ""
 
-#: admin/admin.php:388
+#: admin/admin.php:480
 msgid "Preview & Edit"
 msgstr ""
 
-#: admin/admin.php:392
+#: admin/admin.php:484
 msgid "Export & Publish"
 msgstr ""
 
-#: admin/admin.php:402
+#: admin/admin.php:494
 msgid "Generate FAQs"
 msgstr ""
 
-#: admin/admin.php:406
+#: admin/admin.php:498
 msgid "Activate Antimanual"
 msgstr ""
 
-#: admin/admin.php:415
+#: admin/admin.php:507
 msgid "Install Antimanual"
 msgstr ""
 
-#: admin/admin.php:419
+#: admin/admin.php:511
 msgid "Learn More"
 msgstr ""
 
-#: admin/admin.php:433
+#: admin/admin.php:525
 msgid "Pro Features & Modules"
 msgstr ""
 
-#: admin/admin.php:435
-#: admin/admin.php:1089
+#: admin/admin.php:527
+#: admin/admin.php:1181
 msgid "Upgrade Now"
 msgstr ""
 
-#: admin/admin.php:442
-#: admin/admin.php:1112
+#: admin/admin.php:534
+#: admin/admin.php:1204
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/dynamic-features-panel.js:46
 msgid "Instant Search"
 msgstr ""
 
-#: admin/admin.php:443
+#: admin/admin.php:535
 msgid "Voting Feedback"
 msgstr ""
 
-#: admin/admin.php:444
+#: admin/admin.php:536
 msgid "Anchor Links"
 msgstr ""
 
-#: admin/admin.php:445
-#: admin/admin.php:1030
+#: admin/admin.php:537
+#: admin/admin.php:1122
 msgid "Q&A Style Layout"
 msgstr ""
 
-#: admin/admin.php:446
-#: admin/admin.php:724
+#: admin/admin.php:538
+#: admin/admin.php:816
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/layouts-panel.js:49
 msgid "Steps Layout"
 msgstr ""
 
-#: admin/admin.php:447
-#: admin/admin.php:1032
+#: admin/admin.php:539
+#: admin/admin.php:1124
 msgid "Checklist Layout"
 msgstr ""
 
-#: admin/admin.php:448
+#: admin/admin.php:540
 msgid "Autoplay Mode"
 msgstr ""
 
-#: admin/admin.php:449
-#: admin/admin.php:1035
+#: admin/admin.php:541
+#: admin/admin.php:1127
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:70
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:66
 msgid "Read More Button"
 msgstr ""
 
-#: admin/admin.php:450
-#: admin/admin.php:1036
+#: admin/admin.php:542
+#: admin/admin.php:1128
 msgid "Category Filter Tabs"
 msgstr ""
 
-#: admin/admin.php:451
+#: admin/admin.php:543
 msgid "Featured Icon/Image"
 msgstr ""
 
-#: admin/admin.php:452
+#: admin/admin.php:544
 msgid "Auto-Numbering"
 msgstr ""
 
-#: admin/admin.php:453
+#: admin/admin.php:545
 msgid "Next/Prev Navigation"
 msgstr ""
 
-#: admin/admin.php:454
-#: admin/admin.php:1041
+#: admin/admin.php:546
+#: admin/admin.php:1133
 msgid "Subheading Support"
 msgstr ""
 
-#: admin/admin.php:455
+#: admin/admin.php:547
 msgid "Custom Labels"
 msgstr ""
 
-#: admin/admin.php:456
+#: admin/admin.php:548
 msgid "Pagination/Show More Button"
 msgstr ""
 
-#: admin/admin.php:457
-#: admin/admin.php:568
+#: admin/admin.php:549
+#: admin/admin.php:660
 msgid "FAQ Schema Markup"
 msgstr ""
 
-#: admin/admin.php:465
+#: admin/admin.php:557
 msgid "Demo"
 msgstr ""
 
-#: admin/admin.php:479
+#: admin/admin.php:571
 msgid "Key Features"
 msgstr ""
 
-#: admin/admin.php:480
+#: admin/admin.php:572
 msgid "View All Features"
 msgstr ""
 
-#: admin/admin.php:488
+#: admin/admin.php:580
 msgid "Gutenberg Native"
 msgstr ""
 
-#: admin/admin.php:489
+#: admin/admin.php:581
 msgid "Built with native Gutenberg components for seamless integration and optimal performance."
 msgstr ""
 
-#: admin/admin.php:494
+#: admin/admin.php:586
 msgid "Unlimited Nesting"
 msgstr ""
 
-#: admin/admin.php:495
+#: admin/admin.php:587
 msgid "Create complex accordion structures with unlimited nesting levels."
 msgstr ""
 
-#: admin/admin.php:500
+#: admin/admin.php:592
 msgid "SEO Optimized"
 msgstr ""
 
-#: admin/admin.php:501
+#: admin/admin.php:593
 msgid "Built-in schema markup for FAQ pages to enhance search visibility."
 msgstr ""
 
-#: admin/admin.php:506
+#: admin/admin.php:598
 msgid "5 Icon Pairs"
 msgstr ""
 
-#: admin/admin.php:507
+#: admin/admin.php:599
 msgid "Choose from multiple icon styles for expand/collapse indicators."
 msgstr ""
 
-#: admin/admin.php:512
+#: admin/admin.php:604
 msgid "Fully Responsive"
 msgstr ""
 
-#: admin/admin.php:513
+#: admin/admin.php:605
 msgid "Looks perfect on all devices and screen sizes."
 msgstr ""
 
-#: admin/admin.php:518
+#: admin/admin.php:610
 msgid "Lightweight & Fast"
 msgstr ""
 
-#: admin/admin.php:519
+#: admin/admin.php:611
 msgid "Optimized code with minimal footprint for maximum speed."
 msgstr ""
 
-#: admin/admin.php:547
-#: admin/admin.php:947
+#: admin/admin.php:639
+#: admin/admin.php:1039
 msgid "Lite vs Pro Comparison"
 msgstr ""
 
-#: admin/admin.php:548
+#: admin/admin.php:640
 msgid "Get Pro"
 msgstr ""
 
-#: admin/admin.php:554
-#: admin/admin.php:964
+#: admin/admin.php:646
+#: admin/admin.php:1056
 msgid "Features"
 msgstr ""
 
-#: admin/admin.php:555
-#: admin/admin.php:967
+#: admin/admin.php:647
+#: admin/admin.php:1059
 msgid "Lite"
 msgstr ""
 
-#: admin/admin.php:556
-#: admin/admin.php:974
+#: admin/admin.php:648
+#: admin/admin.php:1066
 msgid "Pro"
 msgstr ""
 
-#: admin/admin.php:562
-#: admin/admin.php:987
+#: admin/admin.php:654
+#: admin/admin.php:1079
 msgid "Separate Accordion Block"
 msgstr ""
 
-#: admin/admin.php:563
-#: admin/admin.php:988
+#: admin/admin.php:655
+#: admin/admin.php:1080
 msgid "Group Accordion Block"
 msgstr ""
 
-#: admin/admin.php:565
-#: admin/admin.php:648
+#: admin/admin.php:657
+#: admin/admin.php:740
 msgid "Nested Accordions"
 msgstr ""
 
-#: admin/admin.php:566
-#: admin/admin.php:660
+#: admin/admin.php:658
+#: admin/admin.php:752
 msgid "Custom Icons"
 msgstr ""
 
-#: admin/admin.php:567
+#: admin/admin.php:659
 msgid "Animation Effects"
 msgstr ""
 
-#: admin/admin.php:569
+#: admin/admin.php:661
 msgid "Search & Filter"
 msgstr ""
 
-#: admin/admin.php:570
-#: admin/admin.php:1140
+#: admin/admin.php:662
+#: admin/admin.php:1232
 msgid "Priority Support"
 msgstr ""
 
-#: admin/admin.php:579
-#: admin/admin.php:594
+#: admin/admin.php:671
+#: admin/admin.php:686
 msgid "Available"
 msgstr ""
 
-#: admin/admin.php:585
+#: admin/admin.php:677
 msgid "Not available"
 msgstr ""
 
-#: admin/admin.php:641
+#: admin/admin.php:733
 msgid "Want to use Accordion in Elementor?"
 msgstr ""
 
-#: admin/admin.php:642
+#: admin/admin.php:734
 msgid "Try Spider Elements - our powerful Elementor addon with 20+ widgets including an advanced Accordion widget with all the features you love!"
 msgstr ""
 
-#: admin/admin.php:654
+#: admin/admin.php:746
 #: build/accordion-default/index.js:1
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
@@ -425,481 +435,479 @@ msgstr ""
 msgid "FAQ Schema"
 msgstr ""
 
-#: admin/admin.php:666
+#: admin/admin.php:758
 msgid "20+ Widgets"
 msgstr ""
 
-#: admin/admin.php:682
+#: admin/admin.php:774
 msgid "Install Spider Elements"
 msgstr ""
 
-#: admin/admin.php:686
-#: admin/admin.php:831
+#: admin/admin.php:778
+#: admin/admin.php:923
 msgid "Activate"
 msgstr ""
 
-#: admin/admin.php:690
-#: admin/admin.php:829
+#: admin/admin.php:782
+#: admin/admin.php:921
 msgid "Active"
 msgstr ""
 
-#: admin/admin.php:711
+#: admin/admin.php:803
 msgid "Pre-built Patterns"
 msgstr ""
 
-#: admin/admin.php:713
+#: admin/admin.php:805
 msgid "Browse Patterns"
 msgstr ""
 
-#: admin/admin.php:716
+#: admin/admin.php:808
 msgid "Get started instantly with 15+ professionally designed accordion patterns. Just insert and customize!"
 msgstr ""
 
-#: admin/admin.php:720
+#: admin/admin.php:812
 #: block-patterns/simple-accordion.php:12
 msgid "Simple Accordion"
 msgstr ""
 
-#: admin/admin.php:721
+#: admin/admin.php:813
 msgid "Minimal Border"
 msgstr ""
 
-#: admin/admin.php:723
+#: admin/admin.php:815
 msgid "Modern Q&A"
 msgstr ""
 
-#: admin/admin.php:725
+#: admin/admin.php:817
 msgid "Auto Numbering"
 msgstr ""
 
-#: admin/admin.php:742
+#: admin/admin.php:834
 msgid "Perfect For"
 msgstr ""
 
-#: admin/admin.php:748
+#: admin/admin.php:840
 msgid "Bloggers"
 msgstr ""
 
-#: admin/admin.php:748
+#: admin/admin.php:840
 msgid "Organize long-form content into scannable sections"
 msgstr ""
 
-#: admin/admin.php:749
+#: admin/admin.php:841
 msgid "E-commerce"
 msgstr ""
 
-#: admin/admin.php:749
+#: admin/admin.php:841
 msgid "Build product FAQs to reduce support inquiries"
 msgstr ""
 
-#: admin/admin.php:750
+#: admin/admin.php:842
 msgid "Service Providers"
 msgstr ""
 
-#: admin/admin.php:750
+#: admin/admin.php:842
 msgid "Create comprehensive FAQ sections for agencies"
 msgstr ""
 
-#: admin/admin.php:751
+#: admin/admin.php:843
 msgid "Education"
 msgstr ""
 
-#: admin/admin.php:751
+#: admin/admin.php:843
 msgid "Interactive step-by-step guides and courses"
 msgstr ""
 
-#: admin/admin.php:752
+#: admin/admin.php:844
 msgid "Corporate"
 msgstr ""
 
-#: admin/admin.php:752
+#: admin/admin.php:844
 msgid "Professional Q&A with advanced filtering"
 msgstr ""
 
-#: admin/admin.php:753
+#: admin/admin.php:845
 msgid "Expandable knowledge base articles"
 msgstr ""
 
-#: admin/admin.php:773
+#: admin/admin.php:865
 msgid "Quick Links"
 msgstr ""
 
-#: admin/admin.php:781
-#: admin/admin.php:1157
+#: admin/admin.php:873
+#: admin/admin.php:1249
 msgid "View Live Demos"
 msgstr ""
 
-#: admin/admin.php:794
+#: admin/admin.php:886
 msgid "Video Tutorials"
 msgstr ""
 
-#: admin/admin.php:802
+#: admin/admin.php:894
 msgid "Get Support"
 msgstr ""
 
-#: admin/admin.php:814
+#: admin/admin.php:906
 msgid "Extend Your Website"
 msgstr ""
 
-#: admin/admin.php:833
+#: admin/admin.php:925
 msgid "Install"
 msgstr ""
 
-#: admin/admin.php:849
+#: admin/admin.php:941
 msgid "VIP Priority Support"
 msgstr ""
 
-#: admin/admin.php:851
+#: admin/admin.php:943
 msgid "Faster and exclusive support service designed for VIP assistance and benefits."
 msgstr ""
 
-#: admin/admin.php:853
+#: admin/admin.php:945
 msgid "Know More"
 msgstr ""
 
-#: admin/admin.php:865
+#: admin/admin.php:957
 msgid "Join the Community"
 msgstr ""
 
-#: admin/admin.php:866
+#: admin/admin.php:958
 msgid "Got a question about the plugin, want to share your awesome project or just say hi? Join our wonderful community!"
 msgstr ""
 
-#: admin/admin.php:868
+#: admin/admin.php:960
 msgid "Join Now"
 msgstr ""
 
-#: admin/admin.php:880
+#: admin/admin.php:972
 msgid "Rate Us"
 msgstr ""
 
-#: admin/admin.php:882
+#: admin/admin.php:974
 msgid "5 out of 5 stars"
 msgstr ""
 
-#: admin/admin.php:890
+#: admin/admin.php:982
 msgid "We love to hear from you, we would appreciate every single review."
 msgstr ""
 
-#: admin/admin.php:892
+#: admin/admin.php:984
 msgid "Submit a Review"
 msgstr ""
 
-#: admin/admin.php:904
+#: admin/admin.php:996
 msgid "What's New"
 msgstr ""
 
-#: admin/admin.php:913
+#: admin/admin.php:1005
 msgid "New"
 msgstr ""
 
-#: admin/admin.php:914
+#: admin/admin.php:1006
 msgid "Modern dashboard design with enhanced UI/UX"
 msgstr ""
 
-#: admin/admin.php:917
+#: admin/admin.php:1009
 msgid "Improve"
 msgstr ""
 
-#: admin/admin.php:918
+#: admin/admin.php:1010
 msgid "Performance optimizations for faster loading"
 msgstr ""
 
-#: admin/admin.php:921
+#: admin/admin.php:1013
 msgid "Fix"
 msgstr ""
 
-#: admin/admin.php:922
+#: admin/admin.php:1014
 msgid "Minor bug fixes and stability improvements"
 msgstr ""
 
-#: admin/admin.php:926
+#: admin/admin.php:1018
 msgid "View Full Changelog"
 msgstr ""
 
-#: admin/admin.php:948
+#: admin/admin.php:1040
 msgid "Compare the features available in Lite and Pro versions. Upgrade to Pro to unlock all advanced features and priority support."
 msgstr ""
 
-#: admin/admin.php:954
+#: admin/admin.php:1046
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: admin/admin.php:968
+#: admin/admin.php:1060
 msgid "$0"
 msgstr ""
 
-#: admin/admin.php:973
+#: admin/admin.php:1065
 msgid "RECOMMENDED"
 msgstr ""
 
-#: admin/admin.php:975
+#: admin/admin.php:1067
 msgid "From $39/year"
 msgstr ""
 
-#: admin/admin.php:983
+#: admin/admin.php:1075
 msgid "Block Types"
 msgstr ""
 
-#: admin/admin.php:989
+#: admin/admin.php:1081
 msgid "Horizontal Accordion Block"
 msgstr ""
 
-#: admin/admin.php:990
+#: admin/admin.php:1082
 msgid "Accordion Toolbar Block"
 msgstr ""
 
-#: admin/admin.php:991
+#: admin/admin.php:1083
 msgid "Global Defaults Block"
 msgstr ""
 
-#: admin/admin.php:1000
+#: admin/admin.php:1092
 msgid "Core Features"
 msgstr ""
 
-#: admin/admin.php:1004
+#: admin/admin.php:1096
 msgid "Unlimited Accordions"
 msgstr ""
 
-#: admin/admin.php:1005
+#: admin/admin.php:1097
 msgid "Unlimited Nested Accordions"
 msgstr ""
 
-#: admin/admin.php:1006
+#: admin/admin.php:1098
 msgid "Fully Responsive Design"
 msgstr ""
 
-#: admin/admin.php:1007
+#: admin/admin.php:1099
 msgid "Keyboard Accessibility (WCAG)"
 msgstr ""
 
-#: admin/admin.php:1008
+#: admin/admin.php:1100
 msgid "Multiple Icon Styles (5 Pairs)"
 msgstr ""
 
-#: admin/admin.php:1009
+#: admin/admin.php:1101
 msgid "Custom Colors & Backgrounds"
 msgstr ""
 
-#: admin/admin.php:1010
+#: admin/admin.php:1102
 msgid "Border & Border Radius Controls"
 msgstr ""
 
-#: admin/admin.php:1011
+#: admin/admin.php:1103
 msgid "Margin & Padding Controls"
 msgstr ""
 
-#: admin/admin.php:1012
+#: admin/admin.php:1104
 msgid "Pre-built Patterns (15+)"
 msgstr ""
 
-#: admin/admin.php:1013
+#: admin/admin.php:1105
 msgid "Active on Page Load"
 msgstr ""
 
-#: admin/admin.php:1014
+#: admin/admin.php:1106
 msgid "Linked Accordions"
 msgstr ""
 
-#: admin/admin.php:1023
+#: admin/admin.php:1115
 msgid "Pro Features"
 msgstr ""
 
-#: admin/admin.php:1027
+#: admin/admin.php:1119
 msgid "Instant Search Bar"
 msgstr ""
 
-#: admin/admin.php:1028
+#: admin/admin.php:1120
 msgid "Voting Feedback System"
 msgstr ""
 
-#: admin/admin.php:1029
+#: admin/admin.php:1121
 msgid "Anchor Links / Deep Linking"
 msgstr ""
 
-#: admin/admin.php:1031
+#: admin/admin.php:1123
 msgid "Steps Layout with Progress"
 msgstr ""
 
-#: admin/admin.php:1033
+#: admin/admin.php:1125
 msgid "Autoplay Functionality"
 msgstr ""
 
-#: admin/admin.php:1034
+#: admin/admin.php:1126
 msgid "Open All / Close All Button"
 msgstr ""
 
-#: admin/admin.php:1037
+#: admin/admin.php:1129
 msgid "Show More Button (Load More)"
 msgstr ""
 
-#: admin/admin.php:1038
+#: admin/admin.php:1130
 msgid "Featured Icon/Image Support"
 msgstr ""
 
-#: admin/admin.php:1039
+#: admin/admin.php:1131
 msgid "Auto-Numbering with Colors"
 msgstr ""
 
-#: admin/admin.php:1040
-#: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:72
+#: admin/admin.php:1132
 msgid "Next/Previous Navigation"
 msgstr ""
 
-#: admin/admin.php:1042
+#: admin/admin.php:1134
 msgid "Custom Labels/Badges"
 msgstr ""
 
-#: admin/admin.php:1043
+#: admin/admin.php:1135
 msgid "Custom CSS Field"
 msgstr ""
 
-#: admin/admin.php:1044
+#: admin/admin.php:1136
 msgid "Hover Activation Event"
 msgstr ""
 
-#: admin/admin.php:1053
+#: admin/admin.php:1145
 msgid "SEO & Schema"
 msgstr ""
 
-#: admin/admin.php:1057
+#: admin/admin.php:1149
 msgid "FAQ Schema Markup (JSON-LD)"
 msgstr ""
 
-#: admin/admin.php:1058
+#: admin/admin.php:1150
 msgid "Google Rich Results Ready"
 msgstr ""
 
-#: admin/admin.php:1067
+#: admin/admin.php:1159
 msgid "Support & Updates"
 msgstr ""
 
-#: admin/admin.php:1071
+#: admin/admin.php:1163
 msgid "Community Support (WordPress.org)"
 msgstr ""
 
-#: admin/admin.php:1072
+#: admin/admin.php:1164
 msgid "Priority Email Support"
 msgstr ""
 
-#: admin/admin.php:1073
+#: admin/admin.php:1165
 msgid "Regular Updates & Bug Fixes"
 msgstr ""
 
-#: admin/admin.php:1074
+#: admin/admin.php:1166
 msgid "New Feature Updates"
 msgstr ""
 
-#: admin/admin.php:1085
+#: admin/admin.php:1177
 msgid "Current Plan"
 msgstr ""
 
-#: admin/admin.php:1101
+#: admin/admin.php:1193
 msgid "Why Upgrade to Pro?"
 msgstr ""
 
-#: admin/admin.php:1113
+#: admin/admin.php:1205
 msgid "Help users find specific FAQs quickly with a built-in search bar. Perfect for long FAQ lists."
 msgstr ""
 
-#: admin/admin.php:1121
+#: admin/admin.php:1213
 msgid "User Feedback"
 msgstr ""
 
-#: admin/admin.php:1122
+#: admin/admin.php:1214
 msgid "Add voting buttons to measure how helpful your FAQs are. Make data-driven improvements."
 msgstr ""
 
-#: admin/admin.php:1131
+#: admin/admin.php:1223
 msgid "FAQ Schema SEO"
 msgstr ""
 
-#: admin/admin.php:1132
+#: admin/admin.php:1224
 msgid "Automatic structured data markup for Google Rich Results. Rank higher in search."
 msgstr ""
 
-#: admin/admin.php:1141
+#: admin/admin.php:1233
 msgid "Get faster responses from our expert support team. Your questions answered within 24 hours."
 msgstr ""
 
-#: admin/admin.php:1150
+#: admin/admin.php:1242
 msgid "Ready to unlock all Pro features?"
 msgstr ""
 
-#: admin/admin.php:1151
+#: admin/admin.php:1243
 msgid "Join thousands of users who have upgraded to Pro. 30-day money-back guarantee."
 msgstr ""
 
-#: admin/admin.php:1154
+#: admin/admin.php:1246
 msgid "Upgrade to Pro Now"
 msgstr ""
 
-#: admin/admin.php:1172
+#: admin/admin.php:1264
 msgid "Close video"
 msgstr ""
 
-#: admin/admin.php:1178
+#: admin/admin.php:1270
 msgid "Quick Start Video Guide"
 msgstr ""
 
-#: admin/admin.php:1179
+#: admin/admin.php:1271
 msgid "Advanced Accordion Block Tutorial"
 msgstr ""
 
-#: admin/admin.php:1197
+#: admin/admin.php:1289
 msgid "EazyDocs"
 msgstr ""
 
-#: admin/admin.php:1198
+#: admin/admin.php:1290
 msgid "Knowledge Base & Documentation Plugin"
 msgstr ""
 
-#: admin/admin.php:1205
+#: admin/admin.php:1297
 msgid "Forumax"
 msgstr ""
 
-#: admin/admin.php:1206
+#: admin/admin.php:1298
 msgid "The ultimate WordPress forum enhancement plugin."
 msgstr ""
 
-#: admin/admin.php:1213
+#: admin/admin.php:1305
 msgid "Antimanual"
 msgstr ""
 
-#: admin/admin.php:1214
+#: admin/admin.php:1306
 msgid "AI Extension plugin for WordPress sites"
 msgstr ""
 
-#: admin/admin.php:1225
+#: admin/admin.php:1317
 msgid "Spider Elements"
 msgstr ""
 
-#: admin/admin.php:1226
+#: admin/admin.php:1318
 msgid "More widgets for Elementor"
 msgstr ""
 
-#: admin/admin.php:1421
+#: admin/admin.php:1513
 msgid "Title"
 msgstr ""
 
-#: admin/admin.php:1422
+#: admin/admin.php:1514
 msgid "Author"
 msgstr ""
 
-#: admin/admin.php:1423
+#: admin/admin.php:1515
 msgid "Block Name"
 msgstr ""
 
-#: admin/admin.php:1424
+#: admin/admin.php:1516
 msgid "Total Block Count"
 msgstr ""
 
-#: admin/admin.php:1425
+#: admin/admin.php:1517
 msgid "Post Type"
 msgstr ""
 
-#: admin/admin.php:1426
+#: admin/admin.php:1518
 msgid "Date"
 msgstr ""
 
@@ -1015,49 +1023,31 @@ msgid "Accordion Blocks"
 msgstr ""
 
 #: build/accordion-default/index.js:1
-#: build/accordion-item/index.js:1
-#: build/accordion/index.js:1
-#: build/group-accordion/index.js:1
 #: src/colors.js:4
 msgid "Black"
 msgstr ""
 
 #: build/accordion-default/index.js:1
-#: build/accordion-item/index.js:1
-#: build/accordion/index.js:1
-#: build/group-accordion/index.js:1
 #: src/colors.js:8
 msgid "White"
 msgstr ""
 
 #: build/accordion-default/index.js:1
-#: build/accordion-item/index.js:1
-#: build/accordion/index.js:1
-#: build/group-accordion/index.js:1
 #: src/colors.js:12
 msgid "Red"
 msgstr ""
 
 #: build/accordion-default/index.js:1
-#: build/accordion-item/index.js:1
-#: build/accordion/index.js:1
-#: build/group-accordion/index.js:1
 #: src/colors.js:16
 msgid "Green"
 msgstr ""
 
 #: build/accordion-default/index.js:1
-#: build/accordion-item/index.js:1
-#: build/accordion/index.js:1
-#: build/group-accordion/index.js:1
 #: src/colors.js:20
 msgid "Blue"
 msgstr ""
 
 #: build/accordion-default/index.js:1
-#: build/accordion-item/index.js:1
-#: build/accordion/index.js:1
-#: build/group-accordion/index.js:1
 #: src/colors.js:24
 msgid "Yellow"
 msgstr ""
@@ -1069,7 +1059,7 @@ msgstr ""
 #: src/accordion-item/editor/settings/accordion-icon.js:23
 #: src/accordion/editor/settings/accordion-icon.js:22
 #: src/accordion/editor/styles/accordion-icon.js:26
-#: src/group-accordion/editor/styles/accordion-icon.js:11
+#: src/group-accordion/editor/styles/accordion-icon.js:17
 msgid "Accordion Icon"
 msgstr ""
 
@@ -1079,7 +1069,6 @@ msgstr ""
 #: build/group-accordion/index.js:1
 #: src/accordion-item/editor/settings/labels-panel.js:41
 #: src/accordion/editor/styles/accordion-icon.js:33
-#: src/group-accordion/editor/styles/accordion-icon.js:22
 #: src/group-accordion/editor/styles/next-previous-style.js:19
 msgid "Color"
 msgstr ""
@@ -1091,9 +1080,8 @@ msgstr ""
 #: src/accordion/editor/styles/accordion-icon.js:63
 #: src/accordion/editor/styles/accordion.js:127
 #: src/accordion/editor/styles/accordion.js:139
-#: src/group-accordion/editor/styles/accordion.js:140
-#: src/group-accordion/editor/styles/accordion.js:152
-#: src/group-accordion/editor/styles/active-accordion.js:19
+#: src/group-accordion/editor/styles/accordion.js:131
+#: src/group-accordion/editor/styles/accordion.js:143
 msgid "Border"
 msgstr ""
 
@@ -1103,8 +1091,8 @@ msgstr ""
 #: src/accordion/editor/styles/accordion-icon.js:84
 #: src/accordion/editor/styles/accordion.js:153
 #: src/accordion/editor/styles/accordion.js:157
-#: src/group-accordion/editor/styles/accordion.js:166
-#: src/group-accordion/editor/styles/accordion.js:170
+#: src/group-accordion/editor/styles/accordion.js:157
+#: src/group-accordion/editor/styles/accordion.js:161
 msgid "Border Radius"
 msgstr ""
 
@@ -1136,7 +1124,7 @@ msgstr ""
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
 #: src/accordion/editor/styles/accordion.js:36
-#: src/group-accordion/editor/styles/accordion.js:50
+#: src/group-accordion/editor/styles/accordion.js:41
 msgid "Accordion Styles"
 msgstr ""
 
@@ -1144,7 +1132,7 @@ msgstr ""
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
 #: src/accordion/editor/styles/accordion.js:39
-#: src/group-accordion/editor/styles/accordion.js:53
+#: src/group-accordion/editor/styles/accordion.js:44
 msgid "Spacings"
 msgstr ""
 
@@ -1152,7 +1140,7 @@ msgstr ""
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
 #: src/accordion/editor/styles/accordion.js:60
-#: src/group-accordion/editor/styles/accordion.js:74
+#: src/group-accordion/editor/styles/accordion.js:65
 msgid "Margins"
 msgstr ""
 
@@ -1160,7 +1148,7 @@ msgstr ""
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
 #: src/accordion/editor/styles/accordion.js:72
-#: src/group-accordion/editor/styles/accordion.js:86
+#: src/group-accordion/editor/styles/accordion.js:77
 msgid "Accordion Margin"
 msgstr ""
 
@@ -1168,7 +1156,7 @@ msgstr ""
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
 #: src/accordion/editor/styles/accordion.js:92
-#: src/group-accordion/editor/styles/accordion.js:106
+#: src/group-accordion/editor/styles/accordion.js:97
 msgid "Padding"
 msgstr ""
 
@@ -1176,7 +1164,7 @@ msgstr ""
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
 #: src/accordion/editor/styles/accordion.js:104
-#: src/group-accordion/editor/styles/accordion.js:118
+#: src/group-accordion/editor/styles/accordion.js:109
 msgid "Content Padding"
 msgstr ""
 
@@ -1192,7 +1180,9 @@ msgstr ""
 
 #: build/accordion-default/index.js:1
 #: build/accordion/index.js:1
+#: build/group-accordion/index.js:1
 #: src/accordion/editor/styles/accordion-head.js:36
+#: src/group-accordion/editor/styles/active-accordion.js:19
 msgid "Active Header Color"
 msgstr ""
 
@@ -1330,7 +1320,7 @@ msgstr ""
 #: build/accordion/index.js:1
 #: src/accordion/deprecated-v5-2-2.js:186
 #: src/accordion/deprecated.js:103
-#: src/accordion/output/accordion-head.js:115
+#: src/accordion/output/accordion-head.js:105
 #: src/components/editor/settings/accordion-head.js:67
 msgid "Heading Icon"
 msgstr ""
@@ -1340,7 +1330,7 @@ msgstr ""
 #: build/group-accordion/index.js:1
 #: src/accordion-item/editor/settings/accordion-icon.js:27
 #: src/accordion/editor/settings/accordion-icon.js:26
-#: src/group-accordion/editor/styles/accordion-icon.js:15
+#: src/group-accordion/editor/styles/accordion-icon.js:21
 msgid "Show Icon"
 msgstr ""
 
@@ -1353,8 +1343,10 @@ msgstr ""
 
 #: build/accordion-item/index.js:1
 #: build/accordion/index.js:1
+#: build/group-accordion/index.js:1
 #: src/accordion-item/editor/settings/accordion-icon.js:42
 #: src/accordion/editor/settings/accordion-icon.js:42
+#: src/group-accordion/editor/styles/accordion-icon.js:35
 msgid "Icon Position"
 msgstr ""
 
@@ -1441,30 +1433,30 @@ msgstr ""
 msgid "Add Labels"
 msgstr ""
 
+#: build/accordion-toolbar/index.js:1
+#: src/accordion-toolbar/index.js:46
+msgid "Explore Advanced Accordion Block Patterns"
+msgstr ""
+
 #. Translators: Name of the pattern being inserted.
 #: build/accordion-toolbar/index.js:7
-#: src/accordion-toolbar/index.js:114
+#: src/accordion-toolbar/index.js:165
 #, js-format
 msgid "Block pattern \"%s\" inserted."
 msgstr ""
 
 #: build/accordion-toolbar/index.js:7
-#: src/accordion-toolbar/index.js:144
-msgid "Explore Advanced Accordion Block Patterns"
-msgstr ""
-
-#: build/accordion-toolbar/index.js:7
-#: src/accordion-toolbar/index.js:151
+#: src/accordion-toolbar/index.js:193
 msgid "Advanced Accordion Block Patterns"
 msgstr ""
 
 #: build/accordion-toolbar/index.js:7
-#: src/accordion-toolbar/index.js:152
+#: src/accordion-toolbar/index.js:194
 msgid "Close"
 msgstr ""
 
 #: build/accordion-toolbar/index.js:7
-#: src/accordion-toolbar/index.js:195
+#: src/accordion-toolbar/index.js:237
 msgid "Add Pattern"
 msgstr ""
 
@@ -1541,7 +1533,9 @@ msgid "Custom CSS"
 msgstr ""
 
 #: build/accordion/index.js:1
+#: build/group-accordion/index.js:1
 #: src/components/editor/settings/accessibility.js:12
+#: src/group-accordion/editor/settings/navigation-panel.js:62
 msgid "Accessibility"
 msgstr ""
 
@@ -1587,7 +1581,7 @@ msgstr ""
 
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/title-area-panel.js:26
-msgid "Heading Area"
+msgid "Item Labels & Links"
 msgstr ""
 
 #: build/group-accordion/index.js:1
@@ -1722,13 +1716,15 @@ msgstr ""
 
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/layouts-panel.js:123
-#: src/group-accordion/editor/settings/navigation-panel.js:86
+#: src/group-accordion/editor/settings/navigation-panel.js:109
+#: src/group-accordion/editor/styles/accordion-icon.js:9
 msgid "Left"
 msgstr ""
 
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/layouts-panel.js:124
-#: src/group-accordion/editor/settings/navigation-panel.js:87
+#: src/group-accordion/editor/settings/navigation-panel.js:110
+#: src/group-accordion/editor/styles/accordion-icon.js:8
 msgid "Right"
 msgstr ""
 
@@ -1738,32 +1734,37 @@ msgid "Note: For Horizontal Accordion layout, use the dedicated Horizontal Accor
 msgstr ""
 
 #: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/group-accordion-panel.js:27
+msgid "Open / Close All"
+msgstr ""
+
+#: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/group-accordion-panel.js:32
-msgid "Scroll to Active Accordion"
-msgstr ""
-
-#: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/group-accordion-panel.js:35
-msgid "Smoothly scroll the page to bring the active accordion into view."
-msgstr ""
-
-#: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/group-accordion-panel.js:38
 msgid "Open All & Close All"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/group-accordion-panel.js:42
+#: src/group-accordion/editor/settings/group-accordion-panel.js:36
 msgid "Show buttons to open or close all accordions at once."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/group-accordion-panel.js:66
+#: src/group-accordion/editor/settings/group-accordion-panel.js:42
+msgid "Show All Text"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/group-accordion-panel.js:48
+msgid "Close All Text"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/group-accordion-panel.js:49
 msgid "Enter text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/group-accordion-panel.js:81
+#: src/group-accordion/editor/settings/group-accordion-panel.js:54
 msgid "Open/Close Button Position"
 msgstr ""
 
@@ -1788,140 +1789,195 @@ msgid "Placeholder Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:61
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:56
 msgid "Enter placeholder text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:74
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:70
 msgid "Truncate content and show a read more button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:79
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:75
 msgid "Content Count"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:80
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:76
 msgid "Total Number of Characters you want to display on accordion body"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:88
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:84
 msgid "Read More Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:91
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:87
 msgid "Enter the text you want to display on Read more button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:98
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:94
 msgid "Show More Button"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:102
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:98
 msgid "Show a limited number of accordions with a button to reveal more."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:107
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:103
 msgid "Items Per Click"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:108
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:104
 msgid "How many items to show per click?"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:116
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:112
 msgid "Show More Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:119
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:115
 msgid "Enter the text you want to display on the Show more button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:122
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:118
 msgid "Show Less Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:125
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:121
 msgid "Enter the text you want to display on the Show less button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:128
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:124
 msgid "Button Color"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:138
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:134
 msgid "Note: Voting Feedback feature is coming soon."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:47
+#: src/group-accordion/editor/settings/navigation-panel.js:57
 msgid "Navigation"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:55
+#: src/group-accordion/editor/settings/navigation-panel.js:65
+msgid "Keyboard Navigation"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:68
 msgid "Enable keyboard navigation for better accessibility."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:76
-msgid "Show next and previous buttons for accordion navigation."
+#: src/group-accordion/editor/settings/navigation-panel.js:73
+msgid "Focus Outline Color"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:81
-msgid "Next/Previous Direction"
-msgstr ""
-
-#: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:88
-msgid "Top"
+#: src/group-accordion/editor/settings/navigation-panel.js:86
+msgid "Navigation Controls"
 msgstr ""
 
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/navigation-panel.js:89
+msgid "Scroll to Active Accordion"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:92
+msgid "Smoothly scroll the page to bring the active accordion into view."
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:95
+msgid "Next / Previous Buttons"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:99
+msgid "Show next and previous buttons for accordion navigation."
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:104
+msgid "Button Position"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:111
+msgid "Top"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:112
 msgid "Bottom"
 msgstr ""
 
 #: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:120
+msgid "Activation"
+msgstr ""
+
+#: build/group-accordion/index.js:1
 #: build/horizontal-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:97
+#: src/group-accordion/editor/settings/navigation-panel.js:123
 #: src/horizontal-accordion/editor/settings/activator-event.js:14
 #: src/horizontal-accordion/editor/settings/activator-event.js:20
 msgid "Activator Event"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:138
+#: src/group-accordion/editor/settings/navigation-panel.js:131
+msgid "Click"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:132
+msgid "Hover"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:133
+msgid "Auto Play"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:139
+msgid "Progress Bar"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/navigation-panel.js:144
 msgid "Duration (s)"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/navigation-panel.js:151
+#: src/group-accordion/editor/settings/navigation-panel.js:157
 msgid "Progress Bar Direction"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/styles/accordion.js:181
+#: src/group-accordion/editor/styles/accordion.js:172
 msgid "Autoplay Progress Bar Color"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/styles/accordion.js:192
+#: src/group-accordion/editor/styles/accordion.js:183
 msgid "Step progress Color"
 msgstr ""
 
@@ -1936,18 +1992,33 @@ msgid "Labels Color"
 msgstr ""
 
 #: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/accordion-icon.js:28
+msgid "Icon Type"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/accordion-icon.js:42
+msgid "Icon Color"
+msgstr ""
+
+#: build/group-accordion/index.js:1
 #: src/group-accordion/editor/styles/active-accordion.js:13
 msgid "Active Accordion Style"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/styles/active-accordion.js:30
-msgid "(This style will only be visible in the frontend only)"
+#: src/group-accordion/editor/styles/active-accordion.js:27
+msgid "Active Body Background"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/styles/active-accordion.js:33
-msgid "Active Background"
+#: src/group-accordion/editor/styles/active-accordion.js:35
+msgid "Active Border"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/active-accordion.js:46
+msgid "These styles are applied on the frontend only and will not preview in the editor."
 msgstr ""
 
 #: build/group-accordion/index.js:1
@@ -1978,6 +2049,46 @@ msgstr ""
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/styles/next-previous-style.js:15
 msgid "Next Previous"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/search-style.js:14
+msgid "Search Bar"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/search-style.js:17
+msgid "Input Color"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/search-style.js:25
+msgid "Border Color"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/search-style.js:33
+msgid "Placeholder Color"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/search-style.js:41
+msgid "Search Icon Color"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/open-close-all-style.js:15
+msgid "Open / Close All Buttons"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/open-close-all-style.js:18
+msgid "Open All Button"
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/styles/open-close-all-style.js:26
+msgid "Close All Button"
 msgstr ""
 
 #: build/accordion-default/block.json

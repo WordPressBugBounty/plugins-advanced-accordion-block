@@ -10,12 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/class-remote-notice-client.php';
 
-add_action( 'admin_init', function() {
-    if ( class_exists( 'Remote_Notice_Client' ) ) {
-        Remote_Notice_Client::init( 'AAB', [
+
+add_action( 'plugins_loaded', function() {
+    if ( class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
+        Noticepilot_Remote_Notice_Client::init( 'AAB', [
             'api_url'        => 'https://manage.spider-themes.net/wp-json/noticepilot/v1/content/aab',
             'plugin_version' => AAGB_VERSION,
-            'is_pro'         => aab_fs()->can_use_premium_code(),
+            'is_pro'         => aab_fs()->is_premium(),
         ]);
     }
 });
@@ -24,6 +25,97 @@ require_once plugin_dir_path(__FILE__) . 'documentation-builder.php';
 
 add_action('admin_menu', 'aab_plugin_admin_page');
 add_action('admin_enqueue_scripts', 'aab_admin_page_assets');
+add_action('admin_post_aab_create_page_with_pattern', 'aab_create_page_with_pattern_handler');
+
+/**
+ * Returns the nonced admin-post URL used by the "Create New Page" buttons.
+ * Clicking it creates a draft page seeded with the free Group Accordion pattern
+ * and redirects to the block editor.
+ */
+if (! function_exists('aab_get_create_page_with_pattern_url')) {
+    function aab_get_create_page_with_pattern_url(): string
+    {
+        return wp_nonce_url(
+            admin_url('admin-post.php?action=aab_create_page_with_pattern'),
+            'aab_create_page_with_pattern',
+            'aab_nonce'
+        );
+    }
+}
+
+/**
+ * Handler: create a draft page seeded with a free Group Accordion pattern, then
+ * redirect the user into the block editor for that new page.
+ */
+if (! function_exists('aab_create_page_with_pattern_handler')) {
+    function aab_create_page_with_pattern_handler(): void
+    {
+        // Capability gate.
+        if (! current_user_can('edit_pages') || ! current_user_can('publish_pages')) {
+            wp_die(
+                esc_html__('You do not have permission to create pages.', 'advanced-accordion-block'),
+                esc_html__('Unauthorized', 'advanced-accordion-block'),
+                ['response' => 403]
+            );
+        }
+
+        // Nonce verification.
+        check_admin_referer('aab_create_page_with_pattern', 'aab_nonce');
+
+        // Pull the registered free pattern content. Patterns are registered on `init`,
+        // which fires before admin-post handlers, so the registry is populated here.
+        $pattern_slug = 'advanced-accordion-block/pattern-simple-accordion';
+        $content      = '';
+
+        if (class_exists('WP_Block_Patterns_Registry')) {
+            $pattern = WP_Block_Patterns_Registry::get_instance()->get_registered($pattern_slug);
+            if (is_array($pattern) && ! empty($pattern['content'])) {
+                $content = $pattern['content'];
+            }
+        }
+
+        // Fallback: minimal Group Accordion block if the pattern is unavailable for any reason.
+        if ('' === $content) {
+            $content = '<!-- wp:aab/group-accordion -->' . "\n"
+                . '<div class="wp-block-aab-group-accordion"></div>' . "\n"
+                . '<!-- /wp:aab/group-accordion -->';
+        }
+
+        // The pattern markup includes <style> tags which kses would strip for users
+        // without `unfiltered_html`. Temporarily disable kses around the insert so the
+        // pattern is stored exactly as registered.
+        $had_kses = has_filter('content_save_pre', 'wp_filter_post_kses');
+        if ($had_kses) {
+            kses_remove_filters();
+        }
+
+        $page_id = wp_insert_post([
+            'post_title'   => __('Advanced Accordion Page', 'advanced-accordion-block'),
+            'post_type'    => 'page',
+            'post_status'  => 'draft',
+            'post_content' => $content,
+            'post_author'  => get_current_user_id(),
+        ], true);
+
+        if ($had_kses) {
+            kses_init_filters();
+        }
+
+        if (is_wp_error($page_id) || ! $page_id) {
+            wp_safe_redirect(add_query_arg(
+                [
+                    'page'       => 'aab-settings',
+                    'aab_notice' => 'create_failed',
+                ],
+                admin_url('admin.php')
+            ));
+            exit;
+        }
+
+        wp_safe_redirect(admin_url('post.php?post=' . absint($page_id) . '&action=edit'));
+        exit;
+    }
+}
 
 add_action('admin_head', function () {
     if (aab_admin_pages()) {
@@ -261,7 +353,7 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                                     <?php esc_html_e('Advanced Accordion is a powerful Gutenberg block that lets you create beautiful, fully customizable accordions and FAQ sections. Built with native WordPress components for optimal performance.', 'advanced-accordion-block'); ?>
                                                 </p>
                                                 <div class="aab-hero-actions">
-                                                    <a href="<?php echo esc_url(admin_url('post-new.php?post_type=page')); ?>" class="aab-btn aab-btn-primary">
+                                                    <a href="<?php echo esc_url(aab_get_create_page_with_pattern_url()); ?>" class="aab-btn aab-btn-primary">
                                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                                                             <line x1="12" y1="8" x2="12" y2="16" />
@@ -302,7 +394,7 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                 <section class="aab-card aab-animate-fade-in aab-animate-delay-1" aria-labelledby="aab-blocks-title">
                                     <div class="aab-card-header">
                                         <h2 id="aab-blocks-title" class="aab-card-title"><?php esc_html_e('Available Blocks', 'advanced-accordion-block'); ?></h2>
-                                        <a href="<?php echo esc_url(admin_url('post-new.php?post_type=page')); ?>" class="aab-card-action"><?php esc_html_e('Create New Page', 'advanced-accordion-block'); ?></a>
+                                        <a href="<?php echo esc_url(aab_get_create_page_with_pattern_url()); ?>" class="aab-card-action"><?php esc_html_e('Create New Page', 'advanced-accordion-block'); ?></a>
                                     </div>
                                     <div class="aab-card-body">
                                         <div class="aab-blocks-grid">

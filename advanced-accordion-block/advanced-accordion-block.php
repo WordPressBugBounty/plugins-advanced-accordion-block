@@ -5,7 +5,7 @@
  * Description: <strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
  * Requires at least: 5.7
  * Requires PHP: 7.4
- * Version: 5.3.1
+ * Version: 5.4.0
  * Plugin URI: https://advanced-accordion-block.spider-themes.net
  * Author: Spider Themes
  * Author URI: https://spider-themes.net
@@ -14,6 +14,7 @@
  * Text Domain: advanced-accordion-block
  *
  * @package         @wordpress/create-block
+ *
  */
 // Stop Direct Access
 if ( !defined( 'ABSPATH' ) ) {
@@ -24,9 +25,6 @@ if ( function_exists( 'aab_fs' ) ) {
 } else {
     // DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
     if ( !function_exists( 'aab_fs' ) ) {
-        /**
-         * Create a helper function for easy SDK access.
-         */
         function aab_fs() {
             global $aab_fs;
             if ( !isset( $aab_fs ) ) {
@@ -35,8 +33,8 @@ if ( function_exists( 'aab_fs' ) ) {
                     define( 'WP_FS__PRODUCT_11041_MULTISITE', true );
                 }
                 // Include Freemius SDK.
-                require_once __DIR__ . '/vendor/freemius/wordpress-sdk/start.php';
-                $aab_fs = fs_dynamic_init( [
+                require_once dirname( __FILE__ ) . '/vendor/freemius/wordpress-sdk/start.php';
+                $aab_fs = fs_dynamic_init( array(
                     'id'               => '11041',
                     'slug'             => 'advanced-accordion-block',
                     'premium_slug'     => 'advanced-accordion-block-pro',
@@ -48,18 +46,18 @@ if ( function_exists( 'aab_fs' ) ) {
                     'has_addons'       => false,
                     'has_paid_plans'   => true,
                     'is_org_compliant' => true,
-                    'trial'            => [
+                    'trial'            => array(
                         'days'               => 14,
                         'is_require_payment' => true,
-                    ],
-                    'menu'             => [
+                    ),
+                    'menu'             => array(
                         'slug'       => 'aab-settings',
                         'first-path' => 'admin.php?page=aab-settings',
                         'contact'    => false,
                         'support'    => false,
-                    ],
+                    ),
                     'is_live'          => true,
-                ] );
+                ) );
             }
             return $aab_fs;
         }
@@ -70,38 +68,20 @@ if ( function_exists( 'aab_fs' ) ) {
         do_action( 'aab_fs_loaded' );
     }
 }
+/**
+ * Class AAGB_BLOCKS_CLASS
+ *
+ * This class is responsible for initializing the Advanced Accordion Block plugin, including defining constants,
+ * including necessary files, registering blocks and block categories, and enqueuing assets for both the frontend and block editor.
+ */
 if ( !class_exists( 'AAGB_BLOCKS_CLASS' ) ) {
-    /**
-     * Class AAGB_BLOCKS_CLASS
-     *
-     * This class is responsible for initializing the Advanced Accordion Block plugin, including defining constants,
-     * including necessary files, registering blocks and block categories, and enqueuing assets for both the frontend and block editor.
-     */
     final class AAGB_BLOCKS_CLASS {
-        /**
-         * Block Register instance.
-         *
-         * @var AAB_Block_Register
-         */
         private $block_register;
 
-        /**
-         * Category Register instance.
-         *
-         * @var AAB_Block_Category_Register
-         */
         private $category_register;
 
-        /**
-         * Enqueue Assets instance.
-         *
-         * @var AAB_Enqueue_Block_Assets
-         */
         private $enqueue_assets;
 
-        /**
-         * Constructor.
-         */
         public function __construct() {
             // define constants
             $this->define_constants();
@@ -152,7 +132,7 @@ if ( !class_exists( 'AAGB_BLOCKS_CLASS' ) ) {
          * Define the plugin constants
          */
         private function define_constants() {
-            define( 'AAGB_VERSION', '5.3.1' );
+            define( 'AAGB_VERSION', '5.4.0' );
             define( 'AAGB_URL', plugin_dir_url( __FILE__ ) );
             define( 'AAGB_ASSETS', AAGB_URL . 'assets/' );
             define( 'AAGB_PLUGIN_FILE', __FILE__ );
@@ -174,11 +154,11 @@ if ( !class_exists( 'AAGB_BLOCKS_CLASS' ) ) {
         /**
          * Redirecting on activating the plugin
          *
-         * @param string $plugin Plugin basename.
+         * @param $plugin
          *
          * @return void
          */
-        public function user_redirecting( $plugin ) {
+        function user_redirecting( $plugin ) {
             if ( plugin_basename( __FILE__ ) === $plugin ) {
                 wp_redirect( admin_url( 'admin.php?page=aab-settings' ) );
                 die;
@@ -195,9 +175,9 @@ AAGB_BLOCKS_CLASS::init();
 // external admin support file
 require_once plugin_dir_path( __FILE__ ) . 'admin/admin.php';
 add_action( 'rest_api_init', function () {
-    register_setting( 'general', 'aab_settings_defaults', [
+    register_setting( 'general', 'aab_settings_defaults', array(
         'show_in_rest' => true,
         'type'         => 'string',
         'default'      => '',
-    ] );
+    ) );
 } );

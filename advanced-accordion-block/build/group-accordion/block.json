@@ -58,7 +58,9 @@
     "aagb/accordion-autoNumbering": "autoNumbering",
     "aagb/accordion-autoNumberingColor": "autoNumberingColor",
     "aagb/accordion-progressBarOn": "progressBarOn",
-    "aagb/accordion-nextPrevious": "nextPrevious"
+    "aagb/accordion-nextPrevious": "nextPrevious",
+    "aagb/accordion-iconClass": "iconClass",
+    "aagb/accordion-iconPosition": "iconPosition"
   },
   "attributes": {
     "autoPlay": {
@@ -338,11 +340,11 @@
     },
     "stepProgressActiveColor": {
       "type": "string",
-      "default": "#dfd2d2"
+      "default": "#1570ec"
     },
     "stepProgressBgColor": {
       "type": "string",
-      "default": "#1570ec"
+      "default": "#dfd2d2"
     },
     "featureImgDirection": {
       "type": "string",
@@ -375,6 +377,41 @@
     "scrollToActive": {
       "type": "boolean",
       "default": false
+    },
+    "iconClass": {
+      "type": "string",
+      "default": "plus-alt2"
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "aab_right_icon"
+    },
+    "searchInputColor": {
+      "type": "string"
+    },
+    "searchInputBg": {
+      "type": "string"
+    },
+    "searchBorderColor": {
+      "type": "string"
+    },
+    "searchPlaceholderColor": {
+      "type": "string"
+    },
+    "searchIconColor": {
+      "type": "string"
+    },
+    "openAllBtnColor": {
+      "type": "string"
+    },
+    "openAllBtnBg": {
+      "type": "string"
+    },
+    "closeAllBtnColor": {
+      "type": "string"
+    },
+    "closeAllBtnBg": {
+      "type": "string"
     }
   },
   "styles": [

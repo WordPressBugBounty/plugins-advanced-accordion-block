@@ -33,55 +33,34 @@ class AAB_Block_Register {
 	 * Registers all the blocks for the plugin.
 	 */
 	public function blocks_init() {
-		$this->register_block(
-			'accordion',
-			[
-				'render_callback' => [ $this, 'render_separate_accordion' ],
-			]
-		);
-		$this->register_block(
-			'group-accordion',
-			[
-				'render_callback' => [ $this, 'render_group_accordion' ],
-			]
-		);
-		$this->register_block(
-			'accordion-item',
-			[
-				'render_callback' => [ $this, 'render_group_accordion_item' ],
-			]
-		);
-		$this->register_block(
-			'accordion-toolbar',
-			[
-				'render_callback' => [ $this, 'render_accordion_toolbar' ],
-			]
-		);
-		$this->register_block(
-			'accordion-default',
-			[
-				'render_callback' => [ $this, 'render_accordion_default' ],
-			]
-		);
-		$this->register_block(
-			'horizontal-accordion',
-			[
-				'render_callback' => [ $this, 'render_horizontal_accordion' ],
-			]
-		);
-		$this->register_block(
-			'horizontal-accordion-item',
-			[
-				'render_callback' => [ $this, 'render_horizontal_accordion_item' ],
-			]
-		);
+		$this->register_block( 'accordion', [
+			'render_callback' => [ $this, 'render_separate_accordion' ],
+		] );
+		$this->register_block( 'group-accordion', [
+			'render_callback' => [ $this, 'render_group_accordion' ],
+		] );
+		$this->register_block( 'accordion-item', [
+			'render_callback' => [ $this, 'render_group_accordion_item' ],
+		] );
+		$this->register_block( 'accordion-toolbar', [
+			'render_callback' => [ $this, 'render_accordion_toolbar' ],
+		] );
+		$this->register_block( 'accordion-default', [
+			'render_callback' => [ $this, 'render_accordion_default' ],
+		] );
+		$this->register_block( 'horizontal-accordion', [
+			'render_callback' => [ $this, 'render_horizontal_accordion' ],
+		] );
+		$this->register_block( 'horizontal-accordion-item', [
+			'render_callback' => [ $this, 'render_horizontal_accordion_item' ],
+		] );
 	}
 
 	/**
 	 * Sanitize CSS values to prevent injection
 	 *
-	 * @param string $value Input value.
-	 * @return string Sanitized value.
+	 * @param string $value
+	 * @return string
 	 */
 	private function sanitize_css_value( $value ) {
 		// Strip tags and remove characters that could break out of CSS context
@@ -296,13 +275,26 @@ class AAB_Block_Register {
 		}
 
 		// -----------------
+		// Active Header Color
+		// -----------------
+		$active_heading_color = isset( $attributes['activeHeadingColor'] ) ? $this->sanitize_css_value( $attributes['activeHeadingColor'] ) : '';
+		$active_header_bg     = isset( $attributes['activeHeaderBg'] ) ? $this->sanitize_css_value( $attributes['activeHeaderBg'] ) : '';
+
+		if ( $active_heading_color ) {
+			$css_rules[] = $base . ' .aagb__accordion_container.aagb__accordion_active .aagb__accordion_title { color: ' . $active_heading_color . ' !important; }';
+		}
+		if ( $active_header_bg ) {
+			$css_rules[] = $base . ' .aagb__accordion_container.aagb__accordion_active .aagb__accordion_head { background-color: ' . $active_header_bg . ' !important; }';
+		}
+
+		// -----------------
 		// Header Styles
 		// -----------------
 		$header_bg = $get_attr( 'headerBg' );
 		$paddings  = $get_attr( 'paddings' );
 
 		// Calculate header background (transparent for QA style if default)
-		if ( $qa_style && $header_bg && '#e3dfdf38' === strtolower( $header_bg ) ) {
+		if ( $qa_style && $header_bg && strtolower( $header_bg ) === '#e3dfdf38' ) {
 			$header_bg = 'transparent';
 		}
 
@@ -322,7 +314,7 @@ class AAB_Block_Register {
 		}
 
 		$heading_border = $get_attr( 'headingBorder' );
-		if ( is_array( $heading_border ) && ! empty( $heading_border['width'] ) && '0px' !== $heading_border['width'] ) {
+		if ( is_array( $heading_border ) && ! empty( $heading_border['width'] ) && $heading_border['width'] !== '0px' ) {
 			$head_styles[] = 'border: ' . $this->sanitize_css_value( $heading_border['width'] ?? '' ) . ' '
 				. $this->sanitize_css_value( $heading_border['style'] ?? 'solid' ) . ' '
 				. $this->sanitize_css_value( $heading_border['color'] ?? '' );
@@ -576,6 +568,70 @@ class AAB_Block_Register {
 		}
 
 		// -----------------
+		// Search Bar Styles
+		// -----------------
+		$search_input_color  = isset( $attributes['searchInputColor'] ) ? $this->sanitize_css_value( $attributes['searchInputColor'] ) : '';
+		$search_input_bg     = isset( $attributes['searchInputBg'] ) ? $this->sanitize_css_value( $attributes['searchInputBg'] ) : '';
+		$search_border_color = isset( $attributes['searchBorderColor'] ) ? $this->sanitize_css_value( $attributes['searchBorderColor'] ) : '';
+		$search_placeholder_color = isset( $attributes['searchPlaceholderColor'] ) ? $this->sanitize_css_value( $attributes['searchPlaceholderColor'] ) : '';
+		$search_icon_color = isset( $attributes['searchIconColor'] ) ? $this->sanitize_css_value( $attributes['searchIconColor'] ) : '';
+
+		if ( $search_input_color || $search_input_bg || $search_border_color ) {
+			$search_styles = [];
+			if ( $search_input_color ) {
+				$search_styles[] = 'color: ' . $search_input_color . ' !important';
+			}
+			if ( $search_input_bg ) {
+				$search_styles[] = 'background-color: ' . $search_input_bg . ' !important';
+			}
+			if ( $search_border_color ) {
+				$search_styles[] = 'border-color: ' . $search_border_color . ' !important';
+				$search_styles[] = 'border-style: solid';
+				$search_styles[] = 'border-width: 1px';
+			}
+			$css_rules[] = $base . ' .aagb_form_inner .aagb_form_group .aagb-search-control { ' . implode( '; ', $search_styles ) . '; }';
+		}
+
+		if ( $search_placeholder_color ) {
+			$css_rules[] = $base . ' .aagb_form_inner .aagb_form_group .aagb-search-control::placeholder { color: ' . $search_placeholder_color . ' !important; }';
+			$css_rules[] = $base . ' .aagb_form_inner .aagb_form_group .aagb-search-control::-moz-placeholder { color: ' . $search_placeholder_color . ' !important; }';
+		}
+
+		if ( $search_icon_color ) {
+			$css_rules[] = $base . ' .aagb_form_inner .aagb_form_group:before { color: ' . $search_icon_color . ' !important; }';
+		}
+
+		// -----------------
+		// Open / Close All Button Styles
+		// -----------------
+		$open_all_btn_color  = isset( $attributes['openAllBtnColor'] ) ? $this->sanitize_css_value( $attributes['openAllBtnColor'] ) : '';
+		$open_all_btn_bg     = isset( $attributes['openAllBtnBg'] ) ? $this->sanitize_css_value( $attributes['openAllBtnBg'] ) : '';
+		$close_all_btn_color = isset( $attributes['closeAllBtnColor'] ) ? $this->sanitize_css_value( $attributes['closeAllBtnColor'] ) : '';
+		$close_all_btn_bg    = isset( $attributes['closeAllBtnBg'] ) ? $this->sanitize_css_value( $attributes['closeAllBtnBg'] ) : '';
+
+		if ( $open_all_btn_color || $open_all_btn_bg ) {
+			$open_styles = [];
+			if ( $open_all_btn_color ) {
+				$open_styles[] = 'color: ' . $open_all_btn_color . ' !important';
+			}
+			if ( $open_all_btn_bg ) {
+				$open_styles[] = 'background-color: ' . $open_all_btn_bg . ' !important';
+			}
+			$css_rules[] = $base . ' .aagb_accordion_wrapper_btn .content-accordion__show-all { ' . implode( '; ', $open_styles ) . '; }';
+		}
+
+		if ( $close_all_btn_color || $close_all_btn_bg ) {
+			$close_styles = [];
+			if ( $close_all_btn_color ) {
+				$close_styles[] = 'color: ' . $close_all_btn_color . ' !important';
+			}
+			if ( $close_all_btn_bg ) {
+				$close_styles[] = 'background-color: ' . $close_all_btn_bg . ' !important';
+			}
+			$css_rules[] = $base . ' .aagb_accordion_wrapper_btn .content-accordion__close-all { ' . implode( '; ', $close_styles ) . '; }';
+		}
+
+		// -----------------
 		// Anchor Links Color
 		// -----------------
 		$step = ! empty( $attributes['step'] );
@@ -663,7 +719,7 @@ class AAB_Block_Register {
 		return implode( '; ', $result );
 	}
 
-	/**
+	/** 
 	 * Horizontal accordion render callback.
 	 *
 	 * @param array  $attributes Block attributes.

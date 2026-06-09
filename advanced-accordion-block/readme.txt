@@ -2,8 +2,8 @@
 Contributors: spiderdevs, mdjwel , muaz404, freemius
 Tags: accordion, FAQ, Gutenberg block, accordion block, FAQs
 Requires at least: 5.0
-Tested up to: 6.9.4
-Stable tag: 5.3.1
+Tested up to: 7.0
+Stable tag: 5.4.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -248,14 +248,19 @@ Major feature release with Show More button, Labels support, and significant UI 
 
 == Changelog ==
 
-= 5.3.1 (06 May 2026) =
-Fixed: Stabilized the RichText toolbar to prevent formatting loss and premature popup closing in the editor.
-Updated: Remote Notice SDK for improved reliability.
-Updated: Security improvements and codebase optimization for overall plugin stability and performance.
 
-= 5.3.0 (24 March 2026) =
-New: Copy/Paste Styles – Easily transfer design configurations between Accordion blocks in the editor without manually recreating them.
-New: AI FAQ Generator Card – Added a quick access card to the admin dashboard for creating AI-powered FAQs instantly.
+= 5.4.0 (09 June 2026) =
+Updated: Group Accordion Editor Layout – Reorganized key settings sections for faster setup and clearer styling flow.
+Improved: Active State Styling – Expanded active header, body, and border controls for more predictable design results.
+Improved: Admin Workflow Security – Strengthened validation checks during page-creation actions in the admin area.
+Improved: Refactored accordion block classes and added deprecated save handlers for smoother block migrations and legacy content support.
+Optimized: Dynamic Style Output – Improved generated frontend styles for more consistent search and button rendering.
+Fixed: Icon Placement Controls – Resolved icon position inconsistencies in group accordion title areas.
+Fixed: Resolved editor crash when adding or deleting accordion patterns.
+Fixed: Added support for deprecated title identifiers in accordion items to ensure backward compatibility.
+
+
+
 
 = 5.2.3 (03 February 2026) =
 Added: backward-compatible deprecations for Group Accordion and Accordion Item to ensure smooth upgrades.
