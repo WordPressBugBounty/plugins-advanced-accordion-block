@@ -111,7 +111,7 @@
                             .slideDown();
 
                         // Update button
-                        $button.html('✓ Plugin Activated - Redirecting...');
+                        $button.html('<span class="dashicons dashicons-yes" aria-hidden="true"></span> Plugin Activated - Redirecting...');
 
                         // Redirect to EazyDocs after short delay
                         setTimeout(function () {
@@ -245,7 +245,7 @@
                             .slideDown();
 
                         // Update button
-                        $button.html('✓ Plugin Activated - Redirecting...');
+                        $button.html('<span class="dashicons dashicons-yes" aria-hidden="true"></span> Plugin Activated - Redirecting...');
 
                         // Redirect to EazyDocs after short delay
                         setTimeout(function () {

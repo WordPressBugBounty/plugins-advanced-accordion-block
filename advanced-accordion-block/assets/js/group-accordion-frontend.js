@@ -153,10 +153,31 @@
             $(this).children().not(paragraph).not('.aagb_overlay').fadeOut();
             $(this).siblings(".aagb_button_toggle").click(function (e) {
                 e.preventDefault();
-                paragraph.text(fullText).slideDown("slow");
-                $(this).closest(".aagb__accordion_body").find(".aagb__accordion_component").children().not(paragraph).not('.aagb_overlay').fadeIn();
-                $(this).fadeOut("slow");
-                $(this).closest(".aagb__accordion_body").find(".aagb_overlay").fadeOut().removeClass("aagb_overlay");
+                const $btn = $(this);
+                const $body = $btn.closest(".aagb__accordion_body");
+                const $component = $body.find(".aagb__accordion_component");
+                const $overlay = $body.find(".aagb_overlay");
+
+                // Current (collapsed) height of the content area.
+                const startHeight = $component.height();
+
+                // Restore the full text and reveal every hidden block instantly
+                // (no per-element animation) so we can measure the final height.
+                paragraph.text(fullText);
+                $component.children().not('.aagb_overlay').show();
+                const endHeight = $component.height();
+
+                // Animate the whole content area from collapsed to full height as a
+                // single smooth reveal, so all the content grows together.
+                $component
+                    .css({ height: startHeight, overflow: "hidden" })
+                    .animate({ height: endHeight }, "slow", function () {
+                        $component.css({ height: "", overflow: "" });
+                    });
+
+                // Fade the button and overlay out at the same time as the reveal.
+                $btn.fadeOut("slow");
+                $overlay.fadeOut("slow").removeClass("aagb_overlay");
             });
         } else {
             $(this).siblings(".aagb_button_toggle").remove();

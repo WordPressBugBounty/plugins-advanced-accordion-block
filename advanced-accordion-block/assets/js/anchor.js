@@ -30,7 +30,7 @@
          * @param {Object} opts - Options object
          */
         function _applyRemainingDefaultOptions(opts) {
-            opts.icon = opts.hasOwnProperty('icon') ? opts.icon : '\ue9cb'; // Accepts characters (and also URLs?), like  '#', '¶', '❡', or '§'.
+            opts.icon = opts.hasOwnProperty('icon') ? opts.icon : '\ue9cb'; // Accepts characters (and also URLs?), like  '#', '¶', or '§'.
             opts.visible = opts.hasOwnProperty('visible') ? opts.visible : 'hover'; // Also accepts 'always' & 'touch'
             opts.placement = opts.hasOwnProperty('placement') ? opts.placement : 'right'; // Also accepts 'left'
             opts.ariaLabel = opts.hasOwnProperty('ariaLabel') ? opts.ariaLabel : 'Anchor'; // Accepts any text.
@@ -240,14 +240,14 @@
             }
 
             // Note: we trim hyphens after truncating because truncating can cause dangling hyphens.
-            // Example string:                      // " ⚡⚡ Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
-            urlText = text.trim()                   // "⚡⚡ Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
-                .replace(/\'/gi, '')                  // "⚡⚡ Dont forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
-                .replace(nonsafeChars, '-')           // "⚡⚡-Dont-forget--URL-fragments-should-be-i18n-friendly--hyphenated--short--and-clean-"
-                .replace(/-{2,}/g, '-')               // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-short-and-clean-"
-                .substring(0, this.options.truncate)  // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-"
-                .replace(/^-+|-+$/gm, '')             // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated"
-                .toLowerCase();                       // "⚡⚡-dont-forget-url-fragments-should-be-i18n-friendly-hyphenated"
+            // Example string:                      // " Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
+            urlText = text.trim()                   // "Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
+                .replace(/\'/gi, '')                  // "Dont forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
+                .replace(nonsafeChars, '-')           // "Dont-forget--URL-fragments-should-be-i18n-friendly--hyphenated--short--and-clean-"
+                .replace(/-{2,}/g, '-')               // "Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-short-and-clean-"
+                .substring(0, this.options.truncate)  // "Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-"
+                .replace(/^-+|-+$/gm, '')             // "Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated"
+                .toLowerCase();                       // "dont-forget-url-fragments-should-be-i18n-friendly-hyphenated"
 
             return urlText;
         };

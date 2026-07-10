@@ -837,18 +837,18 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                         <div class="aab-usecases-grid">
                                             <?php
                                             $usecases = [
-                                                ['icon' => '📰', 'title' => __('Bloggers', 'advanced-accordion-block'), 'desc' => __('Organize long-form content into scannable sections', 'advanced-accordion-block')],
-                                                ['icon' => '🛍️', 'title' => __('E-commerce', 'advanced-accordion-block'), 'desc' => __('Build product FAQs to reduce support inquiries', 'advanced-accordion-block')],
-                                                ['icon' => '📚', 'title' => __('Service Providers', 'advanced-accordion-block'), 'desc' => __('Create comprehensive FAQ sections for agencies', 'advanced-accordion-block')],
-                                                ['icon' => '🎓', 'title' => __('Education', 'advanced-accordion-block'), 'desc' => __('Interactive step-by-step guides and courses', 'advanced-accordion-block')],
-                                                ['icon' => '🏢', 'title' => __('Corporate', 'advanced-accordion-block'), 'desc' => __('Professional Q&A with advanced filtering', 'advanced-accordion-block')],
-                                                ['icon' => '📋', 'title' => __('Documentation', 'advanced-accordion-block'), 'desc' => __('Expandable knowledge base articles', 'advanced-accordion-block')],
+                                                ['icon' => 'dashicons-welcome-write-blog', 'title' => __('Bloggers', 'advanced-accordion-block'), 'desc' => __('Organize long-form content into scannable sections', 'advanced-accordion-block')],
+                                                ['icon' => 'dashicons-cart', 'title' => __('E-commerce', 'advanced-accordion-block'), 'desc' => __('Build product FAQs to reduce support inquiries', 'advanced-accordion-block')],
+                                                ['icon' => 'dashicons-groups', 'title' => __('Service Providers', 'advanced-accordion-block'), 'desc' => __('Create comprehensive FAQ sections for agencies', 'advanced-accordion-block')],
+                                                ['icon' => 'dashicons-welcome-learn-more', 'title' => __('Education', 'advanced-accordion-block'), 'desc' => __('Interactive step-by-step guides and courses', 'advanced-accordion-block')],
+                                                ['icon' => 'dashicons-building', 'title' => __('Corporate', 'advanced-accordion-block'), 'desc' => __('Professional Q&A with advanced filtering', 'advanced-accordion-block')],
+                                                ['icon' => 'dashicons-media-document', 'title' => __('Documentation', 'advanced-accordion-block'), 'desc' => __('Expandable knowledge base articles', 'advanced-accordion-block')],
                                             ];
 
                                             foreach ($usecases as $usecase) :
                                             ?>
                                                 <div class="aab-usecase-item">
-                                                    <span class="aab-usecase-icon"><?php echo $usecase['icon']; ?></span>
+                                                    <span class="aab-usecase-icon dashicons <?php echo esc_attr($usecase['icon']); ?>" aria-hidden="true"></span>
                                                     <div class="aab-usecase-content">
                                                         <h4 class="aab-usecase-title"><?php echo esc_html($usecase['title']); ?></h4>
                                                         <p class="aab-usecase-desc"><?php echo esc_html($usecase['desc']); ?></p>

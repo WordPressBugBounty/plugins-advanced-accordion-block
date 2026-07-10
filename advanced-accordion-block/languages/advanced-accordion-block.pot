@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Accordion Block 5.4.0\n"
+"Project-Id-Version: Advanced Accordion Block 5.4.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/advanced-accordion-block\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-09T14:50:43+00:00\n"
+"POT-Creation-Date: 2026-07-10T09:15:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: advanced-accordion-block\n"
@@ -216,7 +216,7 @@ msgstr ""
 #: admin/admin.php:534
 #: admin/admin.php:1204
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:46
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:34
 msgid "Instant Search"
 msgstr ""
 
@@ -252,7 +252,7 @@ msgstr ""
 #: admin/admin.php:541
 #: admin/admin.php:1127
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:66
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:54
 msgid "Read More Button"
 msgstr ""
 
@@ -431,7 +431,8 @@ msgstr ""
 #: build/group-accordion/index.js:1
 #: src/accordion-default/index.js:169
 #: src/accordion/editor/settings/faq-schema.js:12
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:38
+#: src/group-accordion/editor/settings/faq-schema.js:12
+#: src/group-accordion/editor/settings/faq-schema.js:16
 msgid "FAQ Schema"
 msgstr ""
 
@@ -1769,103 +1770,103 @@ msgid "Open/Close Button Position"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:32
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:28
 msgid "Dynamic Features"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:41
-msgid "Enable FAQ structured data for better SEO."
-msgstr ""
-
-#: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:50
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:38
 msgid "Allow users to search through accordion content."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:55
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:43
 msgid "Placeholder Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:56
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:44
 msgid "Enter placeholder text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:70
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:58
 msgid "Truncate content and show a read more button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:75
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:63
 msgid "Content Count"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:76
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:64
 msgid "Total Number of Characters you want to display on accordion body"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:84
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:72
 msgid "Read More Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:87
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:75
 msgid "Enter the text you want to display on Read more button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:94
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:82
 msgid "Show More Button"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:98
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:86
 msgid "Show a limited number of accordions with a button to reveal more."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:103
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:91
 msgid "Items Per Click"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:104
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:92
 msgid "How many items to show per click?"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:112
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:100
 msgid "Show More Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:115
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:103
 msgid "Enter the text you want to display on the Show more button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:118
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:106
 msgid "Show Less Text"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:121
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:109
 msgid "Enter the text you want to display on the Show less button."
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:124
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:112
 msgid "Button Color"
 msgstr ""
 
 #: build/group-accordion/index.js:1
-#: src/group-accordion/editor/settings/dynamic-features-panel.js:134
+#: src/group-accordion/editor/settings/dynamic-features-panel.js:122
 msgid "Note: Voting Feedback feature is coming soon."
+msgstr ""
+
+#: build/group-accordion/index.js:1
+#: src/group-accordion/editor/settings/faq-schema.js:19
+msgid "Enable FAQ structured data for better SEO."
 msgstr ""
 
 #: build/group-accordion/index.js:1

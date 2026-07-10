@@ -3,7 +3,7 @@ Contributors: spiderdevs, mdjwel , muaz404, freemius
 Tags: accordion, FAQ, Gutenberg block, accordion block, FAQs
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 5.4.0
+Stable tag: 5.4.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,13 +19,13 @@ Perfect for bloggers, agencies, and businesses looking to organize content, impr
 
 ### Why Choose Advanced Accordion Block?
 
-✓ **Lightning-Fast Performance** – Optimized code means zero bloat. Only loads on pages using the block.
-✓ **100% Gutenberg Native** – Built exclusively with Gutenberg components for seamless WordPress integration.
-✓ **Unlimited Flexibility** – Nest accordions, mix content types, and customize every detail.
-✓ **Consistent Update & Improvements** – Regular updates and improvements to keep the plugin secure, performant, and feature-rich.
-✓ **SEO Optimized** – FAQ schema markup and responsive design help you rank higher.
-✓ **Fully Accessible** – Complete keyboard navigation (Tab, Shift+Tab, Enter/Space, Arrow keys).
-✓ **No Coding Skills Needed** – Drag-and-drop editor makes it easy for anyone.
+* **Lightning-Fast Performance** – Optimized code means zero bloat. Only loads on pages using the block.
+* **100% Gutenberg Native** – Built exclusively with Gutenberg components for seamless WordPress integration.
+* **Unlimited Flexibility** – Nest accordions, mix content types, and customize every detail.
+* **Consistent Update & Improvements** – Regular updates and improvements to keep the plugin secure, performant, and feature-rich.
+* **SEO Optimized** – FAQ schema markup and responsive design help you rank higher.
+* **Fully Accessible** – Complete keyboard navigation (Tab, Shift+Tab, Enter/Space, Arrow keys).
+* **No Coding Skills Needed** – Drag-and-drop editor makes it easy for anyone.
 
 ### Video Overview
 [youtube https://www.youtube.com/watch?v=UQDLpqro9yU]
@@ -119,17 +119,17 @@ Upgrade to Pro and unlock powerful advanced capabilities:
 
 == Perfect For ==
 
-📰 **Bloggers & Content Creators** – Organize long-form content into scannable, reader-friendly sections.
+**Bloggers & Content Creators** – Organize long-form content into scannable, reader-friendly sections.
 
-🛍️ **E-commerce Sites** – Build product FAQs that reduce customer support inquiries and boost conversions.
+**E-commerce Sites** – Build product FAQs that reduce customer support inquiries and boost conversions.
 
-📚 **Service Providers** – Create comprehensive FAQ sections for agencies, consultants, and SaaS companies.
+**Service Providers** – Create comprehensive FAQ sections for agencies, consultants, and SaaS companies.
 
-🏛️ **Educational & Training** – Build interactive step-by-step guides and course content with nested accordions.
+**Educational & Training** – Build interactive step-by-step guides and course content with nested accordions.
 
-🏢 **Corporate & Enterprise** – Professional Q&A sections with advanced filtering and custom styling.
+**Corporate & Enterprise** – Professional Q&A sections with advanced filtering and custom styling.
 
-💼 **Job Boards & Directories** – Expandable listings with custom organization and search capabilities.
+**Job Boards & Directories** – Expandable listings with custom organization and search capabilities.
 
 == Frequently Asked Questions ==
 
@@ -249,6 +249,11 @@ Major feature release with Show More button, Labels support, and significant UI 
 == Changelog ==
 
 
+= 5.4.1 (10 July 2026) =
+Improved: FAQ Schema is now completely free – add FAQ structured data (JSON-LD) to any accordion to earn Rich Results in Google Search.
+Improved: Refreshed the admin welcome and use-case screens with crisp WordPress dashicons in place of emoji for a cleaner, more consistent look.
+Improved: Refined the Active Background Style pattern for tidier spacing and layout.
+
 = 5.4.0 (09 June 2026) =
 Updated: Group Accordion Editor Layout – Reorganized key settings sections for faster setup and clearer styling flow.
 Improved: Active State Styling – Expanded active header, body, and border controls for more predictable design results.
@@ -259,8 +264,14 @@ Fixed: Icon Placement Controls – Resolved icon position inconsistencies in gro
 Fixed: Resolved editor crash when adding or deleting accordion patterns.
 Fixed: Added support for deprecated title identifiers in accordion items to ensure backward compatibility.
 
+= 5.3.1 (06 May 2026) =
+Fixed: Stabilized the RichText toolbar to prevent formatting loss and premature popup closing in the editor.
+Updated: Remote Notice SDK for improved reliability.
+Updated: Security improvements and codebase optimization for overall plugin stability and performance.
 
-
+= 5.3.0 (24 March 2026) =
+New: Copy/Paste Styles – Easily transfer design configurations between Accordion blocks in the editor without manually recreating them.
+New: AI FAQ Generator Card – Added a quick access card to the admin dashboard for creating AI-powered FAQs instantly.
 
 = 5.2.3 (03 February 2026) =
 Added: backward-compatible deprecations for Group Accordion and Accordion Item to ensure smooth upgrades.

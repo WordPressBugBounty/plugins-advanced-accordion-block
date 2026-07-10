@@ -43,7 +43,7 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
                         <div class="aab-hero-cta-buttons">
 							<?php if ( $is_active ) : ?>
                                 <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=docs' ) ); ?>" class="aab-btn aab-btn-primary">
-                                    ✓ Plugin Active - Go to EazyDocs
+                                    <span class="dashicons dashicons-yes" aria-hidden="true"></span> Plugin Active - Go to EazyDocs
                                 </a>
 							<?php elseif ( $is_installed ) : ?>
                                 <button id="aab-activate-eazydocs-hero" class="aab-btn aab-btn-primary" data-plugin="<?php echo esc_attr( $plugin_file ); ?>">
@@ -73,73 +73,73 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
                     <h2 class="aab-section-title">Why Choose EazyDocs?</h2>
                     <div class="aab-features-grid">
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">📚</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-book" aria-hidden="true"></span></div>
                             <h3>No Limitations</h3>
                             <p>Create unlimited knowledge bases for your products. No restrictions on the number of docs you can create.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">🎨</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-admin-appearance" aria-hidden="true"></span></div>
                             <h3>Beautiful by Default</h3>
                             <p>Modern design that makes your docs look professional without any design skills. Fully customizable to match your brand.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">🔍</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-search" aria-hidden="true"></span></div>
                             <h3>Ajax Live Search</h3>
                             <p>Allow your readers to search for docs without leaving the page. Provide relevant search results at every level.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">📱</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-smartphone" aria-hidden="true"></span></div>
                             <h3>Responsive & Retina Ready</h3>
                             <p>100% responsive to make your knowledge base look beautiful and effective on all major devices.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">🚀</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-chart-line" aria-hidden="true"></span></div>
                             <h3>SEO Optimized</h3>
                             <p>SEO-ready right from the first line of code with Schema.org integration to help you rank on search engines.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">🌍</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-translation" aria-hidden="true"></span></div>
                             <h3>Multilingual & RTL Ready</h3>
                             <p>Translation ready & WPML compatible. Build your website in any language – even in an RTL one!</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">🎯</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-move" aria-hidden="true"></span></div>
                             <h3>Drag & Drop Ordering</h3>
                             <p>Easily nest and re-order your docs by drag-n-drop to create a hierarchical structure.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">📊</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-chart-bar" aria-hidden="true"></span></div>
                             <h3>Get Feedback from Visitors</h3>
                             <p>Collect feedback easily so you can efficiently develop and refine your knowledge base articles.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">📋</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-list-view" aria-hidden="true"></span></div>
                             <h3>Built-in Table of Contents</h3>
                             <p>Automatically create a structured TOC while writing your documentation for easy navigation.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">🧩</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-block-default" aria-hidden="true"></span></div>
                             <h3>Gutenberg & Elementor</h3>
                             <p>Build your doc pages with pre-built Gutenberg blocks or Elementor widgets.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">⚡</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-performance" aria-hidden="true"></span></div>
                             <h3>On Demand Asset Loading</h3>
                             <p>Loading only necessary assets on EazyDocs pages, keeping your site fast and efficient.</p>
                         </div>
 
                         <div class="aab-feature-card">
-                            <div class="aab-feature-icon">🔁</div>
+                            <div class="aab-feature-icon"><span class="dashicons dashicons-update" aria-hidden="true"></span></div>
                             <h3>Easy Migration</h3>
                             <p>Migrate from BetterDocs to EazyDocs with one-click migration tool seamlessly.</p>
                         </div>
@@ -186,7 +186,7 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
                         <div class="aab-cta-buttons">
 							<?php if ( $is_active ) : ?>
                                 <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=docs' ) ); ?>" class="aab-btn aab-btn-primary">
-                                    ✓ Plugin Active - Go to EazyDocs
+                                    <span class="dashicons dashicons-yes" aria-hidden="true"></span> Plugin Active - Go to EazyDocs
                                 </a>
 							<?php elseif ( $is_installed ) : ?>
                                 <button id="aab-activate-eazydocs" class="aab-btn aab-btn-primary" data-plugin="<?php echo esc_attr( $plugin_file ); ?>">
@@ -216,23 +216,23 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
                     <h3>Useful Links</h3>
                     <div class="aab-links-grid">
                         <a href="https://eazydocs.spider-themes.net/" target="_blank" class="aab-link-card">
-                            <span class="aab-link-icon">🌐</span>
+                            <span class="aab-link-icon dashicons dashicons-admin-site-alt3" aria-hidden="true"></span>
                             <span class="aab-link-text">Official Website</span>
                         </a>
                         <a href="https://wordpress-plugins.spider-themes.net/eazydocs-pro/" target="_blank" class="aab-link-card">
-                            <span class="aab-link-icon">🎨</span>
+                            <span class="aab-link-icon dashicons dashicons-desktop" aria-hidden="true"></span>
                             <span class="aab-link-text">Frontend Demo</span>
                         </a>
                         <a href="https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ" target="_blank" class="aab-link-card">
-                            <span class="aab-link-icon">📹</span>
+                            <span class="aab-link-icon dashicons dashicons-video-alt3" aria-hidden="true"></span>
                             <span class="aab-link-text">Video Tutorials</span>
                         </a>
                         <a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank" class="aab-link-card">
-                            <span class="aab-link-icon">📖</span>
+                            <span class="aab-link-icon dashicons dashicons-book-alt" aria-hidden="true"></span>
                             <span class="aab-link-text">Documentation</span>
                         </a>
                         <a href="https://wordpress.org/support/plugin/eazydocs/" target="_blank" class="aab-link-card">
-                            <span class="aab-link-icon">💬</span>
+                            <span class="aab-link-icon dashicons dashicons-format-chat" aria-hidden="true"></span>
                             <span class="aab-link-text">Support Forum</span>
                         </a>
                     </div>

@@ -2397,6 +2397,13 @@
     flex-shrink: 0;
 }
 
+.aab-usecase-icon.dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: var(--aab-primary);
+}
+
 .aab-usecase-content {
     flex: 1;
 }
