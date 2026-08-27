@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Accordion Block 5.4.1\n"
+"Project-Id-Version: Advanced Accordion Block 5.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/advanced-accordion-block\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-10T09:15:40+00:00\n"
+"POT-Creation-Date: 2026-08-27T07:46:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: advanced-accordion-block\n"
@@ -39,393 +39,398 @@ msgstr ""
 msgid "https://spider-themes.net"
 msgstr ""
 
-#: admin/admin.php:56
+#: admin/admin.php:128
 msgid "You do not have permission to create pages."
 msgstr ""
 
-#: admin/admin.php:57
+#: admin/admin.php:129
 msgid "Unauthorized"
 msgstr ""
 
-#: admin/admin.php:93
+#: admin/admin.php:165
 msgid "Advanced Accordion Page"
 msgstr ""
 
-#: admin/admin.php:291
+#: admin/admin.php:307
+#: admin/admin.php:308
+msgid "Bulk Converter"
+msgstr ""
+
+#: admin/admin.php:383
 msgid "Dashboard navigation"
 msgstr ""
 
-#: admin/admin.php:293
+#: admin/admin.php:385
 msgid "Welcome"
 msgstr ""
 
-#: admin/admin.php:295
+#: admin/admin.php:387
 msgid "Lite vs Pro"
 msgstr ""
 
-#: admin/admin.php:306
+#: admin/admin.php:398
 msgid "Unlock Pro Features"
 msgstr ""
 
-#: admin/admin.php:311
-#: admin/admin.php:350
-#: admin/admin.php:560
-#: admin/admin.php:625
+#: admin/admin.php:403
+#: admin/admin.php:442
+#: admin/admin.php:652
+#: admin/admin.php:717
 msgid "PRO"
 msgstr ""
 
-#: admin/admin.php:311
-#: admin/admin.php:350
+#: admin/admin.php:403
+#: admin/admin.php:442
 msgid "LITE"
 msgstr ""
 
-#: admin/admin.php:314
-#: admin/admin.php:845
-#: admin/admin.php:880
+#: admin/admin.php:406
+#: admin/admin.php:937
+#: admin/admin.php:972
 msgid "Documentation"
 msgstr ""
 
-#: admin/admin.php:320
+#: admin/admin.php:412
 msgid "Changelog"
 msgstr ""
 
-#: admin/admin.php:347
+#: admin/admin.php:439
 #, php-format
 msgid "Hello %s,"
 msgstr ""
 
-#: admin/admin.php:349
+#: admin/admin.php:441
 msgid "Welcome to Advanced Accordion"
 msgstr ""
 
-#: admin/admin.php:353
+#: admin/admin.php:445
 msgid "Advanced Accordion is a powerful Gutenberg block that lets you create beautiful, fully customizable accordions and FAQ sections. Built with native WordPress components for optimal performance."
 msgstr ""
 
-#: admin/admin.php:362
-#: admin/admin.php:397
+#: admin/admin.php:454
+#: admin/admin.php:489
 msgid "Create New Page"
 msgstr ""
 
-#: admin/admin.php:365
+#: admin/admin.php:457
 msgid "Watch the Quick Starter Guide"
 msgstr ""
 
-#: admin/admin.php:373
+#: admin/admin.php:465
 msgid "Play video tutorial"
 msgstr ""
 
-#: admin/admin.php:378
+#: admin/admin.php:470
 msgid "Quick Start Guide - v"
 msgstr ""
 
-#: admin/admin.php:380
+#: admin/admin.php:472
 msgid "ACCORDION"
 msgstr ""
 
-#: admin/admin.php:381
+#: admin/admin.php:473
 msgid "GETTING"
 msgstr ""
 
-#: admin/admin.php:381
+#: admin/admin.php:473
 msgid "STARTED"
 msgstr ""
 
-#: admin/admin.php:396
+#: admin/admin.php:488
 msgid "Available Blocks"
 msgstr ""
 
-#: admin/admin.php:410
+#: admin/admin.php:502
 msgid "Separate Accordion"
 msgstr ""
 
-#: admin/admin.php:411
+#: admin/admin.php:503
 msgid "Individual accordion blocks that work independently. Perfect for single FAQs or standalone collapsible content."
 msgstr ""
 
-#: admin/admin.php:423
+#: admin/admin.php:515
 msgid "Group Accordion"
 msgstr ""
 
-#: admin/admin.php:424
+#: admin/admin.php:516
 msgid "Container for multiple accordion items with shared settings. Ideal for FAQ sections and structured content."
 msgstr ""
 
-#: admin/admin.php:436
-#: admin/admin.php:656
+#: admin/admin.php:528
+#: admin/admin.php:748
 msgid "Horizontal Accordion"
 msgstr ""
 
-#: admin/admin.php:437
+#: admin/admin.php:529
 msgid "Side-by-side accordion layout with titles, subtitles, and icons. Great for feature showcases and comparisons."
 msgstr ""
 
-#: admin/admin.php:465
+#: admin/admin.php:557
 msgid "AI FAQ Generator"
 msgstr ""
 
-#: admin/admin.php:466
+#: admin/admin.php:558
 msgid "AI-Powered"
 msgstr ""
 
-#: admin/admin.php:468
+#: admin/admin.php:560
 msgid "Generate comprehensive FAQ sections instantly with AI. Choose topics, set the tone, and let AI create professional Q&A content — all from a guided 4-step wizard."
 msgstr ""
 
-#: admin/admin.php:472
+#: admin/admin.php:564
 msgid "Quick Topic Presets"
 msgstr ""
 
-#: admin/admin.php:476
+#: admin/admin.php:568
 msgid "Multiple Tone Styles"
 msgstr ""
 
-#: admin/admin.php:480
+#: admin/admin.php:572
 msgid "Preview & Edit"
 msgstr ""
 
-#: admin/admin.php:484
+#: admin/admin.php:576
 msgid "Export & Publish"
 msgstr ""
 
-#: admin/admin.php:494
+#: admin/admin.php:586
 msgid "Generate FAQs"
 msgstr ""
 
-#: admin/admin.php:498
+#: admin/admin.php:590
 msgid "Activate Antimanual"
 msgstr ""
 
-#: admin/admin.php:507
+#: admin/admin.php:599
 msgid "Install Antimanual"
 msgstr ""
 
-#: admin/admin.php:511
+#: admin/admin.php:603
 msgid "Learn More"
 msgstr ""
 
-#: admin/admin.php:525
+#: admin/admin.php:617
 msgid "Pro Features & Modules"
 msgstr ""
 
-#: admin/admin.php:527
-#: admin/admin.php:1181
+#: admin/admin.php:619
+#: admin/admin.php:1273
 msgid "Upgrade Now"
 msgstr ""
 
-#: admin/admin.php:534
-#: admin/admin.php:1204
+#: admin/admin.php:626
+#: admin/admin.php:1296
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/dynamic-features-panel.js:34
 msgid "Instant Search"
 msgstr ""
 
-#: admin/admin.php:535
+#: admin/admin.php:627
 msgid "Voting Feedback"
 msgstr ""
 
-#: admin/admin.php:536
+#: admin/admin.php:628
 msgid "Anchor Links"
 msgstr ""
 
-#: admin/admin.php:537
-#: admin/admin.php:1122
+#: admin/admin.php:629
+#: admin/admin.php:1214
 msgid "Q&A Style Layout"
 msgstr ""
 
-#: admin/admin.php:538
-#: admin/admin.php:816
+#: admin/admin.php:630
+#: admin/admin.php:908
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/layouts-panel.js:49
 msgid "Steps Layout"
 msgstr ""
 
-#: admin/admin.php:539
-#: admin/admin.php:1124
+#: admin/admin.php:631
+#: admin/admin.php:1216
 msgid "Checklist Layout"
 msgstr ""
 
-#: admin/admin.php:540
+#: admin/admin.php:632
 msgid "Autoplay Mode"
 msgstr ""
 
-#: admin/admin.php:541
-#: admin/admin.php:1127
+#: admin/admin.php:633
+#: admin/admin.php:1219
 #: build/group-accordion/index.js:1
 #: src/group-accordion/editor/settings/dynamic-features-panel.js:54
 msgid "Read More Button"
 msgstr ""
 
-#: admin/admin.php:542
-#: admin/admin.php:1128
+#: admin/admin.php:634
+#: admin/admin.php:1220
 msgid "Category Filter Tabs"
 msgstr ""
 
-#: admin/admin.php:543
+#: admin/admin.php:635
 msgid "Featured Icon/Image"
 msgstr ""
 
-#: admin/admin.php:544
+#: admin/admin.php:636
 msgid "Auto-Numbering"
 msgstr ""
 
-#: admin/admin.php:545
+#: admin/admin.php:637
 msgid "Next/Prev Navigation"
 msgstr ""
 
-#: admin/admin.php:546
-#: admin/admin.php:1133
+#: admin/admin.php:638
+#: admin/admin.php:1225
 msgid "Subheading Support"
 msgstr ""
 
-#: admin/admin.php:547
+#: admin/admin.php:639
 msgid "Custom Labels"
 msgstr ""
 
-#: admin/admin.php:548
+#: admin/admin.php:640
 msgid "Pagination/Show More Button"
 msgstr ""
 
-#: admin/admin.php:549
-#: admin/admin.php:660
+#: admin/admin.php:641
+#: admin/admin.php:752
 msgid "FAQ Schema Markup"
 msgstr ""
 
-#: admin/admin.php:557
+#: admin/admin.php:649
 msgid "Demo"
 msgstr ""
 
-#: admin/admin.php:571
+#: admin/admin.php:663
 msgid "Key Features"
 msgstr ""
 
-#: admin/admin.php:572
+#: admin/admin.php:664
 msgid "View All Features"
 msgstr ""
 
-#: admin/admin.php:580
+#: admin/admin.php:672
 msgid "Gutenberg Native"
 msgstr ""
 
-#: admin/admin.php:581
+#: admin/admin.php:673
 msgid "Built with native Gutenberg components for seamless integration and optimal performance."
 msgstr ""
 
-#: admin/admin.php:586
+#: admin/admin.php:678
 msgid "Unlimited Nesting"
 msgstr ""
 
-#: admin/admin.php:587
+#: admin/admin.php:679
 msgid "Create complex accordion structures with unlimited nesting levels."
 msgstr ""
 
-#: admin/admin.php:592
+#: admin/admin.php:684
 msgid "SEO Optimized"
 msgstr ""
 
-#: admin/admin.php:593
+#: admin/admin.php:685
 msgid "Built-in schema markup for FAQ pages to enhance search visibility."
 msgstr ""
 
-#: admin/admin.php:598
+#: admin/admin.php:690
 msgid "5 Icon Pairs"
 msgstr ""
 
-#: admin/admin.php:599
+#: admin/admin.php:691
 msgid "Choose from multiple icon styles for expand/collapse indicators."
 msgstr ""
 
-#: admin/admin.php:604
+#: admin/admin.php:696
 msgid "Fully Responsive"
 msgstr ""
 
-#: admin/admin.php:605
+#: admin/admin.php:697
 msgid "Looks perfect on all devices and screen sizes."
 msgstr ""
 
-#: admin/admin.php:610
+#: admin/admin.php:702
 msgid "Lightweight & Fast"
 msgstr ""
 
-#: admin/admin.php:611
+#: admin/admin.php:703
 msgid "Optimized code with minimal footprint for maximum speed."
 msgstr ""
 
-#: admin/admin.php:639
-#: admin/admin.php:1039
+#: admin/admin.php:731
+#: admin/admin.php:1131
 msgid "Lite vs Pro Comparison"
 msgstr ""
 
-#: admin/admin.php:640
+#: admin/admin.php:732
 msgid "Get Pro"
 msgstr ""
 
-#: admin/admin.php:646
-#: admin/admin.php:1056
+#: admin/admin.php:738
+#: admin/admin.php:1148
 msgid "Features"
 msgstr ""
 
-#: admin/admin.php:647
-#: admin/admin.php:1059
+#: admin/admin.php:739
+#: admin/admin.php:1151
 msgid "Lite"
 msgstr ""
 
-#: admin/admin.php:648
-#: admin/admin.php:1066
+#: admin/admin.php:740
+#: admin/admin.php:1158
 msgid "Pro"
 msgstr ""
 
-#: admin/admin.php:654
-#: admin/admin.php:1079
+#: admin/admin.php:746
+#: admin/admin.php:1171
 msgid "Separate Accordion Block"
 msgstr ""
 
-#: admin/admin.php:655
-#: admin/admin.php:1080
+#: admin/admin.php:747
+#: admin/admin.php:1172
 msgid "Group Accordion Block"
 msgstr ""
 
-#: admin/admin.php:657
-#: admin/admin.php:740
+#: admin/admin.php:749
+#: admin/admin.php:832
 msgid "Nested Accordions"
 msgstr ""
 
-#: admin/admin.php:658
-#: admin/admin.php:752
+#: admin/admin.php:750
+#: admin/admin.php:844
 msgid "Custom Icons"
 msgstr ""
 
-#: admin/admin.php:659
+#: admin/admin.php:751
 msgid "Animation Effects"
 msgstr ""
 
-#: admin/admin.php:661
+#: admin/admin.php:753
 msgid "Search & Filter"
 msgstr ""
 
-#: admin/admin.php:662
-#: admin/admin.php:1232
+#: admin/admin.php:754
+#: admin/admin.php:1324
 msgid "Priority Support"
 msgstr ""
 
-#: admin/admin.php:671
-#: admin/admin.php:686
+#: admin/admin.php:763
+#: admin/admin.php:778
 msgid "Available"
 msgstr ""
 
-#: admin/admin.php:677
+#: admin/admin.php:769
 msgid "Not available"
 msgstr ""
 
-#: admin/admin.php:733
+#: admin/admin.php:825
 msgid "Want to use Accordion in Elementor?"
 msgstr ""
 
-#: admin/admin.php:734
+#: admin/admin.php:826
 msgid "Try Spider Elements - our powerful Elementor addon with 20+ widgets including an advanced Accordion widget with all the features you love!"
 msgstr ""
 
-#: admin/admin.php:746
+#: admin/admin.php:838
 #: build/accordion-default/index.js:1
 #: build/accordion/index.js:1
 #: build/group-accordion/index.js:1
@@ -436,479 +441,624 @@ msgstr ""
 msgid "FAQ Schema"
 msgstr ""
 
-#: admin/admin.php:758
+#: admin/admin.php:850
 msgid "20+ Widgets"
 msgstr ""
 
-#: admin/admin.php:774
+#: admin/admin.php:866
 msgid "Install Spider Elements"
 msgstr ""
 
-#: admin/admin.php:778
-#: admin/admin.php:923
+#: admin/admin.php:870
+#: admin/admin.php:1015
 msgid "Activate"
 msgstr ""
 
-#: admin/admin.php:782
-#: admin/admin.php:921
+#: admin/admin.php:874
+#: admin/admin.php:1013
 msgid "Active"
 msgstr ""
 
-#: admin/admin.php:803
+#: admin/admin.php:895
 msgid "Pre-built Patterns"
 msgstr ""
 
-#: admin/admin.php:805
+#: admin/admin.php:897
 msgid "Browse Patterns"
 msgstr ""
 
-#: admin/admin.php:808
+#: admin/admin.php:900
 msgid "Get started instantly with 15+ professionally designed accordion patterns. Just insert and customize!"
 msgstr ""
 
-#: admin/admin.php:812
+#: admin/admin.php:904
 #: block-patterns/simple-accordion.php:12
 msgid "Simple Accordion"
 msgstr ""
 
-#: admin/admin.php:813
+#: admin/admin.php:905
 msgid "Minimal Border"
 msgstr ""
 
-#: admin/admin.php:815
+#: admin/admin.php:907
 msgid "Modern Q&A"
 msgstr ""
 
-#: admin/admin.php:817
+#: admin/admin.php:909
 msgid "Auto Numbering"
 msgstr ""
 
-#: admin/admin.php:834
+#: admin/admin.php:926
 msgid "Perfect For"
 msgstr ""
 
-#: admin/admin.php:840
+#: admin/admin.php:932
 msgid "Bloggers"
 msgstr ""
 
-#: admin/admin.php:840
+#: admin/admin.php:932
 msgid "Organize long-form content into scannable sections"
 msgstr ""
 
-#: admin/admin.php:841
+#: admin/admin.php:933
 msgid "E-commerce"
 msgstr ""
 
-#: admin/admin.php:841
+#: admin/admin.php:933
 msgid "Build product FAQs to reduce support inquiries"
 msgstr ""
 
-#: admin/admin.php:842
+#: admin/admin.php:934
 msgid "Service Providers"
 msgstr ""
 
-#: admin/admin.php:842
+#: admin/admin.php:934
 msgid "Create comprehensive FAQ sections for agencies"
 msgstr ""
 
-#: admin/admin.php:843
+#: admin/admin.php:935
 msgid "Education"
 msgstr ""
 
-#: admin/admin.php:843
+#: admin/admin.php:935
 msgid "Interactive step-by-step guides and courses"
 msgstr ""
 
-#: admin/admin.php:844
+#: admin/admin.php:936
 msgid "Corporate"
 msgstr ""
 
-#: admin/admin.php:844
+#: admin/admin.php:936
 msgid "Professional Q&A with advanced filtering"
 msgstr ""
 
-#: admin/admin.php:845
+#: admin/admin.php:937
 msgid "Expandable knowledge base articles"
 msgstr ""
 
-#: admin/admin.php:865
+#: admin/admin.php:957
 msgid "Quick Links"
 msgstr ""
 
-#: admin/admin.php:873
-#: admin/admin.php:1249
+#: admin/admin.php:965
+#: admin/admin.php:1341
 msgid "View Live Demos"
 msgstr ""
 
-#: admin/admin.php:886
+#: admin/admin.php:978
 msgid "Video Tutorials"
 msgstr ""
 
-#: admin/admin.php:894
+#: admin/admin.php:986
 msgid "Get Support"
 msgstr ""
 
-#: admin/admin.php:906
+#: admin/admin.php:998
 msgid "Extend Your Website"
 msgstr ""
 
-#: admin/admin.php:925
+#: admin/admin.php:1017
 msgid "Install"
 msgstr ""
 
-#: admin/admin.php:941
+#: admin/admin.php:1033
 msgid "VIP Priority Support"
 msgstr ""
 
-#: admin/admin.php:943
+#: admin/admin.php:1035
 msgid "Faster and exclusive support service designed for VIP assistance and benefits."
 msgstr ""
 
-#: admin/admin.php:945
+#: admin/admin.php:1037
 msgid "Know More"
 msgstr ""
 
-#: admin/admin.php:957
+#: admin/admin.php:1049
 msgid "Join the Community"
 msgstr ""
 
-#: admin/admin.php:958
+#: admin/admin.php:1050
 msgid "Got a question about the plugin, want to share your awesome project or just say hi? Join our wonderful community!"
 msgstr ""
 
-#: admin/admin.php:960
+#: admin/admin.php:1052
 msgid "Join Now"
 msgstr ""
 
-#: admin/admin.php:972
+#: admin/admin.php:1064
 msgid "Rate Us"
 msgstr ""
 
-#: admin/admin.php:974
+#: admin/admin.php:1066
 msgid "5 out of 5 stars"
 msgstr ""
 
-#: admin/admin.php:982
+#: admin/admin.php:1074
 msgid "We love to hear from you, we would appreciate every single review."
 msgstr ""
 
-#: admin/admin.php:984
+#: admin/admin.php:1076
 msgid "Submit a Review"
 msgstr ""
 
-#: admin/admin.php:996
+#: admin/admin.php:1088
 msgid "What's New"
 msgstr ""
 
-#: admin/admin.php:1005
+#: admin/admin.php:1097
 msgid "New"
 msgstr ""
 
-#: admin/admin.php:1006
+#: admin/admin.php:1098
 msgid "Modern dashboard design with enhanced UI/UX"
 msgstr ""
 
-#: admin/admin.php:1009
+#: admin/admin.php:1101
 msgid "Improve"
 msgstr ""
 
-#: admin/admin.php:1010
+#: admin/admin.php:1102
 msgid "Performance optimizations for faster loading"
 msgstr ""
 
-#: admin/admin.php:1013
+#: admin/admin.php:1105
 msgid "Fix"
 msgstr ""
 
-#: admin/admin.php:1014
+#: admin/admin.php:1106
 msgid "Minor bug fixes and stability improvements"
 msgstr ""
 
-#: admin/admin.php:1018
+#: admin/admin.php:1110
 msgid "View Full Changelog"
 msgstr ""
 
-#: admin/admin.php:1040
+#: admin/admin.php:1132
 msgid "Compare the features available in Lite and Pro versions. Upgrade to Pro to unlock all advanced features and priority support."
 msgstr ""
 
-#: admin/admin.php:1046
+#: admin/admin.php:1138
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: admin/admin.php:1060
+#: admin/admin.php:1152
 msgid "$0"
 msgstr ""
 
-#: admin/admin.php:1065
+#: admin/admin.php:1157
 msgid "RECOMMENDED"
 msgstr ""
 
-#: admin/admin.php:1067
+#: admin/admin.php:1159
 msgid "From $39/year"
 msgstr ""
 
-#: admin/admin.php:1075
+#: admin/admin.php:1167
 msgid "Block Types"
 msgstr ""
 
-#: admin/admin.php:1081
+#: admin/admin.php:1173
 msgid "Horizontal Accordion Block"
 msgstr ""
 
-#: admin/admin.php:1082
+#: admin/admin.php:1174
 msgid "Accordion Toolbar Block"
 msgstr ""
 
-#: admin/admin.php:1083
+#: admin/admin.php:1175
 msgid "Global Defaults Block"
 msgstr ""
 
-#: admin/admin.php:1092
+#: admin/admin.php:1184
 msgid "Core Features"
 msgstr ""
 
-#: admin/admin.php:1096
+#: admin/admin.php:1188
 msgid "Unlimited Accordions"
 msgstr ""
 
-#: admin/admin.php:1097
+#: admin/admin.php:1189
 msgid "Unlimited Nested Accordions"
 msgstr ""
 
-#: admin/admin.php:1098
+#: admin/admin.php:1190
 msgid "Fully Responsive Design"
 msgstr ""
 
-#: admin/admin.php:1099
+#: admin/admin.php:1191
 msgid "Keyboard Accessibility (WCAG)"
 msgstr ""
 
-#: admin/admin.php:1100
+#: admin/admin.php:1192
 msgid "Multiple Icon Styles (5 Pairs)"
 msgstr ""
 
-#: admin/admin.php:1101
+#: admin/admin.php:1193
 msgid "Custom Colors & Backgrounds"
 msgstr ""
 
-#: admin/admin.php:1102
+#: admin/admin.php:1194
 msgid "Border & Border Radius Controls"
 msgstr ""
 
-#: admin/admin.php:1103
+#: admin/admin.php:1195
 msgid "Margin & Padding Controls"
 msgstr ""
 
-#: admin/admin.php:1104
+#: admin/admin.php:1196
 msgid "Pre-built Patterns (15+)"
 msgstr ""
 
-#: admin/admin.php:1105
+#: admin/admin.php:1197
 msgid "Active on Page Load"
 msgstr ""
 
-#: admin/admin.php:1106
+#: admin/admin.php:1198
 msgid "Linked Accordions"
 msgstr ""
 
-#: admin/admin.php:1115
+#: admin/admin.php:1207
 msgid "Pro Features"
 msgstr ""
 
-#: admin/admin.php:1119
+#: admin/admin.php:1211
 msgid "Instant Search Bar"
 msgstr ""
 
-#: admin/admin.php:1120
+#: admin/admin.php:1212
 msgid "Voting Feedback System"
 msgstr ""
 
-#: admin/admin.php:1121
+#: admin/admin.php:1213
 msgid "Anchor Links / Deep Linking"
 msgstr ""
 
-#: admin/admin.php:1123
+#: admin/admin.php:1215
 msgid "Steps Layout with Progress"
 msgstr ""
 
-#: admin/admin.php:1125
+#: admin/admin.php:1217
 msgid "Autoplay Functionality"
 msgstr ""
 
-#: admin/admin.php:1126
+#: admin/admin.php:1218
 msgid "Open All / Close All Button"
 msgstr ""
 
-#: admin/admin.php:1129
+#: admin/admin.php:1221
 msgid "Show More Button (Load More)"
 msgstr ""
 
-#: admin/admin.php:1130
+#: admin/admin.php:1222
 msgid "Featured Icon/Image Support"
 msgstr ""
 
-#: admin/admin.php:1131
+#: admin/admin.php:1223
 msgid "Auto-Numbering with Colors"
 msgstr ""
 
-#: admin/admin.php:1132
+#: admin/admin.php:1224
 msgid "Next/Previous Navigation"
 msgstr ""
 
-#: admin/admin.php:1134
+#: admin/admin.php:1226
 msgid "Custom Labels/Badges"
 msgstr ""
 
-#: admin/admin.php:1135
+#: admin/admin.php:1227
 msgid "Custom CSS Field"
 msgstr ""
 
-#: admin/admin.php:1136
+#: admin/admin.php:1228
 msgid "Hover Activation Event"
 msgstr ""
 
-#: admin/admin.php:1145
+#: admin/admin.php:1237
 msgid "SEO & Schema"
 msgstr ""
 
-#: admin/admin.php:1149
+#: admin/admin.php:1241
 msgid "FAQ Schema Markup (JSON-LD)"
 msgstr ""
 
-#: admin/admin.php:1150
+#: admin/admin.php:1242
 msgid "Google Rich Results Ready"
 msgstr ""
 
-#: admin/admin.php:1159
+#: admin/admin.php:1251
 msgid "Support & Updates"
 msgstr ""
 
-#: admin/admin.php:1163
+#: admin/admin.php:1255
 msgid "Community Support (WordPress.org)"
 msgstr ""
 
-#: admin/admin.php:1164
+#: admin/admin.php:1256
 msgid "Priority Email Support"
 msgstr ""
 
-#: admin/admin.php:1165
+#: admin/admin.php:1257
 msgid "Regular Updates & Bug Fixes"
 msgstr ""
 
-#: admin/admin.php:1166
+#: admin/admin.php:1258
 msgid "New Feature Updates"
 msgstr ""
 
-#: admin/admin.php:1177
+#: admin/admin.php:1269
 msgid "Current Plan"
 msgstr ""
 
-#: admin/admin.php:1193
+#: admin/admin.php:1285
 msgid "Why Upgrade to Pro?"
 msgstr ""
 
-#: admin/admin.php:1205
+#: admin/admin.php:1297
 msgid "Help users find specific FAQs quickly with a built-in search bar. Perfect for long FAQ lists."
 msgstr ""
 
-#: admin/admin.php:1213
+#: admin/admin.php:1305
 msgid "User Feedback"
 msgstr ""
 
-#: admin/admin.php:1214
+#: admin/admin.php:1306
 msgid "Add voting buttons to measure how helpful your FAQs are. Make data-driven improvements."
 msgstr ""
 
-#: admin/admin.php:1223
+#: admin/admin.php:1315
 msgid "FAQ Schema SEO"
 msgstr ""
 
-#: admin/admin.php:1224
+#: admin/admin.php:1316
 msgid "Automatic structured data markup for Google Rich Results. Rank higher in search."
 msgstr ""
 
-#: admin/admin.php:1233
+#: admin/admin.php:1325
 msgid "Get faster responses from our expert support team. Your questions answered within 24 hours."
 msgstr ""
 
-#: admin/admin.php:1242
+#: admin/admin.php:1334
 msgid "Ready to unlock all Pro features?"
 msgstr ""
 
-#: admin/admin.php:1243
+#: admin/admin.php:1335
 msgid "Join thousands of users who have upgraded to Pro. 30-day money-back guarantee."
 msgstr ""
 
-#: admin/admin.php:1246
+#: admin/admin.php:1338
 msgid "Upgrade to Pro Now"
 msgstr ""
 
-#: admin/admin.php:1264
+#: admin/admin.php:1356
 msgid "Close video"
 msgstr ""
 
-#: admin/admin.php:1270
+#: admin/admin.php:1362
 msgid "Quick Start Video Guide"
 msgstr ""
 
-#: admin/admin.php:1271
+#: admin/admin.php:1363
 msgid "Advanced Accordion Block Tutorial"
 msgstr ""
 
-#: admin/admin.php:1289
-msgid "EazyDocs"
+#: admin/admin.php:1409
+msgid "Migration Assistant"
 msgstr ""
 
-#: admin/admin.php:1290
-msgid "Knowledge Base & Documentation Plugin"
+#: admin/admin.php:1411
+msgid "Bulk Accordion Converter"
 msgstr ""
 
-#: admin/admin.php:1297
-msgid "Forumax"
+#: admin/admin.php:1412
+msgid "Scan your entire website for WordPress default accordions, details blocks, and Rank Math FAQ blocks and seamlessly convert them into Advanced Accordion Blocks with zero data loss."
 msgstr ""
 
-#: admin/admin.php:1298
-msgid "The ultimate WordPress forum enhancement plugin."
+#: admin/admin.php:1424
+msgid "Scan & Conversion Settings"
 msgstr ""
 
-#: admin/admin.php:1305
-msgid "Antimanual"
+#: admin/admin.php:1431
+msgid "Source Accordion Types"
 msgstr ""
 
-#: admin/admin.php:1306
-msgid "AI Extension plugin for WordPress sites"
+#: admin/admin.php:1439
+msgid "Rank Math FAQ Block"
 msgstr ""
 
-#: admin/admin.php:1317
-msgid "Spider Elements"
+#: admin/admin.php:1440
+msgid "Convert questions, answers, and images to Group Accordions"
 msgstr ""
 
-#: admin/admin.php:1318
-msgid "More widgets for Elementor"
+#: admin/admin.php:1449
+msgid "WordPress Core Details Block"
 msgstr ""
 
-#: admin/admin.php:1513
-msgid "Title"
+#: admin/admin.php:1450
+msgid "Convert each details block into a standalone Separate Accordion"
 msgstr ""
 
-#: admin/admin.php:1514
-msgid "Author"
+#: admin/admin.php:1459
+msgid "WordPress Core Accordion Block"
 msgstr ""
 
-#: admin/admin.php:1515
-msgid "Block Name"
+#: admin/admin.php:1460
+msgid "Convert core accordion items into standalone Separate Accordions"
 msgstr ""
 
-#: admin/admin.php:1516
-msgid "Total Block Count"
+#: admin/admin.php:1468
+msgid "Target Post Types"
 msgstr ""
 
-#: admin/admin.php:1517
+#: admin/admin.php:1487
+msgid "Conversion Options"
+msgstr ""
+
+#: admin/admin.php:1495
+msgid "Enable FAQ Schema Markup"
+msgstr ""
+
+#: admin/admin.php:1496
+msgid "Preserves Google Rich Snippets SEO structured data on converted accordions"
+msgstr ""
+
+#: admin/admin.php:1505
+msgid "Create Post Revisions"
+msgstr ""
+
+#: admin/admin.php:1506
+msgid "Stores a backup revision of each post so changes can easily be reverted in WordPress"
+msgstr ""
+
+#: admin/admin.php:1521
+msgid "Configure your scan preferences above, then click scan to detect candidate accordions."
+msgstr ""
+
+#: admin/admin.php:1531
+msgid "Scan Entire Site"
+msgstr ""
+
+#: admin/admin.php:1544
+msgid "No Third-Party Accordions Found"
+msgstr ""
+
+#: admin/admin.php:1545
+msgid "Great news! We scanned your selected post types and did not find any WordPress default accordions, details blocks, or Rank Math FAQ blocks."
+msgstr ""
+
+#: admin/admin.php:1561
+msgid "Posts / Pages Found"
+msgstr ""
+
+#: admin/admin.php:1574
+msgid "Rank Math FAQ Blocks"
+msgstr ""
+
+#: admin/admin.php:1587
+msgid "Core Accordion & Details"
+msgstr ""
+
+#: admin/admin.php:1602
+msgid "Select All Posts"
+msgstr ""
+
+#: admin/admin.php:1610
+msgid "Convert Selected Posts to AAB"
+msgstr ""
+
+#: admin/admin.php:1620
+msgid "Preparing conversion…"
+msgstr ""
+
+#: admin/admin.php:1632
+msgid "Cancel"
+msgstr ""
+
+#: admin/admin.php:1641
+msgid "Candidate Posts for Conversion"
+msgstr ""
+
+#: admin/admin.php:1643
+msgid "Filter posts by title..."
+msgstr ""
+
+#: admin/admin.php:1659
+msgid "Post Title"
+msgstr ""
+
+#: admin/admin.php:1660
+#: admin/admin.php:1944
 msgid "Post Type"
 msgstr ""
 
-#: admin/admin.php:1518
+#: admin/admin.php:1661
+msgid "Detected Blocks"
+msgstr ""
+
+#: admin/admin.php:1662
+msgid "Status"
+msgstr ""
+
+#: admin/admin.php:1663
+msgid "Actions"
+msgstr ""
+
+#: admin/admin.php:1687
+msgid "Conversion Error Details"
+msgstr ""
+
+#: admin/admin.php:1695
+msgid "Dismiss"
+msgstr ""
+
+#: admin/admin.php:1716
+msgid "EazyDocs"
+msgstr ""
+
+#: admin/admin.php:1717
+msgid "Knowledge Base & Documentation Plugin"
+msgstr ""
+
+#: admin/admin.php:1724
+msgid "Forumax"
+msgstr ""
+
+#: admin/admin.php:1725
+msgid "The ultimate WordPress forum enhancement plugin."
+msgstr ""
+
+#: admin/admin.php:1732
+msgid "Antimanual"
+msgstr ""
+
+#: admin/admin.php:1733
+msgid "AI Extension plugin for WordPress sites"
+msgstr ""
+
+#: admin/admin.php:1744
+msgid "Spider Elements"
+msgstr ""
+
+#: admin/admin.php:1745
+msgid "More widgets for Elementor"
+msgstr ""
+
+#: admin/admin.php:1940
+msgid "Title"
+msgstr ""
+
+#: admin/admin.php:1941
+msgid "Author"
+msgstr ""
+
+#: admin/admin.php:1942
+msgid "Block Name"
+msgstr ""
+
+#: admin/admin.php:1943
+msgid "Total Block Count"
+msgstr ""
+
+#: admin/admin.php:1945
 msgid "Date"
 msgstr ""
 
@@ -1017,6 +1167,38 @@ msgstr ""
 
 #: block-patterns/steps-with-progress-bar__premium_only.php:13
 msgid "Steps with progress bar"
+msgstr ""
+
+#: includes/class-bulk-converter.php:81
+#: includes/class-bulk-converter.php:251
+msgid "Unauthorized access."
+msgstr ""
+
+#: includes/class-bulk-converter.php:188
+#: includes/class-bulk-converter.php:346
+#, php-format
+msgid "#%d (No title)"
+msgstr ""
+
+#: includes/class-bulk-converter.php:259
+msgid "No posts provided for conversion."
+msgstr ""
+
+#: includes/class-bulk-converter.php:277
+#, php-format
+msgid "Post #%d"
+msgstr ""
+
+#: includes/class-bulk-converter.php:279
+msgid "Post not found."
+msgstr ""
+
+#: includes/class-bulk-converter.php:290
+msgid "Permission denied to edit this post."
+msgstr ""
+
+#: includes/class-bulk-converter.php:361
+msgid "No matching blocks found to convert."
 msgstr ""
 
 #: includes/register-category.php:25

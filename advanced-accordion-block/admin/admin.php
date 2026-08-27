@@ -8,18 +8,90 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * NoticePilot — remote admin-notice campaigns (SDK v1.6.1).
+ *
+ * Product id .......... 'AAB' (used for every SDK call below — must stay consistent).
+ * Hub endpoint ........ manage.spider-themes.net → /content/aab
+ *
+ * The SDK is one bundled file; features are gated on the hub. We only need to
+ * pass the right config here and call a couple of helper methods.
+ */
 require_once __DIR__ . '/class-remote-notice-client.php';
 
-
-add_action( 'plugins_loaded', function() {
-    if ( class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
-        Noticepilot_Remote_Notice_Client::init( 'AAB', [
-            'api_url'        => 'https://manage.spider-themes.net/wp-json/noticepilot/v1/content/aab',
-            'plugin_version' => AAGB_VERSION,
-            'is_pro'         => aab_fs()->is_premium(),
-        ]);
+add_action( 'plugins_loaded', function () {
+    if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
+        return;
     }
-});
+
+    Noticepilot_Remote_Notice_Client::init( 'AAB', [
+        'api_url'          => 'https://manage.spider-themes.net/wp-json/noticepilot/v1/content/aab',
+
+        // How often to pull campaigns, and who may see them.
+        'schedule'         => 'daily',            // hourly | twicedaily | daily
+        'capability'       => 'manage_options',
+
+        // Audience targeting: campaigns can target by version rule + free/Pro.
+        'plugin_version'   => AAGB_VERSION,
+        'is_pro'           => function_exists( 'aab_fs' ) ? aab_fs()->is_premium() : false,
+
+        // Frequency / dismissal behaviour (keeps notices tasteful — wp.org guideline 11).
+        'max_notices'      => 2,                  // never stack more than 2 at once
+        'dismiss_duration' => WEEK_IN_SECONDS,    // a dismissal sticks for a week
+        'snooze_duration'  => WEEK_IN_SECONDS,    // "Remind me later" cooldown
+
+        // Analytics consent (wp.org guideline 7): keep beacons OFF until the user
+        // opts in. We reuse Freemius' existing tracking opt-in as the consent
+        // signal (synced just below), so there is no second consent prompt.
+        'require_consent'  => true,
+
+        // Deactivation feedback is intentionally left OFF: Freemius already shows
+        // its own deactivation survey for this plugin, and enabling the SDK's
+        // prompt too would give the user a duplicate modal on deactivate.
+        // 'deactivation_feedback' => true,
+        // 'plugin_file'           => plugin_basename( AAGB_PLUGIN_FILE ),
+    ] );
+} );
+
+/**
+ * Keep NoticePilot analytics consent in sync with the user's Freemius
+ * tracking choice. Because init() runs with require_consent => true, no
+ * impression/click/dismissal/goal beacon fires until this grants consent.
+ */
+add_action( 'admin_init', function () {
+    // A sibling plugin may have loaded an older copy of the shared SDK class
+    // first; guard the newer method so we never fatal on an outdated class.
+    if ( ! function_exists( 'aab_fs' ) || ! method_exists( 'Noticepilot_Remote_Notice_Client', 'grant_consent' ) ) {
+        return;
+    }
+
+    // is_tracking_allowed() is true once the user opts in to Freemius tracking.
+    if ( method_exists( aab_fs(), 'is_tracking_allowed' ) && aab_fs()->is_tracking_allowed() ) {
+        Noticepilot_Remote_Notice_Client::grant_consent( 'AAB' );
+    } else {
+        Noticepilot_Remote_Notice_Client::revoke_consent( 'AAB' );
+    }
+} );
+
+/**
+ * Conversion goal: report the Pro upgrade exactly once, attributed to the
+ * campaign/variant that most recently drove it. This is what lets the hub
+ * measure real conversion rate (and pick A/B winners), not just clicks.
+ */
+add_action( 'admin_init', function () {
+    if ( ! function_exists( 'aab_fs' ) || ! method_exists( 'Noticepilot_Remote_Notice_Client', 'track_goal' ) ) {
+        return;
+    }
+
+    if ( aab_fs()->is_premium() && ! get_option( 'aab_np_goal_upgraded' ) ) {
+        // track_goal() returns true only when the beacon actually fired (consent
+        // granted + a campaign was seen). Mark it recorded only then, so a user
+        // who opts in later still gets the conversion attributed.
+        if ( Noticepilot_Remote_Notice_Client::track_goal( 'AAB', 'upgraded_to_pro' ) ) {
+            update_option( 'aab_np_goal_upgraded', 1, false );
+        }
+    }
+} );
 // Include Documentation Builder page
 require_once plugin_dir_path(__FILE__) . 'documentation-builder.php';
 
@@ -112,6 +184,16 @@ if (! function_exists('aab_create_page_with_pattern_handler')) {
             exit;
         }
 
+        // Smart-trigger metric: report how many accordion pages this user has
+        // created. NoticePilot only stores the number — WE do the counting. On
+        // the hub you can then trigger a campaign at a milestone (e.g. show an
+        // upgrade nudge once "pages_created" >= 3).
+        if (method_exists('Noticepilot_Remote_Notice_Client', 'set_metric')) {
+            $count = (int) get_option('aab_pages_created', 0) + 1;
+            update_option('aab_pages_created', $count, false);
+            Noticepilot_Remote_Notice_Client::set_metric('AAB', 'pages_created', $count);
+        }
+
         wp_safe_redirect(admin_url('post.php?post=' . absint($page_id) . '&action=edit'));
         exit;
     }
@@ -137,6 +219,7 @@ if (! function_exists('aab_admin_pages')) {
             $admin_pages = ! empty($_GET['page']) ? in_array(sanitize_text_field($_GET['page']), [
                 'aab-documentation-builder',
                 'aab-settings',
+                'aab-bulk-converter',
                 'aab-block-usage-table',
                 'aab-settings-account',
             ], true) : '';
@@ -158,7 +241,7 @@ if (! function_exists('aab_admin_page_assets')) {
         $page = $_GET['page'] ?? '';
 
         // Load assets for dashboard pages
-        if ('aab-settings' === $page) {
+        if ('aab-settings' === $page || 'aab-bulk-converter' === $page) {
             // Modern Dashboard Styles
             wp_enqueue_style(
                 'aab-dashboard-modern-css',
@@ -217,6 +300,15 @@ if (! function_exists('aab_plugin_admin_page')) {
             )),
             // Path to your SVG file,
             26
+        );
+
+        add_submenu_page(
+            'aab-settings',
+            __('Bulk Converter', 'advanced-accordion-block'),
+            __('Bulk Converter', 'advanced-accordion-block'),
+            'manage_options',
+            'aab-bulk-converter',
+            'aab_bulk_converter_page_callback'
         );
 
         add_submenu_page(
@@ -1275,6 +1367,341 @@ if (! function_exists('aab_admin_page_content_callback')) {
 <?php
     }
 }
+
+/**
+ * Renders the Standalone Bulk Accordion Converter page.
+ *
+ * @return void
+ */
+if (! function_exists('aab_bulk_converter_page_callback')) {
+    function aab_bulk_converter_page_callback(): void
+    {
+        if (! current_user_can('manage_options')) {
+            return;
+        }
+?>
+        <div class="aab-dashboard-wrap aab-standalone-converter-wrap">
+            <div class="aab-standalone-content" id="aab-tab-converter">
+                <?php aab_render_bulk_converter_panel(); ?>
+            </div>
+        </div>
+<?php
+    }
+}
+
+/**
+ * Helper to render the inner Bulk Converter panel HTML.
+ *
+ * @return void
+ */
+if (! function_exists('aab_render_bulk_converter_panel')) {
+    function aab_render_bulk_converter_panel(): void
+    {
+?>
+        <main class="aab-main-container aab-converter-container" role="main">
+            <!-- Page Header -->
+            <div class="aab-page-header aab-animate-fade-in">
+                <div class="aab-page-header-content">
+                    <div class="aab-badge-pill">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                        </svg>
+                        <?php esc_html_e('Migration Assistant', 'advanced-accordion-block'); ?>
+                    </div>
+                    <h1 class="aab-page-title"><?php esc_html_e('Bulk Accordion Converter', 'advanced-accordion-block'); ?></h1>
+                    <p class="aab-page-description"><?php esc_html_e('Scan your entire website for WordPress default accordions, details blocks, and Rank Math FAQ blocks and seamlessly convert them into Advanced Accordion Blocks with zero data loss.', 'advanced-accordion-block'); ?></p>
+                </div>
+            </div>
+
+            <!-- Scanner Configuration & Options Card -->
+            <section class="aab-card aab-converter-options-card aab-animate-fade-in">
+                <div class="aab-card-header">
+                    <h2 class="aab-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color: var(--aab-primary, #00a19a); margin-right: 8px;">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                        <?php esc_html_e('Scan & Conversion Settings', 'advanced-accordion-block'); ?>
+                    </h2>
+                </div>
+                <div class="aab-card-body">
+                    <div class="aab-converter-settings-grid">
+                        <!-- Block types to scan -->
+                        <div class="aab-settings-group">
+                            <label class="aab-settings-label"><?php esc_html_e('Source Accordion Types', 'advanced-accordion-block'); ?></label>
+                            <div class="aab-checkbox-list">
+                                <label class="aab-checkbox-item">
+                                    <input type="checkbox" name="convert_types[]" value="rank_math" checked>
+                                    <span class="aab-checkbox-custom">
+                                        <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                    </span>
+                                    <span class="aab-checkbox-text">
+                                        <strong><?php esc_html_e('Rank Math FAQ Block', 'advanced-accordion-block'); ?></strong>
+                                        <small><?php esc_html_e('Convert questions, answers, and images to Group Accordions', 'advanced-accordion-block'); ?></small>
+                                    </span>
+                                </label>
+                                <label class="aab-checkbox-item">
+                                    <input type="checkbox" name="convert_types[]" value="core_details" checked>
+                                    <span class="aab-checkbox-custom">
+                                        <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                    </span>
+                                    <span class="aab-checkbox-text">
+                                        <strong><?php esc_html_e('WordPress Core Details Block', 'advanced-accordion-block'); ?></strong>
+                                        <small><?php esc_html_e('Convert each details block into a standalone Separate Accordion', 'advanced-accordion-block'); ?></small>
+                                    </span>
+                                </label>
+                                <label class="aab-checkbox-item">
+                                    <input type="checkbox" name="convert_types[]" value="core_accordion" checked>
+                                    <span class="aab-checkbox-custom">
+                                        <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                    </span>
+                                    <span class="aab-checkbox-text">
+                                        <strong><?php esc_html_e('WordPress Core Accordion Block', 'advanced-accordion-block'); ?></strong>
+                                        <small><?php esc_html_e('Convert core accordion items into standalone Separate Accordions', 'advanced-accordion-block'); ?></small>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Post types to scan -->
+                        <div class="aab-settings-group">
+                            <label class="aab-settings-label"><?php esc_html_e('Target Post Types', 'advanced-accordion-block'); ?></label>
+                            <div class="aab-checkbox-list aab-post-types-list">
+                                <?php
+                                $supported_pt = class_exists('AAB_Bulk_Converter') ? AAB_Bulk_Converter::get_instance()->get_supported_post_types() : ['post' => ['label' => 'Posts'], 'page' => ['label' => 'Pages']];
+                                foreach ($supported_pt as $pt => $pt_data) :
+                                ?>
+                                    <label class="aab-checkbox-item aab-checkbox-inline">
+                                        <input type="checkbox" name="post_types[]" value="<?php echo esc_attr($pt); ?>" checked>
+                                        <span class="aab-checkbox-custom">
+                                            <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                        </span>
+                                        <span class="aab-checkbox-text"><?php echo esc_html($pt_data['label']); ?></span>
+                                    </label>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <!-- Schema & Safety Options -->
+                        <div class="aab-settings-group">
+                            <label class="aab-settings-label"><?php esc_html_e('Conversion Options', 'advanced-accordion-block'); ?></label>
+                            <div class="aab-toggle-list">
+                                <label class="aab-checkbox-item aab-toggle-item">
+                                    <input type="checkbox" id="aab-opt-schema" checked>
+                                    <span class="aab-checkbox-custom">
+                                        <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                    </span>
+                                    <span class="aab-checkbox-text">
+                                        <strong><?php esc_html_e('Enable FAQ Schema Markup', 'advanced-accordion-block'); ?></strong>
+                                        <small><?php esc_html_e('Preserves Google Rich Snippets SEO structured data on converted accordions', 'advanced-accordion-block'); ?></small>
+                                    </span>
+                                </label>
+                                <label class="aab-checkbox-item aab-toggle-item">
+                                    <input type="checkbox" id="aab-opt-revision" checked>
+                                    <span class="aab-checkbox-custom">
+                                        <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                    </span>
+                                    <span class="aab-checkbox-text">
+                                        <strong><?php esc_html_e('Create Post Revisions', 'advanced-accordion-block'); ?></strong>
+                                        <small><?php esc_html_e('Stores a backup revision of each post so changes can easily be reverted in WordPress', 'advanced-accordion-block'); ?></small>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Footer with Scan Button -->
+                <div class="aab-card-footer aab-settings-card-footer">
+                    <div class="aab-footer-info">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="color: var(--aab-primary, #00a19a);">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        </svg>
+                        <span><?php esc_html_e('Configure your scan preferences above, then click scan to detect candidate accordions.', 'advanced-accordion-block'); ?></span>
+                    </div>
+                    <button type="button" id="aab-start-scan-btn" class="aab-btn aab-btn-primary aab-btn-lg">
+                        <svg class="aab-icon-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                            <circle cx="12" cy="12" r="9"/>
+                            <line x1="12" y1="3" x2="12" y2="7"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                            <line x1="3" y1="12" x2="7" y2="12"/>
+                            <line x1="17" y1="12" x2="21" y2="12"/>
+                        </svg>
+                        <span class="btn-text"><?php esc_html_e('Scan Entire Site', 'advanced-accordion-block'); ?></span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- No Items Found State -->
+            <div id="aab-converter-empty-state" class="aab-converter-placeholder aab-animate-fade-in" style="display: none;">
+                <div class="aab-placeholder-icon" style="background: rgba(0, 161, 154, 0.1); color: var(--aab-primary, #00a19a);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h3><?php esc_html_e('No Third-Party Accordions Found', 'advanced-accordion-block'); ?></h3>
+                <p><?php esc_html_e('Great news! We scanned your selected post types and did not find any WordPress default accordions, details blocks, or Rank Math FAQ blocks.', 'advanced-accordion-block'); ?></p>
+            </div>
+
+            <!-- Scan Results & Candidate Posts Section -->
+            <div id="aab-converter-results-container" style="display: none;">
+                <!-- Metric Stats Grid -->
+                <div class="aab-converter-stats-grid aab-animate-fade-in">
+                    <div class="aab-stat-card aab-stat-total">
+                        <div class="aab-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <div class="aab-stat-info">
+                            <span class="aab-stat-num" id="aab-stat-posts-count">0</span>
+                            <span class="aab-stat-title"><?php esc_html_e('Posts / Pages Found', 'advanced-accordion-block'); ?></span>
+                        </div>
+                    </div>
+                    <div class="aab-stat-card aab-stat-rm">
+                        <div class="aab-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <div class="aab-stat-info">
+                            <span class="aab-stat-num" id="aab-stat-rm-count">0</span>
+                            <span class="aab-stat-title"><?php esc_html_e('Rank Math FAQ Blocks', 'advanced-accordion-block'); ?></span>
+                        </div>
+                    </div>
+                    <div class="aab-stat-card aab-stat-core">
+                        <div class="aab-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="3" y1="9" x2="21" y2="9"/>
+                                <line x1="9" y1="21" x2="9" y2="9"/>
+                            </svg>
+                        </div>
+                        <div class="aab-stat-info">
+                            <span class="aab-stat-num" id="aab-stat-core-count">0</span>
+                            <span class="aab-stat-title"><?php esc_html_e('Core Accordion & Details', 'advanced-accordion-block'); ?></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversion Action Bar (Seamlessly transforms into In-Bar Progress State) -->
+                <div class="aab-converter-action-bar aab-animate-fade-in" id="aab-converter-action-bar">
+                    <!-- Default Selection State -->
+                    <div class="aab-action-bar-default" id="aab-action-bar-default">
+                        <div class="aab-action-bar-left">
+                            <label class="aab-select-all-wrap aab-checkbox-item aab-checkbox-inline" style="border: none; background: transparent; padding: 0;">
+                                <input type="checkbox" id="aab-select-all-posts" checked>
+                                <span class="aab-checkbox-custom">
+                                    <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                </span>
+                                <span id="aab-selected-count-label" style="font-weight: 600; color: var(--aab-text-dark, #1e293b);"><?php esc_html_e('Select All Posts', 'advanced-accordion-block'); ?></span>
+                            </label>
+                        </div>
+                        <div class="aab-action-bar-right">
+                            <button type="button" id="aab-run-convert-btn" class="aab-btn aab-btn-primary aab-btn-lg">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="btn-text"><?php esc_html_e('Convert Selected Posts to AAB', 'advanced-accordion-block'); ?></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Active In-Bar Progress State -->
+                    <div class="aab-action-bar-progress" id="aab-action-bar-progress" style="display: none;">
+                        <div class="aab-bar-progress-left">
+                            <div class="aab-bar-progress-label-wrap">
+                                <span class="aab-spinner-sm" id="aab-bar-spinner"></span>
+                                <span id="aab-bar-progress-label"><?php esc_html_e('Preparing conversion…', 'advanced-accordion-block'); ?></span>
+                            </div>
+                            <div class="aab-bar-progress-track">
+                                <div class="aab-bar-progress-fill" id="aab-bar-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="aab-bar-progress-right">
+                            <button type="button" id="aab-bar-cancel-btn" class="aab-btn aab-btn-outline aab-btn-sm" style="color: #ef4444; border-color: #fca5a5; font-weight: 600;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="margin-right: 4px; vertical-align: middle;">
+                                    <line x1="18" y1="6" x2="6" y2="18"/>
+                                    <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                                <?php esc_html_e('Cancel', 'advanced-accordion-block'); ?>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Candidate Posts Table Card (Always visible!) -->
+                <section class="aab-card aab-posts-table-card aab-animate-fade-in" id="aab-posts-table-section">
+                    <div class="aab-card-header">
+                        <h2 class="aab-card-title"><?php esc_html_e('Candidate Posts for Conversion', 'advanced-accordion-block'); ?></h2>
+                        <div class="aab-table-search-box">
+                            <input type="text" id="aab-posts-filter-input" placeholder="<?php esc_attr_e('Filter posts by title...', 'advanced-accordion-block'); ?>">
+                        </div>
+                    </div>
+                    <div class="aab-card-body" style="padding: 0;">
+                        <div class="aab-table-responsive">
+                            <table class="aab-posts-table" id="aab-matched-posts-table">
+                                <thead>
+                                    <tr>
+                                        <th width="40" class="aab-th-cb">
+                                            <label class="aab-checkbox-item aab-checkbox-inline aab-table-th-label" style="border: none; background: transparent; padding: 0;">
+                                                <input type="checkbox" id="aab-th-select-all" checked>
+                                                <span class="aab-checkbox-custom">
+                                                    <svg viewBox="0 0 12 10" width="10" height="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="aab-check-icon"><polyline points="1.5 5 4.5 8 10.5 1.5"></polyline></svg>
+                                                </span>
+                                            </label>
+                                        </th>
+                                        <th><?php esc_html_e('Post Title', 'advanced-accordion-block'); ?></th>
+                                        <th width="120"><?php esc_html_e('Post Type', 'advanced-accordion-block'); ?></th>
+                                        <th width="240"><?php esc_html_e('Detected Blocks', 'advanced-accordion-block'); ?></th>
+                                        <th width="140"><?php esc_html_e('Status', 'advanced-accordion-block'); ?></th>
+                                        <th width="140" class="aab-th-actions"><?php esc_html_e('Actions', 'advanced-accordion-block'); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="aab-posts-tbody">
+                                    <!-- Populated dynamically by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        
+            <!-- Custom Error Details Modal Dialog -->
+            <div id="aab-error-modal" class="aab-modal-overlay" style="display: none;">
+                <div class="aab-modal-dialog">
+                    <div class="aab-modal-header">
+                        <div class="aab-modal-title-wrap">
+                            <div class="aab-modal-icon-error">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                </svg>
+                            </div>
+                            <h3 class="aab-modal-title"><?php esc_html_e('Conversion Error Details', 'advanced-accordion-block'); ?></h3>
+                        </div>
+                        <button type="button" class="aab-modal-close" id="aab-error-modal-close">&times;</button>
+                    </div>
+                    <div class="aab-modal-body">
+                        <p id="aab-error-modal-msg" class="aab-modal-msg"></p>
+                    </div>
+                    <div class="aab-modal-footer">
+                        <button type="button" class="aab-btn aab-btn-primary" id="aab-error-modal-ok"><?php esc_html_e('Dismiss', 'advanced-accordion-block'); ?></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+<?php
+    }
+}
+
 
 /**
  * Get extension plugins status

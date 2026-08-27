@@ -2,8 +2,8 @@
 Contributors: spiderdevs, mdjwel , muaz404, freemius
 Tags: accordion, FAQ, Gutenberg block, accordion block, FAQs
 Requires at least: 5.0
-Tested up to: 7.0
-Stable tag: 5.4.1
+Tested up to: 7.1
+Stable tag: 5.5.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -237,6 +237,9 @@ Need help? [Read our complete documentation →](https://helpdesk.spider-themes.
 
 == Upgrade Notice ==
 
+= 5.5.0 =
+This update adds block conversion tools, allowing you to easily convert between Advanced Accordion and WordPress Accordion, Details, or Rank Math FAQ blocks, individually or in bulk.
+
 = 5.1.0 =
 Major update with autoplay functionality, feature image support, auto-numbering with colors, and Steps with Progress Bar. Enhanced pattern designs and improved settings UI. Recommended for all users.
 
@@ -248,6 +251,11 @@ Major feature release with Show More button, Labels support, and significant UI 
 
 == Changelog ==
 
+
+= 5.5.0 (27 August 2026) =
+Added: Convert WordPress Accordion, Details, and Rank Math FAQ blocks into Advanced Accordion from the editor Transform menu.
+Added: Convert Advanced Accordion blocks back to WordPress Accordion, Details, or Rank Math FAQ.
+Added: Scan your site and bulk-convert WordPress Accordion, Details, and Rank Math FAQ blocks from the new Bulk Converter admin page.
 
 = 5.4.1 (10 July 2026) =
 Improved: FAQ Schema is now completely free – add FAQ structured data (JSON-LD) to any accordion to earn Rich Results in Google Search.
