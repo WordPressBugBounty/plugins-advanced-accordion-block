@@ -12,7 +12,8 @@ if ( ! defined( "ABSPATH" ) ) {
 	exit;
 }
 
-class AAB_Bulk_Converter {
+if ( ! class_exists( 'AAB_Bulk_Converter' ) ) {
+	class AAB_Bulk_Converter {
 
 	/**
 	 * Instance of this class.
@@ -1029,7 +1030,7 @@ class AAB_Bulk_Converter {
 
 		return "";
 	}
-
+}
 }
 
 // Auto-initialize

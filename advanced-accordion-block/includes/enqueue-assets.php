@@ -10,7 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class is responsible for enqueuing the necessary assets (JavaScript and CSS)
  * for both the frontend and the block editor in the plugin.
  */
-class AAB_Enqueue_Block_Assets {
+if ( ! class_exists( 'AAB_Enqueue_Block_Assets' ) ) {
+	class AAB_Enqueue_Block_Assets {
 	/**
 	 * Constructor.
 	 *
@@ -237,5 +238,5 @@ JS;
 			true
 		);
 	}
-
+}
 }

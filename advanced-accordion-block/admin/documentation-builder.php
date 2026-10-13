@@ -202,7 +202,7 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
                                 Learn More on WordPress.org
                             </a>
 
-                            <a href="https://eazydocs.spider-themes.net/" target="_blank" class="aab-btn aab-btn-outline">
+                            <a href="https://eazydocs.spiderthemes.net/" target="_blank" class="aab-btn aab-btn-outline">
                                 View Premium Plans
                             </a>
                         </div>
@@ -215,11 +215,11 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
                 <section class="aab-links-section">
                     <h3>Useful Links</h3>
                     <div class="aab-links-grid">
-                        <a href="https://eazydocs.spider-themes.net/" target="_blank" class="aab-link-card">
+                        <a href="https://eazydocs.spiderthemes.net/" target="_blank" class="aab-link-card">
                             <span class="aab-link-icon dashicons dashicons-admin-site-alt3" aria-hidden="true"></span>
                             <span class="aab-link-text">Official Website</span>
                         </a>
-                        <a href="https://wordpress-plugins.spider-themes.net/eazydocs-pro/" target="_blank" class="aab-link-card">
+                        <a href="https://wordpress-plugins.spiderthemes.net/eazydocs-pro/" target="_blank" class="aab-link-card">
                             <span class="aab-link-icon dashicons dashicons-desktop" aria-hidden="true"></span>
                             <span class="aab-link-text">Frontend Demo</span>
                         </a>
@@ -227,7 +227,7 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
                             <span class="aab-link-icon dashicons dashicons-video-alt3" aria-hidden="true"></span>
                             <span class="aab-link-text">Video Tutorials</span>
                         </a>
-                        <a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank" class="aab-link-card">
+                        <a href="https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/" target="_blank" class="aab-link-card">
                             <span class="aab-link-icon dashicons dashicons-book-alt" aria-hidden="true"></span>
                             <span class="aab-link-text">Documentation</span>
                         </a>
@@ -240,7 +240,7 @@ if ( ! function_exists( 'aab_documentation_builder_page' ) ) {
 
                 <!-- Footer -->
                 <footer class="aab-doc-builder-footer">
-                    <p>Brought to you by <a href="https://spider-themes.net/" target="_blank">Spider Themes</a> |
+                    <p>Brought to you by <a href="https://spiderthemes.net/" target="_blank">Spider Themes</a> |
                     <strong>Rating:</strong> 4.7 out of 5 stars (76+ reviews) |
                     <strong>Active Installations:</strong> 2,000+</p>
                 </footer>

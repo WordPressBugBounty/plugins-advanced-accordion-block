@@ -5,10 +5,10 @@
  * Description: <strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
  * Requires at least: 5.7
  * Requires PHP: 7.4
- * Version: 5.5.0
- * Plugin URI: https://advanced-accordion-block.spider-themes.net
+ * Version: 5.6.0
+ * Plugin URI: https://advanced-accordion-block.spiderthemes.net
  * Author: Spider Themes
- * Author URI: https://spider-themes.net
+ * Author URI: https://spiderthemes.net
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: advanced-accordion-block
@@ -64,6 +64,11 @@ if ( function_exists( 'aab_fs' ) ) {
 
         // Init Freemius.
         aab_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
+        // Disclose that opting in also pre-fills the in-plugin support chat
+        // (see the Support Assistant class). The on-update screen falls back to this filter.
+        aab_fs()->add_filter( 'connect_message', function ( $message ) {
+            return $message . '<br><br>' . esc_html__( 'Opting in also pre-fills your name and email in the Accordion Block support chat, so you can get help without typing them. They are only sent to our helpdesk when you open the chat.', 'advanced-accordion-block' );
+        } );
         // Signal that SDK was initiated.
         do_action( 'aab_fs_loaded' );
     }
@@ -132,10 +137,18 @@ if ( !class_exists( 'AAGB_BLOCKS_CLASS' ) ) {
          * Define the plugin constants
          */
         private function define_constants() {
-            define( 'AAGB_VERSION', '5.5.0' );
-            define( 'AAGB_URL', plugin_dir_url( __FILE__ ) );
-            define( 'AAGB_ASSETS', AAGB_URL . 'assets/' );
-            define( 'AAGB_PLUGIN_FILE', __FILE__ );
+            if ( !defined( 'AAGB_VERSION' ) ) {
+                define( 'AAGB_VERSION', '5.6.0' );
+            }
+            if ( !defined( 'AAGB_URL' ) ) {
+                define( 'AAGB_URL', plugin_dir_url( __FILE__ ) );
+            }
+            if ( !defined( 'AAGB_ASSETS' ) ) {
+                define( 'AAGB_ASSETS', AAGB_URL . 'assets/' );
+            }
+            if ( !defined( 'AAGB_PLUGIN_FILE' ) ) {
+                define( 'AAGB_PLUGIN_FILE', __FILE__ );
+            }
         }
 
         /**
@@ -160,6 +173,9 @@ if ( !class_exists( 'AAGB_BLOCKS_CLASS' ) ) {
          * @return void
          */
         function user_redirecting( $plugin ) {
+            if ( defined( 'WP_CLI' ) && WP_CLI || wp_doing_ajax() ) {
+                return;
+            }
             if ( plugin_basename( __FILE__ ) === $plugin ) {
                 wp_redirect( admin_url( 'admin.php?page=aab-settings' ) );
                 die;

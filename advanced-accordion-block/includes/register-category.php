@@ -9,24 +9,26 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Registers the block category for the plugin.
  */
-class AAB_Block_Category_Register {
-	/**
-	 * Register block category.
-	 *
-	 * @param array   $categories List of categories.
-	 * @param WP_Post $post       Current post object.
-	 * @return array Modified categories.
-	 */
-	public function register_block_category( $categories, $post ) {
-		return array_merge(
-			[
+if ( ! class_exists( 'AAB_Block_Category_Register' ) ) {
+	class AAB_Block_Category_Register {
+		/**
+		 * Register block category.
+		 *
+		 * @param array   $categories List of categories.
+		 * @param WP_Post $post       Current post object.
+		 * @return array Modified categories.
+		 */
+		public function register_block_category( $categories, $post ) {
+			return array_merge(
 				[
-					'slug'  => 'accordion-block',
-					'title' => esc_html__( 'Accordion Blocks', 'advanced-accordion-block' ),
+					[
+						'slug'  => 'accordion-block',
+						'title' => esc_html__( 'Accordion Blocks', 'advanced-accordion-block' ),
+					],
 				],
-			],
-			$categories
-		);
+				$categories
+			);
+		}
 	}
 }
 
@@ -35,12 +37,14 @@ class AAB_Block_Category_Register {
  *
  * Loads pattern files from the block-patterns directory.
  */
-function aab_register_block_patterns() {
-	$patterns = glob( dirname( __DIR__ ) . '/block-patterns/*.php' );
-	if ( $patterns ) {
-		foreach ( $patterns as $pattern ) {
-			include $pattern;
+if ( ! function_exists( 'aab_register_block_patterns' ) ) {
+	function aab_register_block_patterns() {
+		$patterns = glob( dirname( __DIR__ ) . '/block-patterns/*.php' );
+		if ( $patterns ) {
+			foreach ( $patterns as $pattern ) {
+				include $pattern;
+			}
 		}
 	}
+	add_action( 'init', 'aab_register_block_patterns' );
 }
-add_action( 'init', 'aab_register_block_patterns' );

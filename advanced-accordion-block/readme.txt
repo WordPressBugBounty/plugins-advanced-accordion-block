@@ -3,11 +3,11 @@ Contributors: spiderdevs, mdjwel , muaz404, freemius
 Tags: accordion, FAQ, Gutenberg block, accordion block, FAQs
 Requires at least: 5.0
 Tested up to: 7.1
-Stable tag: 5.5.0
+Stable tag: 5.6.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Donate link: https://advanced-accordion-block.spider-themes.net/pricing/
+Donate link: https://advanced-accordion-block.spiderthemes.net/pricing/
 
 Create stunning FAQ & accordion blocks. SEO-optimized, fully accessible, zero performance impact. No coding needed.
 
@@ -31,10 +31,10 @@ Perfect for bloggers, agencies, and businesses looking to organize content, impr
 [youtube https://www.youtube.com/watch?v=UQDLpqro9yU]
 
 ### Quick Links
-- [Get Pro Features](https://advanced-accordion-block.spider-themes.net/flexible-pricing-for-all) – Unlock advanced functionality
-- [View Live Demos](https://advanced-accordion-block.spider-themes.net/demos) – See it in action
-- [Full Documentation](https://helpdesk.spider-themes.net/docs/advance-accordions) – Complete guides and tutorials
-- [Feature Showcase](https://advanced-accordion-block.spider-themes.net) – Explore all capabilities
+- [Get Pro Features](https://advanced-accordion-block.spiderthemes.net/flexible-pricing-for-all) – Unlock advanced functionality
+- [View Live Demos](https://advanced-accordion-block.spiderthemes.net/demos) – See it in action
+- [Full Documentation](https://helpdesk.spiderthemes.net/docs/advance-accordions) – Complete guides and tutorials
+- [Feature Showcase](https://advanced-accordion-block.spiderthemes.net) – Explore all capabilities
 
 == Core Features ==
 
@@ -112,7 +112,7 @@ Upgrade to Pro and unlock powerful advanced capabilities:
 
 **Next/Previous Navigation** – Enable smooth sequential browsing inside accordion content with built-in Next and Previous navigation controls, helping users move through sections without closing the accordion.
 
-[See All Features](https://advanced-accordion-block.spider-themes.net/features)
+[See All Features](https://advanced-accordion-block.spiderthemes.net/features)
 
 ### Creating an Accordion FAQ with Advanced Accordion
 [youtube https://www.youtube.com/watch?v=K40z8KxojxE]
@@ -193,6 +193,18 @@ If you like Advanced Accordion, then consider checking out our other WordPress P
 
 [Spider Elements](https://wordpress.org/plugins/spider-elements) – Versatile library of 20+ creative widgets to enhance Elementor and build professional websites.
 
+== External services ==
+
+= Spider Themes Helpdesk (support assistant) =
+
+Accordion Block admin pages show a chat button that opens the Accordion Block documentation assistant hosted on the Spider Themes helpdesk (helpdesk.spiderthemes.net), so you can search the docs and ask questions without leaving WordPress.
+
+Nothing is loaded from the helpdesk until you press the chat button. Hovering over the button only opens a network connection to the helpdesk so the chat loads faster; no data is sent. When you open it, the assistant is loaded in an iframe from `https://helpdesk.spiderthemes.net/iframe-assistant/`, and your browser sends the product name and the documentation section to show. If you opted in through the Freemius opt-in screen and you are the administrator who opted in, your name and email address are also sent so the support chat is pre-filled. Messages you type in the chat are sent to the helpdesk to be answered.
+
+You can turn the assistant off under Accordion Block → Settings → Hide Support Chat (or with `add_filter( 'aab_support_assistant_enabled', '__return_false' );`).
+
+* [Spider Themes](https://spiderthemes.net) — [Terms](https://spiderthemes.net/terms) — [Privacy](https://spiderthemes.net/privacy)
+
 == Screenshots ==
 1. Advanced Accordion Block Patterns – Pre-built accordion patterns for creating advanced layouts instantly.
 2. Admin Dashboard – Accordion usage tracking and analytics panel.
@@ -232,10 +244,13 @@ If you like Advanced Accordion, then consider checking out our other WordPress P
 4. Start adding your content and customizing
 5. Check the settings panel on the right for design options
 
-Need help? [Read our complete documentation →](https://helpdesk.spider-themes.net/docs/advance-accordions)
+Need help? [Read our complete documentation →](https://helpdesk.spiderthemes.net/docs/advance-accordions)
 
 
 == Upgrade Notice ==
+
+= 5.6.0 =
+Added Docs Support Chat and a Settings tab to the Accordion Block dashboard. Updated the Freemius SDK to the latest version.
 
 = 5.5.0 =
 This update adds block conversion tools, allowing you to easily convert between Advanced Accordion and WordPress Accordion, Details, or Rank Math FAQ blocks, individually or in bulk.
@@ -251,6 +266,10 @@ Major feature release with Show More button, Labels support, and significant UI 
 
 == Changelog ==
 
+
+= 5.6.0 (13 October 2026) =
+Added: Added Docs Support Chat and a Settings tab to the Accordion Block dashboard.
+Updated: Updated Freemius SDK to the latest version.
 
 = 5.5.0 (27 August 2026) =
 Added: Convert WordPress Accordion, Details, and Rank Math FAQ blocks into Advanced Accordion from the editor Transform menu.

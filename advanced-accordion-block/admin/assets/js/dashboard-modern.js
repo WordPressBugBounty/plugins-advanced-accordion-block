@@ -53,6 +53,9 @@ window.aagb_local_object = window.aagb_local_object || {
 
             if (hash && $(hash).length && $tabNav.find('a[href="' + hash + '"]').length) {
                 self.switchTab(hash);
+            } else if (new URLSearchParams(window.location.search).has('settings-updated') && $('#aab-tab-settings').length) {
+                // options.php redirects back without the hash; return to the Settings tab after saving.
+                self.switchTab('#aab-tab-settings');
             }
 
             // Tab click handler

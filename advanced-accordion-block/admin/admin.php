@@ -9,10 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * NoticePilot — remote admin-notice campaigns (SDK v1.6.1).
+ * NoticePilot — remote admin-notice campaigns (SDK v1.7.0).
  *
  * Product id .......... 'AAB' (used for every SDK call below — must stay consistent).
- * Hub endpoint ........ manage.spider-themes.net → /content/aab
+ * Hub endpoint ........ manage.spiderthemes.net → /content/aab
  *
  * The SDK is one bundled file; features are gated on the hub. We only need to
  * pass the right config here and call a couple of helper methods.
@@ -25,7 +25,7 @@ add_action( 'plugins_loaded', function () {
     }
 
     Noticepilot_Remote_Notice_Client::init( 'AAB', [
-        'api_url'          => 'https://manage.spider-themes.net/wp-json/noticepilot/v1/content/aab',
+        'api_url'          => 'https://manage.spiderthemes.net/wp-json/noticepilot/v1/content/aab',
 
         // How often to pull campaigns, and who may see them.
         'schedule'         => 'daily',            // hourly | twicedaily | daily
@@ -94,6 +94,29 @@ add_action( 'admin_init', function () {
 } );
 // Include Documentation Builder page
 require_once plugin_dir_path(__FILE__) . 'documentation-builder.php';
+
+// Helpdesk docs assistant on Accordion Block admin pages.
+require_once plugin_dir_path(__FILE__) . 'class-support-assistant.php';
+if (is_admin()) {
+    AAB_Support_Assistant::get_instance();
+}
+
+add_action('admin_init', 'aab_register_general_settings');
+if (! function_exists('aab_register_general_settings')) {
+    /**
+     * Register the options saved from the dashboard's Settings tab.
+     *
+     * @return void
+     */
+    function aab_register_general_settings()
+    {
+        register_setting('aab_general_settings', 'aab_hide_support_assistant', array(
+            'type'              => 'boolean',
+            'default'           => false,
+            'sanitize_callback' => 'rest_sanitize_boolean',
+        ));
+    }
+}
 
 add_action('admin_menu', 'aab_plugin_admin_page');
 add_action('admin_enqueue_scripts', 'aab_admin_page_assets');
@@ -386,6 +409,7 @@ if (! function_exists('aab_admin_page_content_callback')) {
                             <?php if (! $is_pro) : ?>
                                 <li><a href="#aab-tab-free-vs-pro" class="aab-nav-item"><?php esc_html_e('Lite vs Pro', 'advanced-accordion-block'); ?></a></li>
                             <?php endif; ?>
+                            <li><a href="#aab-tab-settings" class="aab-nav-item"><?php esc_html_e('Settings', 'advanced-accordion-block'); ?></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -403,13 +427,13 @@ if (! function_exists('aab_admin_page_content_callback')) {
                         <span class="tier <?php echo $is_pro ? 'pro' : ''; ?>"><?php echo $is_pro ? esc_html__('PRO', 'advanced-accordion-block') : esc_html__('LITE', 'advanced-accordion-block'); ?></span>
                     </div>
                     <div class="aab-header-icons">
-                        <a href="https://helpdesk.spider-themes.net/docs/advance-accordions" target="_blank" rel="noopener" class="aab-header-icon-btn" title="<?php esc_attr_e('Documentation', 'advanced-accordion-block'); ?>">
+                        <a href="https://helpdesk.spiderthemes.net/docs/advance-accordions" target="_blank" rel="noopener" class="aab-header-icon-btn" title="<?php esc_attr_e('Documentation', 'advanced-accordion-block'); ?>">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                             </svg>
                         </a>
-                        <a href="https://advanced-accordion-block.spider-themes.net/changelog/" target="_blank" rel="noopener" class="aab-header-icon-btn" title="<?php esc_attr_e('Changelog', 'advanced-accordion-block'); ?>">
+                        <a href="https://advanced-accordion-block.spiderthemes.net/changelog/" target="_blank" rel="noopener" class="aab-header-icon-btn" title="<?php esc_attr_e('Changelog', 'advanced-accordion-block'); ?>">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" x="0" y="0" viewBox="0 0 24 24" xml:space="preserve" class="">
                                 <g>
                                     <path d="M13.1 1A10.927 10.927 0 0 0 2.566 9.223l-.732-1.107a1 1 0 1 0-1.668 1.1l2.2 3.334a1.084 1.084 0 0 0 .634.425 1.024 1.024 0 0 0 .756-.145l3.3-2.223a1 1 0 1 0-1.115-1.659L4.44 9.96A8.909 8.909 0 1 1 13.1 21a8.892 8.892 0 0 1-7.281-3.822 1 1 0 1 0-1.64 1.143A10.881 10.881 0 0 0 24 12 10.963 10.963 0 0 0 13.1 1z" fill="currentColor" class=""></path>
@@ -623,22 +647,22 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                         <div class="aab-modules-grid">
                                             <?php
                                             $pro_modules = [
-                                                ['name' => __('Instant Search', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#instant-search-with-toggle'],
-                                                ['name' => __('Voting Feedback', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/dynamic-featuers/#voting-feedback'],
-                                                ['name' => __('Anchor Links', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#read-more-button'],
-                                                ['name' => __('Q&A Style Layout', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/accordion-layouts/#enable-qa-style'],
-                                                ['name' => __('Steps Layout', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#steps-layout'],
-                                                ['name' => __('Checklist Layout', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#checklist-layout-with-show-more'],
-                                                ['name' => __('Autoplay Mode', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#accordion-auto-play'],
-                                                ['name' => __('Read More Button', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#read-more-button'],
-                                                ['name' => __('Category Filter Tabs', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/categories-accordion/#filter-tabs-by-category'],
-                                                ['name' => __('Featured Icon/Image', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/title-features/#title-with-featured-image'],
-                                                ['name' => __('Auto-Numbering', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#accordion-auto-numbering'],
-                                                ['name' => __('Next/Prev Navigation', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/accordion-navigation/'],
-                                                ['name' => __('Subheading Support', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/title-features/#subheading-support'],
-                                                ['name' => __('Custom Labels', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/#label'],
-                                                ['name' => __('Pagination/Show More Button', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/categories-accordion/#show-more-accordion'],
-                                                ['name' => __('FAQ Schema Markup', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spider-themes.net/demos/'],
+                                                ['name' => __('Instant Search', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#instant-search-with-toggle'],
+                                                ['name' => __('Voting Feedback', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/dynamic-featuers/#voting-feedback'],
+                                                ['name' => __('Anchor Links', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#read-more-button'],
+                                                ['name' => __('Q&A Style Layout', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/accordion-layouts/#enable-qa-style'],
+                                                ['name' => __('Steps Layout', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#steps-layout'],
+                                                ['name' => __('Checklist Layout', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#checklist-layout-with-show-more'],
+                                                ['name' => __('Autoplay Mode', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#accordion-auto-play'],
+                                                ['name' => __('Read More Button', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#read-more-button'],
+                                                ['name' => __('Category Filter Tabs', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/categories-accordion/#filter-tabs-by-category'],
+                                                ['name' => __('Featured Icon/Image', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/title-features/#title-with-featured-image'],
+                                                ['name' => __('Auto-Numbering', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#accordion-auto-numbering'],
+                                                ['name' => __('Next/Prev Navigation', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/accordion-navigation/'],
+                                                ['name' => __('Subheading Support', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/title-features/#subheading-support'],
+                                                ['name' => __('Custom Labels', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/#label'],
+                                                ['name' => __('Pagination/Show More Button', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/categories-accordion/#show-more-accordion'],
+                                                ['name' => __('FAQ Schema Markup', 'advanced-accordion-block'), 'doc_link' => 'https://advanced-accordion-block.spiderthemes.net/demos/'],
                                             ];
 
                                             foreach ($pro_modules as $module) :
@@ -661,7 +685,7 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                 <section class="aab-card aab-animate-fade-in aab-animate-delay-3" aria-labelledby="aab-features-title">
                                     <div class="aab-card-header">
                                         <h2 id="aab-features-title" class="aab-card-title"><?php esc_html_e('Key Features', 'advanced-accordion-block'); ?></h2>
-                                        <a href="https://advanced-accordion-block.spider-themes.net/features" target="_blank" rel="noopener" class="aab-card-action"><?php esc_html_e('View All Features', 'advanced-accordion-block'); ?></a>
+                                        <a href="https://advanced-accordion-block.spiderthemes.net/features" target="_blank" rel="noopener" class="aab-card-action"><?php esc_html_e('View All Features', 'advanced-accordion-block'); ?></a>
                                     </div>
                                     <div class="aab-card-body">
                                         <div class="aab-features-grid">
@@ -894,19 +918,19 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                             </svg>
                                             <?php esc_html_e('Pre-built Patterns', 'advanced-accordion-block'); ?>
                                         </h2>
-                                        <a href="https://advanced-accordion-block.spider-themes.net/prebuild-pattern-design/" class="aab-card-action"><?php esc_html_e('Browse Patterns', 'advanced-accordion-block'); ?></a>
+                                        <a href="https://advanced-accordion-block.spiderthemes.net/prebuild-pattern-design/" class="aab-card-action"><?php esc_html_e('Browse Patterns', 'advanced-accordion-block'); ?></a>
                                     </div>
                                     <div class="aab-card-body">
                                         <p class="aab-patterns-intro"><?php esc_html_e('Get started instantly with 15+ professionally designed accordion patterns. Just insert and customize!', 'advanced-accordion-block'); ?></p>
                                         <div class="aab-patterns-grid">
                                             <?php
                                             $patterns = [
-                                                ['name' => __('Simple Accordion', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spider-themes.net/prebuild-pattern-design/#simple-accordion', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="6" rx="1"/><rect x="3" y="11" width="18" height="3" rx="1" opacity="0.5"/><rect x="3" y="16" width="18" height="3" rx="1" opacity="0.5"/></svg>'],
-                                                ['name' => __('Minimal Border', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spider-themes.net/prebuild-pattern-design/#minimal-border-style', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="5"/><rect x="3" y="10" width="18" height="5"/><rect x="3" y="17" width="18" height="5"/></svg>'],
-                                                ['name' => __('Active Background', 'advanced-accordion-block '), 'url' => 'https://advanced-accordion-block.spider-themes.net/prebuild-pattern-design/#active-background-style', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="6" rx="1" fill="currentColor" opacity="0.2"/><rect x="3" y="11" width="18" height="3" rx="1"/><rect x="3" y="16" width="18" height="3" rx="1"/></svg>'],
-                                                ['name' => __('Modern Q&A', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spider-themes.net/prebuild-pattern-design/#modern-q-a-pro', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><line x1="11" y1="6" x2="21" y2="6"/><circle cx="6" cy="12" r="3"/><line x1="11" y1="12" x2="21" y2="12"/><circle cx="6" cy="18" r="3"/><line x1="11" y1="18" x2="21" y2="18"/></svg>'],
-                                                ['name' => __('Steps Layout', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spider-themes.net/prebuild-pattern-design/#step-with-accordion-subtitle-pro', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2"/><line x1="6" y1="8" x2="6" y2="16"/><circle cx="6" cy="18" r="2"/><rect x="10" y="4" width="11" height="4" rx="1"/><rect x="10" y="16" width="11" height="4" rx="1"/></svg>'],
-                                                ['name' => __('Auto Numbering', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spider-themes.net/prebuild-pattern-design/#accordion-auto-numbering', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><text x="4" y="8" font-size="6" fill="currentColor">1</text><rect x="10" y="3" width="11" height="5" rx="1"/><text x="4" y="16" font-size="6" fill="currentColor">2</text><rect x="10" y="11" width="11" height="5" rx="1"/></svg>'],
+                                                ['name' => __('Simple Accordion', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spiderthemes.net/prebuild-pattern-design/#simple-accordion', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="6" rx="1"/><rect x="3" y="11" width="18" height="3" rx="1" opacity="0.5"/><rect x="3" y="16" width="18" height="3" rx="1" opacity="0.5"/></svg>'],
+                                                ['name' => __('Minimal Border', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spiderthemes.net/prebuild-pattern-design/#minimal-border-style', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="5"/><rect x="3" y="10" width="18" height="5"/><rect x="3" y="17" width="18" height="5"/></svg>'],
+                                                ['name' => __('Active Background', 'advanced-accordion-block '), 'url' => 'https://advanced-accordion-block.spiderthemes.net/prebuild-pattern-design/#active-background-style', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="6" rx="1" fill="currentColor" opacity="0.2"/><rect x="3" y="11" width="18" height="3" rx="1"/><rect x="3" y="16" width="18" height="3" rx="1"/></svg>'],
+                                                ['name' => __('Modern Q&A', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spiderthemes.net/prebuild-pattern-design/#modern-q-a-pro', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><line x1="11" y1="6" x2="21" y2="6"/><circle cx="6" cy="12" r="3"/><line x1="11" y1="12" x2="21" y2="12"/><circle cx="6" cy="18" r="3"/><line x1="11" y1="18" x2="21" y2="18"/></svg>'],
+                                                ['name' => __('Steps Layout', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spiderthemes.net/prebuild-pattern-design/#step-with-accordion-subtitle-pro', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2"/><line x1="6" y1="8" x2="6" y2="16"/><circle cx="6" cy="18" r="2"/><rect x="10" y="4" width="11" height="4" rx="1"/><rect x="10" y="16" width="11" height="4" rx="1"/></svg>'],
+                                                ['name' => __('Auto Numbering', 'advanced-accordion-block'), 'url' => 'https://advanced-accordion-block.spiderthemes.net/prebuild-pattern-design/#accordion-auto-numbering', 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><text x="4" y="8" font-size="6" fill="currentColor">1</text><rect x="10" y="3" width="11" height="5" rx="1"/><text x="4" y="16" font-size="6" fill="currentColor">2</text><rect x="10" y="11" width="11" height="5" rx="1"/></svg>'],
                                             ];
 
                                             foreach ($patterns as $pattern) :
@@ -958,13 +982,13 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                     </div>
                                     <div class="aab-card-body">
                                         <div class="aab-quicklinks-grid">
-                                            <a href="https://advanced-accordion-block.spider-themes.net/demos" target="_blank" rel="noopener" class="aab-quicklink-item">
+                                            <a href="https://advanced-accordion-block.spiderthemes.net/demos" target="_blank" rel="noopener" class="aab-quicklink-item">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                                                 </svg>
                                                 <span><?php esc_html_e('View Live Demos', 'advanced-accordion-block'); ?></span>
                                             </a>
-                                            <a href="https://helpdesk.spider-themes.net/docs/advance-accordions" target="_blank" rel="noopener" class="aab-quicklink-item">
+                                            <a href="https://helpdesk.spiderthemes.net/docs/advance-accordions" target="_blank" rel="noopener" class="aab-quicklink-item">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                                                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
@@ -1033,7 +1057,7 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                             <?php esc_html_e('VIP Priority Support', 'advanced-accordion-block'); ?>
                                         </h2>
                                         <p class="aab-vip-desc"><?php esc_html_e('Faster and exclusive support service designed for VIP assistance and benefits.', 'advanced-accordion-block'); ?></p>
-                                        <a href="<?php echo $is_pro ? esc_url('https://spider-themes.net/contact/') : esc_url(aab_fs()->get_upgrade_url()); ?>" class="aab-vip-link">
+                                        <a href="<?php echo $is_pro ? esc_url('https://spiderthemes.net/contact/') : esc_url(aab_fs()->get_upgrade_url()); ?>" class="aab-vip-link">
                                             <?php esc_html_e('Know More', 'advanced-accordion-block'); ?>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                 <line x1="5" y1="12" x2="19" y2="12" />
@@ -1106,7 +1130,7 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                                 <span class="aab-changelog-text"><?php esc_html_e('Minor bug fixes and stability improvements', 'advanced-accordion-block'); ?></span>
                                             </li>
                                         </ul>
-                                        <a href="https://advanced-accordion-block.spider-themes.net/changelog/" target="_blank" rel="noopener" class="aab-changelog-more">
+                                        <a href="https://advanced-accordion-block.spiderthemes.net/changelog/" target="_blank" rel="noopener" class="aab-changelog-more">
                                             <?php esc_html_e('View Full Changelog', 'advanced-accordion-block'); ?>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                 <line x1="7" y1="17" x2="17" y2="7" />
@@ -1337,7 +1361,7 @@ if (! function_exists('aab_admin_page_content_callback')) {
                                         <a href="<?php echo esc_url(aab_fs()->get_upgrade_url()); ?>" class="aab-btn aab-btn-primary aab-btn-lg">
                                             <?php esc_html_e('Upgrade to Pro Now', 'advanced-accordion-block'); ?>
                                         </a>
-                                        <a href="https://advanced-accordion-block.spider-themes.net/demos" target="_blank" rel="noopener" class="aab-btn aab-btn-outline aab-btn-lg">
+                                        <a href="https://advanced-accordion-block.spiderthemes.net/demos" target="_blank" rel="noopener" class="aab-btn aab-btn-outline aab-btn-lg">
                                             <?php esc_html_e('View Live Demos', 'advanced-accordion-block'); ?>
                                         </a>
                                     </div>
@@ -1347,6 +1371,43 @@ if (! function_exists('aab_admin_page_content_callback')) {
                     </div>
                     <!-- End Lite vs Pro Tab Panel -->
                 <?php endif; ?>
+
+                <!-- Settings Tab Panel -->
+                <div id="aab-tab-settings" class="aab-tab-panel" role="tabpanel">
+                    <main class="aab-main-container" role="main">
+                        <div class="aab-page-header aab-animate-fade-in">
+                            <div class="aab-page-header-content">
+                                <h1 class="aab-page-title"><?php esc_html_e('Settings', 'advanced-accordion-block'); ?></h1>
+                                <p class="aab-page-description"><?php esc_html_e('General options for the Accordion Block admin pages.', 'advanced-accordion-block'); ?></p>
+                            </div>
+                        </div>
+
+                        <section class="aab-card aab-animate-fade-in" aria-labelledby="aab-settings-general-title">
+                            <div class="aab-card-header">
+                                <h2 id="aab-settings-general-title" class="aab-card-title"><?php esc_html_e('General', 'advanced-accordion-block'); ?></h2>
+                            </div>
+                            <div class="aab-card-body">
+                                <?php if (isset($_GET['settings-updated'])) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display-only flag set by options.php ?>
+                                    <p class="aab-settings-saved" style="margin:0 0 16px;color:#15803d;font-weight:600;"><?php esc_html_e('Settings saved.', 'advanced-accordion-block'); ?></p>
+                                <?php endif; ?>
+                                <form method="post" action="options.php">
+                                    <?php settings_fields('aab_general_settings'); ?>
+                                    <label for="aab_hide_support_assistant" style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;">
+                                        <input type="checkbox" id="aab_hide_support_assistant" name="aab_hide_support_assistant" value="1" <?php checked((bool) get_option('aab_hide_support_assistant', false)); ?> style="margin-top:3px;">
+                                        <span>
+                                            <strong><?php esc_html_e('Hide Support Chat', 'advanced-accordion-block'); ?></strong><br>
+                                            <span style="color:#64748b;"><?php esc_html_e('Hide the documentation support chat button on Accordion Block admin pages.', 'advanced-accordion-block'); ?></span>
+                                        </span>
+                                    </label>
+                                    <p style="margin:20px 0 0;">
+                                        <button type="submit" class="aab-btn aab-btn-primary"><?php esc_html_e('Save Settings', 'advanced-accordion-block'); ?></button>
+                                    </p>
+                                </form>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+                <!-- End Settings Tab Panel -->
             </div>
             <!-- End Tab Panels Container -->
 

@@ -7,7 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register Block
  */
-class AAB_Block_Register {
+if ( ! class_exists( 'AAB_Block_Register' ) ) {
+	class AAB_Block_Register {
 	/**
 	 * Constructor.
 	 *
@@ -742,4 +743,5 @@ class AAB_Block_Register {
 		wp_register_style( 'aahb-horizontal-accordion-item', AAGB_URL . 'build/horizontal-accordion-item/style-index.css' );
 		return $content;
 	}
+}
 }
